@@ -15,54 +15,33 @@ new <- mollusc.summary %>% filter(str_detect(reportingStatus, "new"))
 confirmed <- mollusc.summary %>% filter(reportingStatus == 'confirmed') 
 reported <- mollusc.summary %>% filter(reportingStatus == 'reported') 
 observed <- mollusc.summary %>% filter(iNatObservationStatus == 'observed') 
+unobserved <- mollusc.summary %>% filter(iNatObservationStatus == 'unobserved') 
 ```
 
-## Introduction
+## Galiano Island's marine mollusc diversity
 
-## Galiano Island's mollusc diversity
-
-With about 49,000 extant species, Mollusca are the second largest phylum after Arthropoda. The phylum comprises seven extant classes, five of which are locally represented, including bivalves, cephalopods, gastropods, chitons, and tusk shells. Over 780 marine species are been identified in British Columbia, `r nrow(mollusc.summary)` of which are reported for Galiano Island.
+With about 49,000 extant species, Mollusca are the second largest phylum after Arthropoda. The phylum comprises seven extant classes, five of which are locally represented, including bivalves, cephalopods, gastropods, chitons, and tusk shells. Over 780 marine species are been identified in British Columbia, `r nrow(mollusc.summary)` of which have been reported for Galiano Island over the last century and a half, through the combined efforts of `r length(unique(molluscs$recordedBy))` individuals.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Vascular_plant_map_script.R")
-speciesMap
+source("scripts/Marine_mollusc_map_script.R")
+animal.grid.map
 ```
 
 ## Community science contributions
 
-Based on search efforts over the last decade, `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historically reported marine mollusc diversity has been confirmed and `r nrow(new)` new species reports added to the list. Community members have now documented `r round((nrow(observed)/(nrow(plant.summary))*100), digits = 0)` percent of Galiano Island's known mollusc diversity on iNaturalist, with over `r length(unique(plants$recordedBy))` individuals contributing to these efforts.
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` mollusc species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records and adding `r nrow(new)` new species to the list. Of the `r nrow(mollusc.summary)` species reported for the island, `r nrow(unobserved)` species have not been seen in the last twenty years.
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Community_science_contributions.R")
-reportingStatusMap
-reportingStatusFig
-```
-*Map 3. Species Reporting Status*
-*Figure 2: Species Reporting Status*
+#```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#source("scripts/Community_science_contributions.R")
+#reportingStatusMap
+#reportingStatusFig
+#```
 
-## Top contributions to our knowledge of the regional plant diversity
+## Top community contributions to our knowledge of the island mollusc diversity
 
-You can contribute to this growing record of the regional plant diversity by submitting your observations to the [Atl'ka7tsem Howe Sound Biosphere Region iNaturalist project.](https://www.inaturalist.org/projects/atl-ka7tsem-howe-sound-biosphere-region) Here, you can browse photos of some of the most commonly documented plants, as well as recent observations and top observers across the region, based on [iNaturalist](http://inaturalist.org/) data. Visualisation code courtesy of [Ben Keen](https://github.com/benkeen).
+Browse photos of some of the most commonly documented mollusc species, as well as recent observations and top observers, based on [iNaturalist](http://inaturalist.org/) data. You can help contribute to the growing record of the island mollusc diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
 
 <span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
-
-## Vascular plant diversity within Howe Sound's protected areas
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width="1024px"}
-#width instructions from https://stackoverflow.com/a/41371132
-source("scripts/Protected_areas.R")
-
-native.plants <- read.csv("outputs/AHSBR_native_vascular_plant_species.csv")
-protected.plants <- read.csv("outputs/AHSBR_protected_native_vascular_plant_species.csv")
-
-protectedAreaMap
-protected.area.plot 
-```
-*Map 4. Protected Areas*
-*Figure 3. Species Reported by Protected Area*
-
-Based on our current knowledge, `r round(nrow(protected.plants)/nrow(native.plants)*100)` percent of the native plant diversity known to Átl’ḵa7tsem/Howe Sound has been reported within protected areas. While this preliminary evaluation is limited due to biases in sampling effort and other deficiencies in the data, it represents a starting point for a more thorough assessment of progress being made toward goals of conserving our regional habitat diversity. Please help improve our understanding of the distribution of vascular plants and other biodiversity the region by reporting your observations to the [Atl'ka7tsem Howe Sound Biosphere Region iNaturalist project.](https://www.inaturalist.org/projects/atl-ka7tsem-howe-sound-biosphere-region)
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
