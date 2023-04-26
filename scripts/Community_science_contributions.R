@@ -156,4 +156,4 @@ statusTaxa <- list(MAP_LABEL=reportingPal$cat, taxa = pull(taxa.status, -1))
 # (selection states corresponding with bar plot selections: 'new', 'historic','confirmed')
 statusData <- structure(list(palette = reportingPal, taxa = statusTaxa))
 
-write(rjson::toJSON(statusData), "viz_data/Status-plotData.json")
+write(rjson::toJSON(statusData), "viz_data/Status-molluscPlotData.json")
