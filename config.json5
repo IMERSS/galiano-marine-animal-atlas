@@ -1,34 +1,15 @@
 {
     reknitJobs: [{
-        infile: "%maxwell/docs/R-Markdown-AHSBR_Map_1.html",
-        outfile: "%maxwell/docs/R-Markdown-AHSBR_Map_1-Reknitted.html",
+        infile: "%maxwell/docs/Molluscs.html",
+        outfile: "%maxwell/docs/Molluscs-Reknitted.html",
         options: {
             template: "%maxwell/src/html/template.html",
             paneHandlers: {
-                Vascular: {
+                Diversity: {
                     type: "maxwell.scrollyPaneHandler",
-                    options: {
-                        gradeNames: [ "hortis.scrollyMapLoader", "maxwell.scrollyVizBinder", "maxwell.howeVizBinder"],
-                        resourceBase: ".",
-                        markupTemplate: "%resourceBase/html/imerss-viz-scrolly.html",
-                        phyloMap: "%resourceBase/json/howePhyloMap.json",
-                        renderMarkup: true,
-                        vizFile: "%resourceBase/data/Howe-Sound-Scrolly-Life-Vascular.json.lz4"
-                    }
-                },
-                Status: {
-                    type: "maxwell.scrollyPaneHandler",
-                    options: {
-                        gradeNames: [ "hortis.scrollyMapLoader", "maxwell.scrollyVizBinder", "maxwell.howeVizBinder", "maxwell.howeStatusBinder"],
-                        resourceBase: ".",
-                        markupTemplate: "%resourceBase/html/imerss-viz-scrolly.html",
-                        phyloMap: "%resourceBase/json/howePhyloMap.json",
-                        renderMarkup: true,
-                        vizFile: "%resourceBase/data/Howe-Sound-Scrolly-Life-Status.json.lz4",
-                        markup: {
-                            region: "Selected reporting status: %region"
-                        }
-                    }
+                    gradeNames: [ "maxwell.scrollyVizBinder"],
+                    vizFile: "%resourceBase/data/Galiano-2023-Scrolly-Life-Mollusca.json.lz4",
+                    regionIdFromLabel: true
                 },
                 TopContributions: {
                     type: "maxwell.iNatComponentsPaneHandler"
@@ -41,6 +22,9 @@
         target: "%maxwell/docs/js/infusion-framework.js",
         replaceSource: "sourceMappingURL=infusion-framework.js.map",
         replaceTarget: "sourceMappingURL=../../node_modules/infusion/dist/infusion-framework.js.map"
+    }, {
+        source: "%maxwell/src/js/client/leaflet-providers.js",
+        target: "%maxwell/docs/js/leaflet-providers.js"
     }, {
         source: "%maxwell/src/js/client/plotly-2.1.1.js",
         target: "%maxwell/docs/js/plotly-2.1.1.js"
@@ -98,17 +82,14 @@
         source: "%imerss-bioinfo/docs/css/xetthecum-shared.css",
         target: "%maxwell/docs/css/xetthecum-shared.css"
     }, {
+        source: "%imerss-bioinfo/src/client/json/emptyPhyloMap.json",
+        target: "%maxwell/docs/json/phyloMap.json"
+    }, {
         source: "%maxwell/src/html/imerss-viz-scrolly.html",
         target: "%maxwell/docs/html/imerss-viz-scrolly.html"
     }, {
-        source: "%maxwell/viz_data/howePhyloMap.json",
-        target: "%maxwell/docs/json/howePhyloMap.json"
-    }, {
-        source: "%maxwell/viz_data/Howe-Sound-Scrolly-Life-Vascular.json.lz4",
-        target: "%maxwell/docs/data/Howe-Sound-Scrolly-Life-Vascular.json.lz4"
-    }, {
-        source: "%maxwell/viz_data/Howe-Sound-Scrolly-Life-Status.json.lz4",
-        target: "%maxwell/docs/data/Howe-Sound-Scrolly-Life-Status.json.lz4"
+        source: "%maxwell/viz_data/Galiano-2023-Scrolly-Life-Mollusca.json.lz4",
+        target: "%maxwell/docs/data/Galiano-2023-Scrolly-Life-Mollusca.json.lz4"
     }]
 }
 

@@ -1,5 +1,5 @@
 {
-    "name": "howe-sound-mapping",
+    "name": "galiano-bioblitz.2023",
     "description": "Howe Sound Biosphere Vegetation Analysis Storymapping in R",
     "version": "0.0.1",
     "author": "IMERSS, Transition Salt Spring",
@@ -10,17 +10,17 @@
     "dependencies": {},
     "devDependencies": {
         "infusion": "4.6.0",
-        "imerss-bioinfo": "1.5.0",
+        "imerss-bioinfo": "1.7.0",
         "json5": "2.2.3",
         "linkedom": "0.14.25",
         "fs-extra": "11.1.1",
-        "eslint": "8.37.0",
+        "eslint": "8.39.0",
         "eslint-config-fluid": "2.1.1",
         "fluid-lint-all": "1.2.9"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/IMERSS/howe-sound-mapping"
+        "url": "https://github.com/IMERSS/galiano-bioblitz-2023"
     },
     "engines": {
         "node": ">=14.0.0"

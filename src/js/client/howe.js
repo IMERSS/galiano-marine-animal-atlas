@@ -4,7 +4,7 @@
 var maxwell = fluid.registerNamespace("maxwell");
 
 fluid.defaults("maxwell.howeVizBinder", {
-
+    phyloMap: "%resourceBase/json/howePhyloMap.json",
     markup: {
         region: "Selected biogeoclimatic region: %region"
     },

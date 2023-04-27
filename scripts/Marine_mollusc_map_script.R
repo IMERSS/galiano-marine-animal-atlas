@@ -50,6 +50,7 @@ animal.grid.map = tm_shape(choropleth) +
       richness = list(format = "f", digits = 0)
     )
   ) +
-  tm_borders(col = "grey40", lwd = 0.7)
+  tm_borders(col = "grey40", lwd = 0.7) +
+  tm_view(leaflet.options = list(mx_mapId="Diversity"))
 
 animal.grid.map

@@ -84,7 +84,7 @@ body {
 }
 
 .fld-imerss-selected .fld-imerss-legend-preview {
-    outline: 3px solid #FCFF63;
+    outline: 2px solid #FCFF63;
 }
 
 /* Fix the height of the "Status" viz to account for the bar widget above it */

@@ -95,6 +95,7 @@ maxwell.reknitFile = async function (infile, outfile, options) {
     const template = maxwell.parseDocument(fluid.module.resolvePath(options.template));
     maxwell.movePlotlyWidgets(template, sections, container);
     container.querySelector("h1").remove();
+    // TODO: Move title and h1 into template
     await maxwell.asyncForEach(options.transforms || [], async (rec) => {
         const file = require(fluid.module.resolvePath(rec.file));
         const transform = file[rec.func];
