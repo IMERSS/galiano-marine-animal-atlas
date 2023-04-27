@@ -25,7 +25,7 @@ molluscs.gridded <- read.csv("tabular_data/molluscs_records_gridded.csv")
 gridded.molluscs <- molluscs.gridded %>% group_by(cell_id) %>% 
   summarize(taxa = paste(sort(unique(scientificName)),collapse=", "))
 
-write(jsonlite::toJSON(gridded.molluscs ), "viz_data/molluscGridCellData.json")
+write(jsonlite::toJSON(gridded.molluscs), "viz_data/molluscGridCellData.json")
 
 # Load choropleth
 
