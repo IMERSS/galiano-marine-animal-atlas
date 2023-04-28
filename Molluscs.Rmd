@@ -20,7 +20,7 @@ unobserved <- mollusc.summary %>% filter(iNatObservationStatus == 'unobserved')
 
 ## Galiano Island's marine mollusc diversity
 
-With about 49,000 extant species, Mollusca are the second largest phylum after Arthropoda. The phylum comprises seven extant classes, five of which are locally represented, including bivalves, cephalopods, gastropods, chitons, and tusk shells. Over 780 marine species are been identified in British Columbia, `r nrow(mollusc.summary)` of which have been reported for Galiano Island over the last century and a half, through the combined efforts of `r length(unique(molluscs$recordedBy))` individuals.
+With about 49,000 extant species, Mollusca are the second largest phylum after Arthropoda. The phylum comprises seven extant classes, five of which are locally represented, including bivalves, cephalopods, gastropods, chitons, and tusk shells. Over 780 marine species have been identified in British Columbia, `r nrow(mollusc.summary)` of which have been reported for Galiano Island over the last century and a half, through the combined efforts of `r length(unique(molluscs$recordedBy))` individuals.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Marine_mollusc_map_script.R")
@@ -29,7 +29,7 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` mollusc species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records and adding `r nrow(new)` new species to the list. Of the `r nrow(mollusc.summary)` species reported for the island, `r nrow(unobserved)` species have not been seen in the last twenty years.
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` mollusc species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records and adding `r nrow(new)` new species to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Community_science_contributions.R")
