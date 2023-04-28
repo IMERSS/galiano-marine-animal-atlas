@@ -65,8 +65,8 @@ fluid.defaults("maxwell.scrollyVizBinder", {
         mapHolder: "{maxwell.scrollyLeafletMap}.container"
     },
     invokers: {
-        polyOptions: "maxwell.scrollyViz.polyOptions({that}, {arguments}.0)",
-        handlePoly: "maxwell.scrollyViz.handlePoly({that}, {arguments}.0, {arguments}.1, {arguments}.2, {arguments}.3)"
+        polyOptions: "maxwell.scrollyViz.polyOptions({that}, {arguments}.0, {arguments}.1)",
+        handlePoly: "maxwell.scrollyViz.handlePoly({that}, {arguments}.0, {arguments}.1, {arguments}.2)"
     },
     distributeOptions: {
         bareRegionsExtra: {
@@ -230,9 +230,13 @@ hortis.leafletMap.showSelectedRegions = function (map, selectedRegions) {
     });
 };
 
+maxwell.scrollyViz.regionIdForPoly = function (paneHandler, shapeOptions, label) {
+    const regionIdFromLabel = fluid.getForComponent(paneHandler, ["options", "regionIdFromLabel"]); // obviously unsatisfactory
+    return regionIdFromLabel ? label : shapeOptions.mx_regionId;
+};
 
-maxwell.scrollyViz.polyOptions = function (paneHandler, shapeOptions) {
-    const region = shapeOptions.mx_regionId;
+maxwell.scrollyViz.polyOptions = function (paneHandler, shapeOptions, label) {
+    const region = maxwell.scrollyViz.regionIdForPoly(paneHandler, shapeOptions, label);
     const overlay = {};
     if (region) {
         overlay.className = (shapeOptions.className || "") + " fld-imerss-region " + maxwell.regionClass(region);
@@ -242,9 +246,8 @@ maxwell.scrollyViz.polyOptions = function (paneHandler, shapeOptions) {
     return {...shapeOptions, ...overlay};
 };
 
-maxwell.scrollyViz.handlePoly = function (paneHandler, Lpolygon, shapeOptions, label, labelOptions) {
-    const regionIdFromLabel = fluid.getForComponent(paneHandler, ["options", "regionIdFromLabel"]); // obviously unsatisfactory
-    const region = regionIdFromLabel ? label : shapeOptions.mx_regionId;
+maxwell.scrollyViz.handlePoly = function (paneHandler, Lpolygon, shapeOptions, label) {
+    const region = maxwell.scrollyViz.regionIdForPoly(paneHandler, shapeOptions, label);
     // cf.hortis.leafletMap.withRegions.drawRegions
     if (region) {
         Lpolygon.on("click", function () {

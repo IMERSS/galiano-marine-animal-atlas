@@ -8,11 +8,24 @@
                 Diversity: {
                     type: "maxwell.scrollyPaneHandler",
                     gradeNames: [ "maxwell.scrollyVizBinder"],
-                    vizFile: "%resourceBase/data/Galiano-2023-Scrolly-Life-Mollusca.json.lz4",
+                    vizFile: "%resourceBase/data/Galiano-2023-Scrolly-Mollusca.json.lz4",
                     regionIdFromLabel: true
                 },
                 TopContributions: {
                     type: "maxwell.iNatComponentsPaneHandler"
+                },
+                Status: {
+                    type: "maxwell.scrollyPaneHandler",
+                    gradeNames: [ "maxwell.scrollyVizBinder", "maxwell.howeVizBinder", "maxwell.howeStatusBinder"],
+                    vizFile: "%resourceBase/data/Galiano-2023-Scrolly-Status-Mollusca.json.lz4",
+                    markup: {
+                        region: "Selected reporting status: %region"
+                    },
+                    widgets: {
+                        reportingStatus: {
+                            type: "maxwell.regionSelectionBar"
+                        }
+                    }
                 }
             }
         }
@@ -88,8 +101,11 @@
         source: "%maxwell/src/html/imerss-viz-scrolly.html",
         target: "%maxwell/docs/html/imerss-viz-scrolly.html"
     }, {
-        source: "%maxwell/viz_data/Galiano-2023-Scrolly-Life-Mollusca.json.lz4",
-        target: "%maxwell/docs/data/Galiano-2023-Scrolly-Life-Mollusca.json.lz4"
+        source: "%maxwell/viz_data/Galiano-2023-Scrolly-Mollusca.json.lz4",
+        target: "%maxwell/docs/data/Galiano-2023-Scrolly-Mollusca.json.lz4"
+    }, {
+        source: "%maxwell/viz_data/Galiano-2023-Scrolly-Status-Mollusca.json.lz4",
+        target: "%maxwell/docs/data/Galiano-2023-Scrolly-Status-Mollusca.json.lz4"
     }]
 }
 

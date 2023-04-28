@@ -140,13 +140,14 @@ reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~new.no, name = 'New'
 reportingStatusFig <- reportingStatusFig %>% layout(barmode = 'stack', autosize=F, height=140, showlegend=FALSE,
                       xaxis = list(title = "Species Reported"),
                       yaxis = list(title ="Records")) %>% 
+  layout(meta = list(mx_widgetId = "reportingStatus")) %>%
   layout(yaxis= list(showticklabels = FALSE)) %>%
   layout(yaxis= list(title = ""))
 
 reportingStatusFig
 
 # Strange structure to mirror that in Molluscs
-reportingPal <- data.frame(cat = c("confirmed", "historic", "new"),
+reportingPal <- data.frame(cat = c("Confirmed", "Historic", "New"),
                           col = c('#5a96d2','#decb90', '#7562b4'))
 
 # We need to convert out of "tibble" so that JSON can recognise it

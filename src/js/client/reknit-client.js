@@ -323,10 +323,10 @@ maxwell.assignPolyToPane = function (rawPaneHandler, callArgs, polyMethod, paneI
         const r = v => maxwell.resolveVectorOptions(v, index);
         const args = maxwell.projectArgs(callArgs, index);
         const shapeOptions = r(options);
-        const finalOptions = paneHandler.polyOptions(shapeOptions);
-        const polygon = L[polyMethod](maxwell.leafletiseCoords(shape), finalOptions).addTo(paneInfo.group);
         const label = args[6];
         const labelOptions = args[7];
+        const finalOptions = paneHandler.polyOptions(shapeOptions, label, labelOptions);
+        const polygon = L[polyMethod](maxwell.leafletiseCoords(shape), finalOptions).addTo(paneInfo.group);
         if (label) {
             polygon.bindPopup(label, {closeButton: false, ...labelOptions});
             maxwell.hoverPopup(polygon, paneInfo.paneOptions);
