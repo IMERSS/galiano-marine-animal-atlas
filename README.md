@@ -1,13 +1,12 @@
-# Átl’ka7tsem/Howe Sound Biosphere Vegetation Analysis
+# Galiano 2023 Bioblitz
 
 This project hosts a structure for building out and publishing a map-based scrollytelling
-interface for the [Átl’ka7tsem/Howe Sound Biosphere Reserve](https://en.unesco.org/biosphere/eu-na/atlka7tsem_howe-sound)
-based on [R Markdown](https://rmarkdown.rstudio.com/).
+interface for the Galiano 2023 Bioblitz.
 
 You can browse the published output of this project in these documents:
 
-* [Raw Storymapping Output](https://imerss.github.io/howe-sound-mapping/R-Markdown-AHSBR_Map_1.html)
-* [Storymapping Reknitted into Scrollytelling Interface](https://imerss.github.io/howe-sound-mapping/R-Markdown-AHSBR_Map_1-Reknitted.html)
+* [Molluscs - Raw Storymapping Output](https://imerss.github.io/galiano-bioblitz-2023/Molluscs.html#)
+* [Molluscs - Storymapping Reknitted into Scrollytelling Interface](https://imerss.github.io/galiano-bioblitz-2023/Molluscs-Reknitted.html#)
 
 This was built using R and R Markdown, using free tools such as git, R and R studio, and publish and host it for free using
 [GitHub Pages](https://pages.github.com/).
@@ -107,7 +106,7 @@ tab on your repository's settings, as shown in the image below:
 ![GitHub Pages configuration](img/gh-pages.png)
 
 You can find our what URL your markup will be published at by looking in the [docs](docs) directory of your own
-repository. For example, the [docs/R-Markdown-Background-Reknitted.html](docs/R-Markdown-Background-Reknitted.html)
+repository. For example, the [docs/R-Markdown-Background-Reknitted.html](https://github.com/r-scrollytelling-template/docs/R-Markdown-Background-Reknitted.html)
 file is published at [https://imerss.github.io/r-scrollytelling-template/R-Markdown-Background-Reknitted.html](https://imerss.github.io/r-scrollytelling-template/R-Markdown-Background-Reknitted.html).
 
 The overall URL of your documents published in GitHub pages will start with `https://<your-account>.github.io/<your-repository>`.
