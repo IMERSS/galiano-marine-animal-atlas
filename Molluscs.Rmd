@@ -1,6 +1,6 @@
 ---
 title: Marine mollusc diversity, Galiano Island, BC
-author: Antranig Basman, Karin Fletcher,  Charles J. Gibbs, Rick M. Harbo,  Andy Lamb, Andrew Simon
+author: Antranig Basman, Karin Fletcher, Charles J. Gibbs, Donna M. Gibbs, Rick M. Harbo, Andy Lamb, Andrew Simon
 date: April 22nd, 2023
 output: html_document
 knit: (function(inputFile, encoding) {
