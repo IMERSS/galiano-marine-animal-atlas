@@ -9,7 +9,7 @@ knit: (function(inputFile, encoding) {
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-molluscs <- read.csv("tabular_data/Galiano_marine_animal_records_consolidated_2023-04-22.csv")
+molluscs <- read.csv("tabular_data/molluscs_records_gridded.csv")
 mollusc.summary <- read.csv("tabular_data/mollusc_summary.csv")
 new <- mollusc.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- mollusc.summary %>% filter(reportingStatus == 'confirmed') 
@@ -20,9 +20,9 @@ unobserved <- mollusc.summary %>% filter(iNatObservationStatus == 'unobserved')
 
 ## Galiano Island's marine mollusc diversity
 
-With about 49,000 extant species, Mollusca are the second largest phylum after Arthropoda. The phylum comprises seven extant classes, five of which are locally represented around Galiano Island, including bivalves, cephalopods, gastropods, chitons, and tusk shells. Over 780 marine species have been identified in British Columbia, `r nrow(mollusc.summary)` of which have been reported for Galiano Island over the last century and a half, through the combined efforts of `r length(unique(molluscs$recordedBy))` individuals.
+With about 49,000 extant species, Mollusca are the second largest phylum after Arthropoda. The phylum comprises seven extant classes, five of which are locally represented around Galiano Island, including bivalves, cephalopods, gastropods, chitons, and tusk shells. Over 780 marine mollusc species have been identified in British Columbia. Of these, `r nrow(mollusc.summary)` species have been reported for Galiano Island over the last century and a half, through the combined efforts of more than `r length(unique(molluscs$recordedBy))` individuals.
 
-The cold, rich waters surrounding Galiano Island are home to many remarkable molluscs, including giant Pacific octopus (*Enteroctopus dofleini*), the largest octopus in the world. The largest chiton in the world, the gumboot chiton (*Cryptochiton stelleri*), is also known to the region and is reported for Galiano Island. Introduced bivalves present around Galiano Island include Pacific oyster (*Magallana gigas*), soft-shelled clam (*Mya arenaria*), purple mahogany clam (*Nuttalia obscurata*), and Japanese littleneck (*Ruditapes philippinarum*), all of which are now prolific in the Northeast Pacific. Introduced gastropods present include Japanese false cerith (*Batillaria attramentaria*) and the mouse-eared snail (*Myosotella myosotis*).
+The cold, rich waters surrounding Galiano Island are home to many remarkable molluscs, including the giant Pacific octopus (*Enteroctopus dofleini*), the largest octopus in the world. The largest chiton in the world, the gumboot chiton (*Cryptochiton stelleri*), is also known to the region and is reported for Galiano Island. Introduced bivalves present around Galiano Island include Pacific oyster (*Magallana gigas*), soft-shelled clam (*Mya arenaria*), purple mahogany clam (*Nuttalia obscurata*), and Japanese littleneck (*Ruditapes philippinarum*), all of which are now prolific in the Northeast Pacific. Introduced gastropods present include Japanese false cerith (*Batillaria attramentaria*) and the mouse-eared snail (*Myosotella myosotis*).
 
 ![Giant Pacific octopus (*Enteroctopus dofleini*) – Photograph by Peter Luckham.](media/Enteroctopus_dofleini_Peter_Luckham.jpeg)
 

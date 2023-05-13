@@ -1,4 +1,4 @@
-# Map reporting status of vascular plants documented in the Átl’ka7tsem/Howe Sound Biosphere
+# Map reporting status of Galiano Island's marine mollusc species
 
 # Load libraries
 
