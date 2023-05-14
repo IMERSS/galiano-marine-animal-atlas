@@ -29,13 +29,13 @@ molluscs <- read.csv("tabular_data/Galiano_marine_animal_records_consolidated_20
 
 summary <- read.csv("tabular_data/mollusc_summary.csv")
 
-# Subset historic, confirmed and new records
+# Subset historical, confirmed and new records
 
 new <- summary %>% filter(str_detect(reportingStatus, "new"))
 confirmed <- summary %>% filter(reportingStatus == "confirmed")
 reported <- summary %>% filter(reportingStatus == "reported")
 
-# Create vectors of historic, confirmed and new taxa to query catalog of occurrence records
+# Create vectors of historical, confirmed and new taxa to query catalog of occurrence records
 
 new.taxa <- unique(new$scientificName)
 new.taxa <- new.taxa %>% paste(collapse = "|")
@@ -53,7 +53,7 @@ new.taxa.records <- molluscs %>% filter(str_detect(scientificName, new.taxa))
 new.taxa.records$status <- 'new'
 
 reported.taxa.records <- molluscs %>% filter(str_detect(scientificName, reported.taxa))
-reported.taxa.records$status <- 'historic'
+reported.taxa.records$status <- 'historical'
 
 records <- rbind(new.taxa.records,confirmed.taxa.records,reported.taxa.records)
 
@@ -79,19 +79,19 @@ gridded.molluscs.new <- molluscs.new.gridded %>% group_by(cell_id) %>%
 gridded.molluscs.reported <- molluscs.reported.gridded %>% group_by(cell_id) %>% 
   summarize(taxa = paste(sort(unique(scientificName)),collapse=", "))
 
-write(jsonlite::toJSON(gridded.molluscs.confirmed), "viz_data/molluscConfirmedGridCellData.json")
-write(jsonlite::toJSON(gridded.molluscs.new), "viz_data/molluscNewGridCellData.json")
+write(jsonlite::toJSON(gridded.molluscs.confirmed), "viz_data/molluscconfirmedGridCellData.json")
+write(jsonlite::toJSON(gridded.molluscs.new), "viz_data/molluscnewGridCellData.json")
 write(jsonlite::toJSON(gridded.molluscs.reported), "viz_data/molluscReportedGridCellData.json")
 
 # Load choropleths
 
 gridded.confirmed.records <- mx_read("spatial_data/vectors/molluscs_confirmed")
 gridded.new.records <- mx_read("spatial_data/vectors/molluscs_new")
-gridded.historic.records <- mx_read("spatial_data/vectors/molluscs_reported")
+gridded.historical.records <- mx_read("spatial_data/vectors/molluscs_reported")
 
 # Combine records to create normalized palette
 
-gridded.records <- rbind(gridded.confirmed.records, gridded.historic.records, gridded.new.records)
+gridded.records <- rbind(gridded.confirmed.records, gridded.historical.records, gridded.new.records)
 
 # Create color palette for species richness
 
@@ -106,7 +106,7 @@ pal <- leaflet::colorFactor(viridis_pal(option = "D")(t), domain = values)
 reportingStatusMap <- leaflet(options=list(mx_mapId="Status")) %>%
   addTiles(options = providerTileOptions(opacity = 0.5)) %>%
   addPolygons(data = gridded.confirmed.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = labelToOption("confirmed")) %>%
-  addPolygons(data = gridded.historic.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = labelToOption("historic")) %>%
+  addPolygons(data = gridded.historical.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = labelToOption("historical")) %>%
   addPolygons(data = gridded.new.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = labelToOption("new")) %>%
   addLegend(position = 'topright',
             colors = viridis_pal(option = "D")(t),
@@ -115,25 +115,25 @@ reportingStatusMap <- leaflet(options=list(mx_mapId="Status")) %>%
 #Note that this statement is only effective in standalone R
 print(reportingStatusMap)
 
-# Stacked bar plot of historic vs confirmed vs new records
+# Stacked bar plot of historical vs confirmed vs new records
 
 y <- c('records')
 confirmed.no <- c(nrow(confirmed))
-historic.no <- c(nrow(reported))
+historical.no <- c(nrow(reported))
 new.no <- c(nrow(new))
 
-reporting.status <- data.frame(y, confirmed.no, historic.no, new.no)
+reporting.status <- data.frame(y, confirmed.no, historical.no, new.no)
 
-reportingStatusFig <- plot_ly(reporting.status, x = ~confirmed.no, y = ~y, type = 'bar', orientation = 'h', name = 'Confirmed',
+reportingStatusFig <- plot_ly(reporting.status, x = ~confirmed.no, y = ~y, type = 'bar', orientation = 'h', name = 'confirmed',
                       
                       marker = list(color = '#5a96d2',
                              line = list(color = '#5a96d2',
                                          width = 1)))
-reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~historic.no, name = 'Historic',
+reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~historical.no, name = 'historical',
                          marker = list(color = '#decb90',
                                        line = list(color = '#decb90',
                                                    width = 1)))
-reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~new.no, name = 'New',
+reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~new.no, name = 'new',
                          marker = list(color = '#7562b4',
                                        line = list(color = '#7562b4',
                                                    width = 1)))
@@ -147,14 +147,14 @@ reportingStatusFig <- reportingStatusFig %>% layout(barmode = 'stack', autosize=
 reportingStatusFig
 
 # Strange structure to mirror that in Molluscs
-reportingPal <- data.frame(cat = c("Confirmed", "Historic", "New"),
+reportingPal <- data.frame(cat = c("confirmed", "historical", "new"),
                           col = c('#5a96d2','#decb90', '#7562b4'))
 
 # We need to convert out of "tibble" so that JSON can recognise it
 statusTaxa <- list(MAP_LABEL=reportingPal$cat, taxa = pull(taxa.status, -1))
 
 # Write summarised plants to JSON file for viz 
-# (selection states corresponding with bar plot selections: 'new', 'historic','confirmed')
+# (selection states corresponding with bar plot selections: 'new', 'historical','confirmed')
 statusData <- structure(list(palette = reportingPal, taxa = statusTaxa))
 
 write(rjson::toJSON(statusData), "viz_data/Status-molluscPlotData.json")

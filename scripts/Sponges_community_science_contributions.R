@@ -79,8 +79,8 @@ gridded.sponges.new <- sponges.new.gridded %>% group_by(cell_id) %>%
 gridded.sponges.reported <- sponges.reported.gridded %>% group_by(cell_id) %>% 
   summarize(taxa = paste(sort(unique(scientificName)),collapse=", "))
 
-write(jsonlite::toJSON(gridded.sponges.confirmed), "viz_data/fishConfirmedGridCellData.json")
-write(jsonlite::toJSON(gridded.sponges.new), "viz_data/fishNewGridCellData.json")
+write(jsonlite::toJSON(gridded.sponges.confirmed), "viz_data/fishconfirmedGridCellData.json")
+write(jsonlite::toJSON(gridded.sponges.new), "viz_data/fishnewGridCellData.json")
 write(jsonlite::toJSON(gridded.sponges.reported), "viz_data/fishReportedGridCellData.json")
 
 # Load choropleths
@@ -124,7 +124,7 @@ new.no <- c(nrow(new))
 
 reporting.status <- data.frame(y, confirmed.no, historic.no, new.no)
 
-reportingStatusFig <- plot_ly(reporting.status, x = ~confirmed.no, y = ~y, type = 'bar', orientation = 'h', name = 'Confirmed',
+reportingStatusFig <- plot_ly(reporting.status, x = ~confirmed.no, y = ~y, type = 'bar', orientation = 'h', name = 'confirmed',
                       
                       marker = list(color = '#5a96d2',
                              line = list(color = '#5a96d2',
@@ -133,7 +133,7 @@ reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~historic.no, name = 
                          marker = list(color = '#decb90',
                                        line = list(color = '#decb90',
                                                    width = 1)))
-reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~new.no, name = 'New',
+reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~new.no, name = 'new',
                          marker = list(color = '#7562b4',
                                        line = list(color = '#7562b4',
                                                    width = 1)))
@@ -147,7 +147,7 @@ reportingStatusFig <- reportingStatusFig %>% layout(barmode = 'stack', autosize=
 reportingStatusFig
 
 # Strange structure to mirror that in sponges
-reportingPal <- data.frame(cat = c("Confirmed", "Historic", "New"),
+reportingPal <- data.frame(cat = c("confirmed", "Historic", "new"),
                           col = c('#5a96d2','#decb90', '#7562b4'))
 
 # We need to convert out of "tibble" so that JSON can recognise it
