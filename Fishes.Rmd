@@ -1,6 +1,6 @@
 ---
-title: Marine molluscs
-author: Antranig Basman, Karin Fletcher, Charles J. Gibbs, Donna M. Gibbs, Rick M. Harbo, Andy Lamb, Andrew Simon
+title: Marine fishes, skates and sharks
+author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Andy Lamb, Andrew Simon
 date: May 13th, 2023
 output: html_document
 knit: (function(inputFile, encoding) {
@@ -9,25 +9,27 @@ knit: (function(inputFile, encoding) {
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-molluscs <- read.csv("tabular_data/Galiano_marine_animal_records_consolidated_2023-04-22.csv")
-mollusc.summary <- read.csv("tabular_data/mollusc_summary.csv")
-new <- mollusc.summary %>% filter(str_detect(reportingStatus, "new")) 
-confirmed <- mollusc.summary %>% filter(reportingStatus == 'confirmed') 
-reported <- mollusc.summary %>% filter(reportingStatus == 'reported') 
-observed <- mollusc.summary %>% filter(iNatObservationStatus == 'observed') 
-unobserved <- mollusc.summary %>% filter(iNatObservationStatus == 'unobserved') 
+fishes <- read.csv("tabular_data/fishes_records_gridded.csv")
+fishes.summary <- read.csv("tabular_data/fishes_summary.csv")
+new <- fishes.summary %>% filter(str_detect(reportingStatus, "new")) 
+confirmed <- fishes.summary %>% filter(reportingStatus == 'confirmed') 
+reported <- fishes.summary %>% filter(reportingStatus == 'reported') 
+observed <- fishes.summary %>% filter(iNatObservationStatus == 'observed') 
+unobserved <- fishes.summary %>% filter(iNatObservationStatus == 'unobserved') 
 ```
 
-## Galiano Island's marine mollusc diversity
+## Galiano Island's marine fish diversity
 
-With about 49,000 extant species, Mollusca are the second largest phylum after Arthropoda. The phylum comprises seven extant classes, five of which are locally represented around Galiano Island, including bivalves, cephalopods, gastropods, chitons, and tusk shells. Over 780 marine species have been identified in British Columbia, `r nrow(mollusc.summary)` of which have been reported for Galiano Island over the last century and a half, through the combined efforts of more than `r length(unique(molluscs$recordedBy))` individuals.
+‘Actinopterygii’ is formed from the Latin 'actino-', “having rays”, and the Ancient Greek πτέρυξ (ptérux), meaning “wings” or “fins.” ‘Chondrichthyes’ comes from the Greek χόνδρος (khóndros), meaning "cartilage", and ἰχθύς (ikhthū́s), meaning "fish".
 
-The cold, rich waters surrounding Galiano Island are home to many remarkable molluscs, including giant Pacific octopus (*Enteroctopus dofleini*), the largest octopus in the world. The largest chiton in the world, the gumboot chiton (*Cryptochiton stelleri*), is also known to the region and is reported for Galiano Island. Introduced bivalves present around Galiano Island include Pacific oyster (*Magallana gigas*), soft-shelled clam (*Mya arenaria*), purple mahogany clam (*Nuttalia obscurata*), and Japanese littleneck (*Ruditapes philippinarum*), all of which are now prolific in the Northeast Pacific. Introduced gastropods present include Japanese false cerith (*Batillaria attramentaria*) and the mouse-eared snail (*Myosotella myosotis*).
+Actinopterygii contain over 33,000 described taxa and Chondrichthyes (cartilaginous fish) over 1,100 taxa, including both freshwater and marine species. Over 1,500 marine species are estimated to occur between the Beaufort Sea, Alaska, to the tip of Baja California, Mexico and over 400 species reported for Canadian waters in the Northeast Pacific. To date, `r nrow(fishes.summary)` species of ray-finned fish and four species of cartilaginous fish have been reported for Galiano Island, through the combined efforts of more than `r length(unique(fishes$recordedBy))` individuals.
 
-![Giant Pacific octopus (*Enteroctopus dofleini*) – Photograph by Peter Luckham.](media/Enteroctopus_dofleini_Peter_Luckham.jpeg)
+Rockfish are a long-lived and diverse genus of fish in the Northeast Pacific, 11 of which are represented in the Galiano Island record. Species present include the threatened quillback rockfish (*Sebastes maliger*) and yellow-eye rockfish (*S. ruberrimus*), the latter of which is ranked as a species of special concern in Canada. This species may attain large sizes (~ 1 m, 12.6 kg). However, as with other species in the genus, it is slow to mature and reproduce and is, therefore, vulnerable to overfishing and fatality due to barotrauma from catch and release. As a consequence, many species of Sebastes are at low levels of abundance in the region. Spatially-managed rockfish conservation areas that remain permanently closed to all fishing and extraction activities are vital to ensure their recovery.
+
+![Yellow-eye rockfish (*Sebastes ruberrimus*) – Photograph by Don Gordon](media/Sebastes_ruberrimus_Don_Gordon.jpg)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Marine_mollusc_map_script.R")
+source("scripts/Fishes_map_script.R")
 animal.grid.map
 ```
 
@@ -35,25 +37,25 @@ animal.grid.map
 
 Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` mollusc species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records and adding `r nrow(new)` new species to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
 
-Mollusc inventories have historically been limited by outdated taxonomy and other challenges, leaving much hidden diversity that remains to be discovered in the region. As with other groups, European species concepts have historically been misapplied to Northeast Pacific taxa among Mollusca. One example is the aeolid nudibranch *Cuthona pustulata*, originally described from the Northeast Atlantic in 1854. Specimens collected under this name from Porlier Pass off Galiano Island by Sandra Millen in 1982 (RBCM 983-00026-001) have since been described as *Zelentia nepunicea*, based on genetic sequencing results. Other novel nudibranch species have also been circumscribed in part based on specimens collected from local waters. One species complex, which was reported as *Cadlina luteomarginata* for over 50 years, has since been split into four different species, including *C. klasmalmbergi*, first collected from Baines Bay on Galiano Island.
+Marine fishes dwell in various habitats, from deep sea (pelagic) to near-shore and intertidal environments. Taxa under-represented in this dataset include cartilaginous fish (chondrichthyes), hagfish (myxinids) and smelts (osmerids). These gaps reflect search efforts mostly biased toward rocky reefs and exposed beach locales, to waters < 30 m in depth. Poachers (agonids), right-eyed flounders (pleuronectids) and eelpouts (zoarcids) are also under-represented. These are primarily subtidal, soft substrate inhabitants, indicating that sampling has been limited in these habitats. The near-threatened bluntnose sixgill shark (*Hexanchus griseus*) is known from adjacent waters around Mayne Island, BC. This species likely occurs around Galiano Island, though it is not yet reported for Galiano Island.
 
-![Pimpled aeolid (*Zelentia nepunicea*) – Photograph by Karin Fletcher.](media/Zelentia_nepunicea_Karin_Fletcher.jpeg)
+![Bluntnose sixgill shark (*Hexanchus griseus*) – Photograph by Sara Thiebaud](media/Hexanchus griseus_Sara_Thiebaud.jpeg)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Marine_mollusc_community_science_contributions.R")
+source("scripts/Fishes_community_science_contributions.R")
 reportingStatusMap
 reportingStatusFig
 ```
 
 ## Top community contributions to our knowledge of the island mollusc diversity
 
-Here, you can browse photos of mollusc species commonly documented around Galiano Island, as well as recent observations and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island mollusc diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
+Here, you can browse photos of fish species commonly documented around Galiano Island, as well as recent observations and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island fish diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
 
 <span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
 
 ## Sources
 
-Simon, A. D., Adamczyk, E. M., Basman, A., Chu, J. W., Gartner, H. N., Fletcher, K., ... & Starzomski, B. M. (2022). Toward an atlas of Salish Sea biodiversity: the flora and fauna of Galiano Island, British Columbia, Canada. Part I. Marine zoology. Biodiversity Data Journal, 10.
+[Simon, A. D., Adamczyk, E. M., Basman, A., Chu, J. W., Gartner, H. N., Fletcher, K., ... & Starzomski, B. M. (2022). Toward an atlas of Salish Sea biodiversity: the flora and fauna of Galiano Island, British Columbia, Canada. Part I. Marine zoology. Biodiversity Data Journal, 10.](https://bdj.pensoft.net/article/76050/)
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
