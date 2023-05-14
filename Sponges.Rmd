@@ -1,0 +1,60 @@
+---
+title: Sponges
+author: Antranig Basman, Jackson Chu, Charlie Gibbs, Donna Gibbs, Andy Lamb, Neil McDaniel, Andrew Simon
+date: May 13th, 2023
+output: html_document
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+sponges <- read.csv("tabular_data/sponges_records_gridded.csv")
+sponges.summary <- read.csv("tabular_data/sponge_summary.csv")
+new <- sponges.summary %>% filter(str_detect(reportingStatus, "new")) 
+confirmed <- sponges.summary %>% filter(reportingStatus == 'confirmed') 
+reported <- sponges.summary %>% filter(reportingStatus == 'reported') 
+observed <- sponges.summary %>% filter(iNatObservationStatus == 'observed') 
+unobserved <- sponges.summary %>% filter(iNatObservationStatus == 'unobserved') 
+```
+
+## Galiano Island's sponge diversity
+
+*The name ‘Porifera’ derives from Modern Latin and means, literally, “bearing pores”, referring to the pores that perforate the body wall of these organisms.*
+
+Porifera are commonly known as sponges and have the simplest body plans of all multicellular animals, with no tissues or organs. Currently there are 9,452 valid species recognised worldwide, including representatives from both fresh and saltwater habitats. Most sponges have a unique internal canal system used for circulating water, which is made of a series of progressively finer filters connected by chambers lined with flagellated cells called choanocytes. The phylum is divided into four classes: Calcarea (calcareous sponges), Demospongiae (demosponges), Hexactinellida (glass sponges) and the Homoscleromorpha (homoscleromorphs). Currently, there are 70 valid species recognised in the Puget Trough/Georgia Basin ecoregion, though many species remain undescribed in this cryptic group. Indeed, we estimate as many as 300 to 400 taxa may be present off the coast of British Columbia. To date, `r nrow(sponges.summary)` taxa have been documented locally, with all classes but the homoscleromophs confirmed for Galiano Island.
+
+![Cloud sponge (*Aphrocallistes vastus*) – Photograph by Jackson Chu](media/Aphrocallistes_vastus.jpg)
+
+The glass sponges cloud sponge (*Aphrocallistes vastus*) and fingered goblet sponge (*Heterochone calyx*) form extensive deep-water reefs or bioherms, globally unique to the coasts of western Canada and the USA. Glass sponge reefs contribute to the productivity of benthic ecosystems by forming habitat for diverse communities of invertebrates and fish and also play an important role in water filtration and carbon sequestration. A total of 19 reef complexes have been mapped throughout the region, covering an area of ~ 12 km2. The reef off Galiano Island is one of the largest reefs mapped in the region, supporting dense populations of *A. vastus* and *H. calyx* and a high diversity of marine animal species.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Sponges_map_script.R")
+animal.grid.map
+```
+
+## Community science contributions
+
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` sponge species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records and adding `r nrow(new)` new species to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
+
+Most sponges are filter feeders that tend to thrive in strong current or wave-swept habitats. In tidal passages along the coast of British Columbia, sponges are often the most conspicuous and abundant sessile invertebrates present. Given that it is difficult to census the biodiversity found in areas with strong currents, additional species have likely gone undocumented from channels around Galiano Island. The homosceleromoph sponge *Oscarella* sp., for example, is known to occur in inlets of Vancouver Island and would likely be found in deeper waters around Galiano Island with further search effort. This dataset also includes three undescribed sponge species, which is likely a small percentage of the undescribed species in this region. Indeed, new sponge species are frequently described from the region based on specimens sampled in deeper waters.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Sponges_community_science_contributions.R")
+reportingStatusMap
+reportingStatusFig
+```
+
+## Top community contributions to our knowledge of the island sponge diversity
+
+Here, you can browse photos of sponges commonly documented around Galiano Island, as well as recent observations and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island sponge diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
+
+<span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
+
+## Sources
+
+[Simon, A. D., Adamczyk, E. M., Basman, A., Chu, J. W., Gartner, H. N., Fletcher, K., ... & Starzomski, B. M. (2022). Toward an atlas of Salish Sea biodiversity: the flora and fauna of Galiano Island, British Columbia, Canada. Part I. Marine zoology. Biodiversity Data Journal, 10.](https://bdj.pensoft.net/article/76050/)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
