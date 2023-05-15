@@ -1,0 +1,58 @@
+---
+title: Flatworms
+author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Scott Gilmore, Andy Lamb, Andrew Simon
+date: May 14th, 2023
+output: html_document
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+platyhelminthes <- read.csv("tabular_data/platyhelminthes_records_gridded.csv")
+platyhelminthes.summary <- read.csv("tabular_data/platyhelminthe_summary.csv")
+new <- platyhelminthes.summary %>% filter(str_detect(reportingStatus, "new")) 
+confirmed <- platyhelminthes.summary %>% filter(reportingStatus == 'confirmed') 
+reported <- platyhelminthes.summary %>% filter(reportingStatus == 'reported') 
+observed <- platyhelminthes.summary %>% filter(iNatObservationStatus == 'observed') 
+unobserved <- platyhelminthes.summary %>% filter(iNatObservationStatus == 'unobserved') 
+```
+
+## Galiano Island's platyhelminthe diversity
+
+*Antranig Basman, Charlie Gibbs, Donna Gibbs, Scott Gilmore, Andy Lamb, Andrew Simon.*
+
+Platyhelminthes (flatworms) are a phylum of dorsoventrally flattened, bilaterally symmetrical invertebrates, most of which are found in marine and freshwater environments. The phylum includes nearly 13,000 extant marine species, though this estimate does not account for cryptic parasitic species, such as trematodes or flukes, and many taxa remain undescribed. Over 170 species are reported for the coast of British Columbia, `r nrow(platyhelminthes.summary)` of which have been reported for Galiano Island to date.
+
+Given the region's high diversity of cryptic free-living and parasitic flatworm species, expert search effort is necessary to gain a comprehensive understanding of this understudied phylum. The larger flatworm species in the order Polycladia are the most likely to be found diving or in intertidal areas. However, even with this more visible group, species identification can be difficult, requiring the fixing, cleaning and sectioning of specimens to examine the microscopic details of copulatory organs and other internal anatomy. Only the largest and most distinctly patterned taxa, such as the spotted flatworm (*Eurylepta leoparda*), can easily be identified in the field. Of these more conspicuous taxa, around 10 species are likely to be encountered diving around Galiano Island. Many more species could potentially be documented by taxonomic specialists via searches targeting the more obscure free-living species or fluke, tapeworm and monogenean parasites. 
+
+![Spotted flatworm (*Eurylepta leoparda*) – Photograph by Karolle Wall](media/Eurylepta_leoparda_Karolle_Wall.jpg)
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Flatworm_map_script.R")
+animal.grid.map
+```
+
+## Community science contributions
+
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` platyhelminthe species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records and adding `r nrow(new)` new species to the list.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Flatworm_community_science_contributions.R")
+reportingStatusMap
+reportingStatusFig
+```
+
+## Top community contributions to our knowledge of the island flatworm diversity
+
+Here, you can browse photos of platyhelminthes commonly documented around Galiano Island, as well as recent observations and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island platyhelminthe diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
+
+<span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
+
+## Sources
+
+[Simon, A. D., Adamczyk, E. M., Basman, A., Chu, J. W., Gartner, H. N., Fletcher, K., ... & Starzomski, B. M. (2022). Toward an atlas of Salish Sea biodiversity: the flora and fauna of Galiano Island, British Columbia, Canada. Part I. Marine zoology. Biodiversity Data Journal, 10.](https://bdj.pensoft.net/article/76050/)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
