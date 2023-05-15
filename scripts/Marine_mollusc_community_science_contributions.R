@@ -62,27 +62,6 @@ records <- rbind(new.taxa.records,confirmed.taxa.records,reported.taxa.records)
 taxa.status <- records %>% group_by(status) %>% 
   summarize(taxa = paste(sort(unique(scientificName)),collapse=", "))
 
-# Read gridded marine mollusc dataset
-
-molluscs.confirmed.gridded <- read.csv("tabular_data/molluscs_confirmed_records_gridded.csv")
-molluscs.new.gridded <- read.csv("tabular_data/molluscs_new_records_gridded.csv")
-molluscs.reported.gridded <- read.csv("tabular_data/molluscs_reported_records_gridded.csv")
-
-# Summarize mollusc by grid cell and export to JSON file for viz
-
-gridded.molluscs.confirmed <- molluscs.confirmed.gridded %>% group_by(cell_id) %>% 
-  summarize(taxa = paste(sort(unique(scientificName)),collapse=", "))
-
-gridded.molluscs.new <- molluscs.new.gridded %>% group_by(cell_id) %>% 
-  summarize(taxa = paste(sort(unique(scientificName)),collapse=", "))
-
-gridded.molluscs.reported <- molluscs.reported.gridded %>% group_by(cell_id) %>% 
-  summarize(taxa = paste(sort(unique(scientificName)),collapse=", "))
-
-write(jsonlite::toJSON(gridded.molluscs.confirmed), "viz_data/molluscconfirmedGridCellData.json")
-write(jsonlite::toJSON(gridded.molluscs.new), "viz_data/molluscnewGridCellData.json")
-write(jsonlite::toJSON(gridded.molluscs.reported), "viz_data/molluscReportedGridCellData.json")
-
 # Load choropleths
 
 gridded.confirmed.records <- mx_read("spatial_data/vectors/molluscs_confirmed")
@@ -105,9 +84,9 @@ pal <- leaflet::colorFactor(viridis_pal(option = "D")(t), domain = values)
 
 reportingStatusMap <- leaflet(options=list(mx_mapId="Status")) %>%
   addTiles(options = providerTileOptions(opacity = 0.5)) %>%
-  addPolygons(data = gridded.confirmed.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = labelToOption("confirmed")) %>%
-  addPolygons(data = gridded.historical.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = labelToOption("historical")) %>%
-  addPolygons(data = gridded.new.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = labelToOption("new")) %>%
+  addPolygons(data = gridded.confirmed.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = mx_labelToOption("confirmed")) %>%
+  addPolygons(data = gridded.historical.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = mx_labelToOption("historical")) %>%
+  addPolygons(data = gridded.new.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = mx_labelToOption("new")) %>%
   addLegend(position = 'topright',
             colors = viridis_pal(option = "D")(t),
             labels = values)
@@ -146,15 +125,18 @@ reportingStatusFig <- reportingStatusFig %>% layout(barmode = 'stack', autosize=
 
 reportingStatusFig
 
-# Strange structure to mirror that in Molluscs
-reportingPal <- data.frame(cat = c("confirmed", "historical", "new"),
-                          col = c('#5a96d2','#decb90', '#7562b4'))
+statusPal <- list("confirmed" = "#5a96d2", "historic" = "#decb90", "new" = "#7562b4")
 
-# We need to convert out of "tibble" so that JSON can recognise it
-statusTaxa <- list(MAP_LABEL=reportingPal$cat, taxa = pull(taxa.status, -1))
+# Read gridded marine mollusc dataset
 
-# Write summarised plants to JSON file for viz 
-# (selection states corresponding with bar plot selections: 'new', 'historical','confirmed')
-statusData <- structure(list(palette = reportingPal, taxa = statusTaxa))
+molluscs.confirmed.gridded <- read.csv("tabular_data/molluscs_confirmed_records_gridded.csv")
+molluscs.new.gridded <- read.csv("tabular_data/molluscs_new_records_gridded.csv")
+molluscs.reported.gridded <- read.csv("tabular_data/molluscs_reported_records_gridded.csv")
 
-write(rjson::toJSON(statusData), "viz_data/Status-molluscPlotData.json")
+statusTaxa <- list("confirmed" = mx_griddedObsToHash(molluscs.confirmed.gridded),
+                   "historic" = mx_griddedObsToHash(molluscs.reported.gridded),
+                   "new" = mx_griddedObsToHash(molluscs.new.gridded))
+
+statusData <- structure(list(palette = statusPal, taxa = statusTaxa, mapTitle = "Species Reporting Status"))
+
+mx_writeJSON(statusData, "viz_data/Status-molluscPlotData.json")

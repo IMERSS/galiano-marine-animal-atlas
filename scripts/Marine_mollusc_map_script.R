@@ -22,10 +22,11 @@ molluscs.gridded <- read.csv("tabular_data/molluscs_records_gridded.csv")
 
 # Summarize mollusc by grid cell and export to JSON file for viz
 
-gridded.molluscs <- molluscs.gridded %>% group_by(cell_id) %>% 
-  summarize(taxa = paste(sort(unique(scientificName)),collapse=", "))
+diversityTaxa <- mx_griddedObsToHash(molluscs.gridded)
 
-write(jsonlite::toJSON(gridded.molluscs), "viz_data/molluscGridCellData.json")
+diversityData <- list(taxa = diversityTaxa, mapTitle = "Mollusc diversity")
+
+mx_writeJSON(diversityData, "viz_data/Diversity-molluscPlotData.json")
 
 # Load choropleth
 
