@@ -1,5 +1,5 @@
 ---
-title: Flatworms
+title: Platyhelminthes
 author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Scott Gilmore, Andy Lamb, Andrew Simon
 date: May 14th, 2023
 output: html_document
@@ -18,9 +18,9 @@ observed <- platyhelminthes.summary %>% filter(iNatObservationStatus == 'observe
 unobserved <- platyhelminthes.summary %>% filter(iNatObservationStatus == 'unobserved') 
 ```
 
-## Galiano Island's platyhelminthe diversity
+## Galiano Island's flatworm diversity
 
-*Antranig Basman, Charlie Gibbs, Donna Gibbs, Scott Gilmore, Andy Lamb, Andrew Simon.*
+*‘Platyhelminthes’ is rooted in the Greek πλατύ (platy), meaning “flat”, and ἑλμινθ- (helminth-), meaning “worm”.*
 
 Platyhelminthes (flatworms) are a phylum of dorsoventrally flattened, bilaterally symmetrical invertebrates, most of which are found in marine and freshwater environments. The phylum includes nearly 13,000 extant marine species, though this estimate does not account for cryptic parasitic species, such as trematodes or flukes, and many taxa remain undescribed. Over 170 species are reported for the coast of British Columbia, `r nrow(platyhelminthes.summary)` of which have been reported for Galiano Island to date.
 
@@ -35,7 +35,7 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` platyhelminthe species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records and adding `r nrow(new)` new species to the list.
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` flatworm species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records and adding `r nrow(new)` new species to the list.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Flatworm_community_science_contributions.R")
