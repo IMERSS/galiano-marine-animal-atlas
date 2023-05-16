@@ -9,8 +9,8 @@ knit: (function(inputFile, encoding) {
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-chaetognaths <- read.csv("tabular_data/arrow_worms_reported_records_gridded.csv")
-chaetognath.summary <- read.csv("tabular_data/chaetognath_summary.csv")
+chaetognaths <- read.csv("tabular_data/chaetognaths_reported_records_gridded.csv")
+chaetognath.summary <- read.csv("tabular_data/chaetognaths_summary.csv")
 new <- chaetognath.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- chaetognath.summary %>% filter(reportingStatus == 'confirmed') 
 reported <- chaetognath.summary %>% filter(reportingStatus == 'reported') 
@@ -27,7 +27,8 @@ Chaetognatha (arrow worms) are a small phylum of predatory animals, all of which
 ![The arrow worm *Parasagitta elegans* – Photograph by Elaine Humphrey.](media/Parasagitta_elegans_Elaine_Humphrey.jpg)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Chaetognath_map_script.R")
+source("scripts/Diversity_map_script.R")
+animal.grid.map <- mx_diversity_map("chaetognaths")
 animal.grid.map
 ```
 
@@ -36,9 +37,10 @@ animal.grid.map
 Since the Biodiversity Galiano project began in 2016, our community has not yet documented any species of arrow worms around Galiano Island, though they have been observed historically through the Pacific Marine Life Surveys. *Parasagitta elegans* is the most abundant species reported from the sheltered inland waters of the Salish Sea. *Eukrohnia hamata* is also known to occur infrequently in inland channels, as an oceanic species that is occasionally borne in by the intrusion of offshore waters. Sampling by use of plankton tows and microscopic analysis would help confirm the local fauna.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Chaetogath_community_science_contributions.R")
-reportingStatusMap
-reportingStatusFig
+source("scripts/Status_map_script.R")
+figs <- mx_status_map("chaetognaths")
+figs$reportingStatusMap
+figs$reportingStatusFig
 ```
 
 ## Sources
