@@ -1,4 +1,4 @@
-# Map Galiano Island Bioblitz diversity
+# Map Galiano Island's marine animal diversity
 
 # Load libraries
 
@@ -19,11 +19,11 @@ source("scripts/utils.R")
 mx_diversity_map <- function (taxon) {
     title <- str_to_title(taxon);
 
-    # Read gridded marine dataset
+    # Read gridded marine animal dataset
     
     records.gridded <- read.csv(mx_paste("tabular_data/", taxon, "_records_gridded.csv"))
     
-    # Summarize mollusc by grid cell and export to JSON file for viz
+    # Summarize species by grid cell and export to JSON file for viz
     
     diversityTaxa <- mx_griddedObsToHash(records.gridded)
     
