@@ -24,7 +24,7 @@ unobserved <- chaetognath.summary %>% filter(iNatObservationStatus == 'unobserve
 
 Chaetognatha (arrow worms) are a small phylum of predatory animals, all of which are marine, including 130 extant species in the class Sagittoidea. Though they are not diverse, arrow worms are extremely numerous, representing a major component of marine plankton worldwide. Of the six species of arrow worm known to the Northeast Pacific, four have been sampled in the waters off the coast of British Columbia. It is not possible to determine chaetognath reports in the Galiano Island record as they are based on dive observations, but studies indicate that, in all likelihood, these observations refer to *Parasagitta elegans*.
 
-![The arrow worm *Parasagitta elegans* – Photograph by Elaine Humphrey.](media/Parasagitta_elegans_Elaine_Humphrey.jpg)
+![The arrow worm *Parasagitta elegans* – Photograph by Elaine Humphrey](media/Parasagitta_elegans_Elaine_Humphrey.jpg)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
@@ -34,7 +34,7 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has not yet documented any species of arrow worms around Galiano Island, though they have been observed historically through the Pacific Marine Life Surveys. *Parasagitta elegans* is the most abundant species reported from the sheltered inland waters of the Salish Sea. *Eukrohnia hamata* is also known to occur infrequently in inland channels, as an oceanic species that is occasionally borne in by the intrusion of offshore waters. Sampling by use of plankton tows and microscopic analysis would help confirm the local fauna.
+Since the Biodiversity Galiano project began in 2016, our community has not yet identified any particular species of arrow worms around Galiano Island, though they have been observed historically through the Pacific Marine Life Surveys. *Parasagitta elegans* is the most abundant species reported from the sheltered inland waters of the Salish Sea. *Eukrohnia hamata* is also known to occur infrequently in inland channels, as an oceanic species that is occasionally borne in by the intrusion of offshore waters. Sampling by use of plankton tows and microscopic analysis would help confirm the local fauna.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Status_map_script.R")
