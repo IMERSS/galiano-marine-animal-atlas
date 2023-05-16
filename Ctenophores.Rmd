@@ -10,7 +10,7 @@ knit: (function(inputFile, encoding) {
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 ctenophores <- read.csv("tabular_data/ctenophores_records_gridded.csv")
-ctenophores.summary <- read.csv("tabular_data/ctenophore_summary.csv")
+ctenophores.summary <- read.csv("tabular_data/ctenophores_summary.csv")
 new <- ctenophores.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- ctenophores.summary %>% filter(reportingStatus == 'confirmed') 
 reported <- ctenophores.summary %>% filter(reportingStatus == 'reported') 
@@ -27,7 +27,8 @@ Ctenophora (comb jellies) are a phylum of predatory marine invertebrates that ar
 ![*Euplokamis dunlapae* – Photograph by Kathleen Reed](media/Euplokamis_dunlapae_Kathleen_Reed.jpeg)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Ctenophores_map_script.R")
+source("scripts/Diversity_map_script.R")
+animal.grid.map <- mx_diversity_map("ctenophores")
 animal.grid.map
 ```
 
@@ -38,9 +39,10 @@ Since the Biodiversity Galiano project began in 2016, our community has document
 Most ctenophores are pelagic species, with those most well known occurring near the ocean surface and those less understood found at greater depths. Ctenophores possess sticky cells called colloblasts to capture prey and are are highly diverse in morphology (e.g. egg-shaped cydippids, flat and generally combless platyctenids and large-mouthed beroids). The phylogenetic position of Ctenophora in relation to other phyla is still debated and their taxonomy is in dire need of revision.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Ctenophores_community_science_contributions.R")
-reportingStatusMap
-reportingStatusFig
+source("scripts/Status_map_script.R")
+figs <- mx_status_map("ctenophores")
+figs$reportingStatusMap
+figs$reportingStatusFig
 ```
 
 ## Top community contributions to our knowledge of the island ctenophore diversity

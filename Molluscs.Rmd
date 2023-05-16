@@ -10,7 +10,7 @@ knit: (function(inputFile, encoding) {
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 molluscs <- read.csv("tabular_data/molluscs_records_gridded.csv")
-mollusc.summary <- read.csv("tabular_data/mollusc_summary.csv")
+mollusc.summary <- read.csv("tabular_data/molluscs_summary.csv")
 new <- mollusc.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- mollusc.summary %>% filter(reportingStatus == 'confirmed') 
 reported <- mollusc.summary %>% filter(reportingStatus == 'reported') 
@@ -29,7 +29,8 @@ The cold, rich waters surrounding Galiano Island are home to many remarkable mol
 ![Giant Pacific octopus (*Enteroctopus dofleini*) – Photograph by Peter Luckham.](media/Enteroctopus_dofleini_Peter_Luckham.jpeg)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Marine_mollusc_map_script.R")
+source("scripts/Diversity_map_script.R")
+animal.grid.map <- mx_diversity_map("molluscs")
 animal.grid.map
 ```
 
@@ -42,9 +43,10 @@ Mollusc inventories have historically been limited by outdated taxonomy and othe
 ![Pimpled aeolid (*Zelentia nepunicea*) – Photograph by Karin Fletcher.](media/Zelentia_nepunicea_Karin_Fletcher.jpeg)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Marine_mollusc_community_science_contributions.R")
-reportingStatusMap
-reportingStatusFig
+source("scripts/Status_map_script.R")
+figs <- mx_status_map("molluscs")
+figs$reportingStatusMap
+figs$reportingStatusFig
 ```
 
 ## Top community contributions to our knowledge of the island mollusc diversity

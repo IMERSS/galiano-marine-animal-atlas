@@ -10,7 +10,7 @@ knit: (function(inputFile, encoding) {
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 cnidarians <- read.csv("tabular_data/cnidarians_records_gridded.csv")
-cnidarians.summary <- read.csv("tabular_data/cnidarian_summary.csv")
+cnidarians.summary <- read.csv("tabular_data/cnidarians_summary.csv")
 new <- cnidarians.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- cnidarians.summary %>% filter(reportingStatus == 'confirmed') 
 reported <- cnidarians.summary %>% filter(reportingStatus == 'reported') 
@@ -29,7 +29,8 @@ Cnidaria comprise 12,000 extant invertebrate species which primarily occur in ma
 Interesting cnidarians in the Galiano Island record include the recently-described hydroids *Leuckartiara longicalcar* and *Similiclava nivea*, the latter of which represents a novel family of athecate hydrozoan. Notable historical reports include the pink helmit hydrozoan (*Aglantha digitale*) and the non-native striped green sea anemone (*Diadumene lineata*), both collected from Galiano Island in 1859 by Alexander Agassiz
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Cnidarians_map_script.R")
+source("scripts/Diversity_map_script.R")
+animal.grid.map <- mx_diversity_map("cnidarians")
 animal.grid.map
 ```
 
@@ -42,9 +43,10 @@ Since the Biodiversity Galiano project began in 2016, our community has document
 The alternation between polypoid and medusoid generations has historically resulted in a great deal of confusion in the classification of cnidarians. Hydroids, in particular, have received little recent taxonomic attention, with the most substantive revisions dating to Fraser (1937). Other reported taxa require further study to resolve their taxonomy. For instance, recent molecular analysis of *Aequorea* in the Northeast Pacific show they belong to a complex (here reported as *Aequorea victoria* s. lat.), with many other taxa potentially included within this clade. Within *Alcyonium*, two taxa are recognised in the region, though they have yet to be circumscribed. *Euphysa* also likely represents a complex, the diversity of which has yet to be determined in our region.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/cnidarians_community_science_contributions.R")
-reportingStatusMap
-reportingStatusFig
+source("scripts/Status_map_script.R")
+figs <- mx_status_map("cnidarians")
+figs$reportingStatusMap
+figs$reportingStatusFig
 ```
 
 ## Top community contributions to our knowledge of the island cnidarian diversity

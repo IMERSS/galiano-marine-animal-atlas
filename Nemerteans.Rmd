@@ -10,7 +10,7 @@ knit: (function(inputFile, encoding) {
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 nemerteans <- read.csv("tabular_data/nemerteans_records_gridded.csv")
-nemerteans.summary <- read.csv("tabular_data/nemertean_summary.csv")
+nemerteans.summary <- read.csv("tabular_data/nemerteans_summary.csv")
 new <- nemerteans.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- nemerteans.summary %>% filter(reportingStatus == 'confirmed') 
 reported <- nemerteans.summary %>% filter(reportingStatus == 'reported') 
@@ -29,7 +29,8 @@ The key diagnostic features of Nemertea are proboscis characteristics: for examp
 ![Six-lined ribbon worm (*Tubulanus sexlineatus*) – Photograph by Karolle Wall](media/Tubulanus_sexlineatus_Karolle_Wall.jpg)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Nemerteans_map_script.R")
+source("scripts/Diversity_map_script.R")
+animal.grid.map <- mx_diversity_map("nemerteans")
 animal.grid.map
 ```
 
@@ -40,9 +41,10 @@ Since the Biodiversity Galiano project began in 2016, our community has document
 Most nemerteans live in benthic environments, lurking in crevices beneath stones, shells and at the bases of algae or sessile animals. They are largely predatory or scavenging animals, feeding on annelids, clams and crustaceans, though some are commensalists that live within the mantle cavity of molluscs where they feed on micro-organisms filtered out by their hosts. Sampling nemerteans intertidally is most easily accomplished by flipping stones on the beach or by careful observation at very low tides when they are most likely to be exposed.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/nemerteans_community_science_contributions.R")
-reportingStatusMap
-reportingStatusFig
+source("scripts/Status_map_script.R")
+figs <- mx_status_map("nemerteans")
+figs$reportingStatusMap
+figs$reportingStatusFig
 ```
 
 ## Top community contributions to our knowledge of the island nemertean diversity

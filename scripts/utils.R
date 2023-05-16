@@ -11,6 +11,10 @@ mx_read <- function (filename) {
    return(lat_lon(dropped));
 }
 
+mx_paste <- function(..., sep='') {
+  paste(..., sep=sep, collapse=sep)
+}
+
 # Attach the region's label as an "mx_regionId" option in the output data
 mx_labelToOption <- function (label) {
   return (list(mx_regionId = label))

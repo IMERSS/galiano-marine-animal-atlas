@@ -29,7 +29,8 @@ Rockfish are a long-lived and diverse genus of fish in the Northeast Pacific, 11
 ![Yellow-eye rockfish (*Sebastes ruberrimus*) – Photograph by Don Gordon](media/Sebastes_ruberrimus_Don_Gordon.jpg)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Fishes_map_script.R")
+source("scripts/Diversity_map_script.R")
+animal.grid.map <- mx_diversity_map("fishes")
 animal.grid.map
 ```
 
@@ -44,9 +45,10 @@ We can look to nearby records to get a sense for other species that may be expec
 ![Bluntnose sixgill shark (*Hexanchus griseus*) – Photograph by Sara Thiebaud](media/Hexanchus griseus_Sara_Thiebaud.jpeg)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Fishes_community_science_contributions.R")
-reportingStatusMap
-reportingStatusFig
+source("scripts/Status_map_script.R")
+figs <- mx_status_map("fishes")
+figs$reportingStatusMap
+figs$reportingStatusFig
 ```
 
 ## Top community contributions to our knowledge of the island fish diversity

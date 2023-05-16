@@ -10,7 +10,7 @@ knit: (function(inputFile, encoding) {
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 sponges <- read.csv("tabular_data/sponges_records_gridded.csv")
-sponges.summary <- read.csv("tabular_data/sponge_summary.csv")
+sponges.summary <- read.csv("tabular_data/sponges_summary.csv")
 new <- sponges.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- sponges.summary %>% filter(reportingStatus == 'confirmed') 
 reported <- sponges.summary %>% filter(reportingStatus == 'reported') 
@@ -29,7 +29,8 @@ Porifera are commonly known as sponges and have the simplest body plans of all m
 The glass sponges cloud sponge (*Aphrocallistes vastus*) and fingered goblet sponge (*Heterochone calyx*) form extensive deep-water reefs or bioherms, globally unique to the coasts of western Canada and the USA. Glass sponge reefs contribute to the productivity of benthic ecosystems by forming habitat for diverse communities of invertebrates and fish and also play an important role in water filtration and carbon sequestration. A total of 19 reef complexes have been mapped throughout the region, covering an area of ~ 12 km2. The reef off Galiano Island is one of the largest reefs mapped in the region, supporting dense populations of *A. vastus* and *H. calyx* and a high diversity of marine animal species.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Sponges_map_script.R")
+source("scripts/Diversity_map_script.R")
+animal.grid.map <- mx_diversity_map("sponges")
 animal.grid.map
 ```
 
@@ -40,9 +41,10 @@ Since the Biodiversity Galiano project began in 2016, our community has document
 Most sponges are filter feeders that tend to thrive in strong current or wave-swept habitats. In tidal passages along the coast of British Columbia, sponges are often the most conspicuous and abundant sessile invertebrates present. Given that it is difficult to census the biodiversity found in areas with strong currents, additional species have likely gone undocumented from channels around Galiano Island. The homosceleromoph sponge *Oscarella* sp., for example, is known to occur in inlets of Vancouver Island and would likely be found in deeper waters around Galiano Island with further search effort. This dataset also includes three undescribed sponge species, which is likely a small percentage of the undescribed species in this region. Indeed, new sponge species are frequently described from the region based on specimens sampled in deeper waters.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Sponges_community_science_contributions.R")
-reportingStatusMap
-reportingStatusFig
+source("scripts/Status_map_script.R")
+figs <- mx_status_map("sponges")
+figs$reportingStatusMap
+figs$reportingStatusFig
 ```
 
 ## Top community contributions to our knowledge of the island sponge diversity
