@@ -1,0 +1,64 @@
+---
+title: Annelids
+author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Scott Gilmore, Leslie Harris, Andy Lamb, Andrew Simon
+date: May 13th, 2023
+output: html_document
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+annelids <- read.csv("tabular_data/annelids_records_gridded.csv")
+annelid.summary <- read.csv("tabular_data/annelids_summary.csv")
+new <- annelid.summary %>% filter(str_detect(reportingStatus, "new")) 
+confirmed <- annelid.summary %>% filter(reportingStatus == 'confirmed') 
+reported <- annelid.summary %>% filter(reportingStatus == 'reported') 
+observed <- annelid.summary %>% filter(iNatObservationStatus == 'observed') 
+unobserved <- annelid.summary %>% filter(iNatObservationStatus == 'unobserved') 
+```
+
+## Galiano Island's annelid diversity
+
+*‘Annelida’ was coined in Modern Latin by the French naturalist Jean-Baptiste Lamarck from the French 'annélide', deriving from 'annelés', meaning “ringed ones” (from the Latin 'anulus', for “little ring”).*
+
+Annelida are a large phylum of invertebrates, commonly referred to as ringed or segmented worms, comprising over 13,000 extant species. The majority of known species are found in marine environments, though terrestrial and freshwater annelid diversity is likely underestimated—as is the number of marine species. The phylum is traditionally divided into two classes: Clitellata (earth worms, leeches and brachiobdellids) and Polychaeta (polychaetes). Based on molecular evidence, Sipuncula (peanut worms) and Echiura (spoon worms) are also nested within this clade. As the taxonomy has not yet been reorganised, however, Sipuncula reported for Galiano Island are here treated as a separate phylum.
+
+Over 450 polychaete species are reported for coastal British Columbia. However, many of these species have been identified based on European concepts now known to represent complexes of morphologically similar but genetically different organisms, including many newly-recognised outside of Europe. In the greater Salish Sea bioregion, no less than 860 annelid species are currently reported from intertidal areas through shelf depths. Once deep water and cryptic species are considered, however, the total number of annelids expected to occur in our waters will likely double. Of these, `r nrow(annelid.summary)` species have been reported to date from Galiano Island, through the combined efforts of more than `r length(unique(annelids$recordedBy))` individuals.
+
+The majority of taxa reported in this dataset are polychaetes, though a few clitellates are also represented. Many of the names reported reflect the ongoing challenges facing those studying this group. Uncertainty is indicated by older reports, such as *Chaetopterus variopedatus* and *Nereis zonata* (here reported as the *Chaetopterus variopedatus* complex and *Nereis* cf *zonata*), which refer to European concepts in which undescribed native species likely remain hidden. Even conspicuous species, such as tubeworms in the genus *Myxicola*, commonly reported as *M. aesthetica* or *M. infundibulum* (here listed as *Myxicola* aff. *aesthetica* and *Myxicola* aff. *infundibulum*), are currently under revision. Many other specimens catalogued in this dataset are not determined past genus as specimens were either unavailable or require further examination in light of recent taxonomic revisions.
+
+![*Myxicola* aff. *aesthetica* (*Myxicola* sp. A, sensu Leslie Harris, provisional name)– Photograph by Karolle Wall.](media/Myxicola_Karolle_Wall.png)
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Diversity_map_script.R")
+animal.grid.map <- mx_diversity_map("annelids")
+animal.grid.map
+```
+
+## Community science contributions
+
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` annelid species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records and adding `r nrow(new)` new species to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
+
+Annelid life history is exceedingly diverse, exhibiting virtually all feeding modes, including suspension feeding, deposit feeding, scavenging, herbivory, and carnivory. This diversity is mirrored in their pervasive distribution throughout most benthic and pelagic marine environments. Gaps in our knowledge of Galiano Island’s annelid diversity partly reflect the challenges that have historically limited our broader understanding of the region’s diversity. Taxonomists working in the region in the past largely relied on European references and only assigned new names for taxa with strikingly different features. However, the characters defining organisms within this challenging group are often very small and difficult to ascertain without resorting to dissection or microscopic examination. Furthermore, the vast majority of polychaetes lie hidden in bottom sediment or among sessile organisms and are rarely noticed by casual observers. Specialised equipment, such as benthic grabs, dredges, sediment air lifts, plankton tows and settlement plates, are needed to capture more than the few conspicuous species seen by beach-goers and divers.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Status_map_script.R")
+figs <- mx_status_map("annelids")
+figs$reportingStatusMap
+figs$reportingStatusFig
+```
+
+## Top community contributions to our knowledge of the island annelid diversity
+
+Here, you can browse photos of annelid species commonly documented around Galiano Island, as well as recent observations and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island annelid diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
+
+<span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
+
+## Sources
+
+[Simon, A. D., Adamczyk, E. M., Basman, A., Chu, J. W., Gartner, H. N., Fletcher, K., ... & Starzomski, B. M. (2022). Toward an atlas of Salish Sea biodiversity: the flora and fauna of Galiano Island, British Columbia, Canada. Part I. Marine zoology. Biodiversity Data Journal, 10.](https://bdj.pensoft.net/article/76050/)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
