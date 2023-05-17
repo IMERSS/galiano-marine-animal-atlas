@@ -28,7 +28,7 @@ Over 450 polychaete species are reported for coastal British Columbia. However, 
 
 The majority of taxa reported in this dataset are polychaetes, though a few clitellates are also represented. Many of the names reported reflect the ongoing challenges facing those studying this group. Uncertainty is indicated by older reports, such as *Chaetopterus variopedatus* and *Nereis zonata* (here reported as the *Chaetopterus variopedatus* complex and *Nereis* cf *zonata*), which refer to European concepts in which undescribed native species likely remain hidden. Even conspicuous species, such as tubeworms in the genus *Myxicola*, commonly reported as *M. aesthetica* or *M. infundibulum* (here listed as *Myxicola* aff. *aesthetica* and *Myxicola* aff. *infundibulum*), are currently under revision. Many other specimens catalogued in this dataset are not determined past genus as specimens were either unavailable or require further examination in light of recent taxonomic revisions.
 
-![*Myxicola* aff. *aesthetica* (*Myxicola* sp. A, sensu Leslie Harris, provisional name)– Photograph by Karolle Wall.](media/Myxicola_Karolle_Wall.png)
+![*Myxicola* aff. *aesthetica* (*Myxicola* sp. A, sensu Leslie Harris, provisional name) – Photograph by Karolle Wall.](media/Myxicola_Karolle_Wall.png)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
