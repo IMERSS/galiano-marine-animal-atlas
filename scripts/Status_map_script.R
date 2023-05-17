@@ -39,24 +39,20 @@ mx_status_map <- function (taxon) {
     # Create vectors of historical, confirmed and new taxa to query catalog of occurrence records
     
     new.taxa <- unique(new$scientificName)
-    new.taxa <- new.taxa %>% paste(collapse = "|")
-    
     confirmed.taxa <- unique(confirmed$scientificName)
-    confirmed.taxa <- confirmed.taxa %>% paste(collapse = "|")
-    
     reported.taxa <- unique(reported$scientificName)
-    reported.taxa <- reported.taxa %>% paste(collapse = "|")
+
+    confirmed.taxa.records <- summary %>% filter(scientificName %in% confirmed.taxa)
+    # Note that this approach works whether the list is empty or not
+    confirmed.taxa.records <- confirmed.taxa.records %>% mutate(status = "confirmed")
     
-    confirmed.taxa.records <- summary %>% filter(str_detect(scientificName, confirmed.taxa))
-    confirmed.taxa.records$status <- 'confirmed'
+    new.taxa.records <- summary %>% filter(scientificName %in% new.taxa)
+    new.taxa.records <- new.taxa.records %>% mutate(status = "new")
     
-    new.taxa.records <- summary %>% filter(str_detect(scientificName, new.taxa))
-    new.taxa.records$status <- 'new'
+    reported.taxa.records <- summary %>% filter(scientificName %in% reported.taxa)
+    reported.taxa.records <- reported.taxa.records %>% mutate(status = "historic")
     
-    reported.taxa.records <- summary %>% filter(str_detect(scientificName, reported.taxa))
-    reported.taxa.records$status <- 'historical'
-    
-    records <- rbind(new.taxa.records,confirmed.taxa.records,reported.taxa.records)
+    records <- rbind(new.taxa.records, confirmed.taxa.records, reported.taxa.records)
     
     # Summarise taxon species by reporting status
     
@@ -67,11 +63,11 @@ mx_status_map <- function (taxon) {
     
     gridded.confirmed.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_confirmed"))
     gridded.new.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_new"))
-    gridded.historical.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_reported"))
+    gridded.historic.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_reported"))
     
     # Combine records to create normalized palette
     
-    gridded.records <- rbind(gridded.confirmed.records, gridded.historical.records, gridded.new.records)
+    gridded.records <- rbind(gridded.confirmed.records, gridded.historic.records, gridded.new.records)
     
     # Create color palette for species richness
     
@@ -86,7 +82,7 @@ mx_status_map <- function (taxon) {
     reportingStatusMap <- leaflet(options=list(mx_mapId="Status")) %>%
       addTiles(options = providerTileOptions(opacity = 0.5)) %>%
       addPolygons(data = gridded.confirmed.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = mx_labelToOption("confirmed")) %>%
-      addPolygons(data = gridded.historical.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = mx_labelToOption("historical")) %>%
+      addPolygons(data = gridded.historic.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = mx_labelToOption("historic")) %>%
       addPolygons(data = gridded.new.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = mx_labelToOption("new")) %>%
       addLegend(position = 'topright',
                 colors = viridis_pal(option = "D")(t),
@@ -99,17 +95,17 @@ mx_status_map <- function (taxon) {
     
     y <- c('records')
     confirmed.no <- c(nrow(confirmed))
-    historical.no <- c(nrow(reported))
+    historic.no <- c(nrow(reported))
     new.no <- c(nrow(new))
     
-    reporting.status <- data.frame(y, confirmed.no, historical.no, new.no)
+    reporting.status <- data.frame(y, confirmed.no, historic.no, new.no)
     
     reportingStatusFig <- plot_ly(reporting.status, x = ~confirmed.no, y = ~y, type = 'bar', orientation = 'h', name = 'confirmed',
                                   
                                   marker = list(color = '#5a96d2',
                                                 line = list(color = '#5a96d2',
                                                             width = 1)))
-    reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~historical.no, name = 'historical',
+    reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~historic.no, name = 'historic',
                                                            marker = list(color = '#decb90',
                                                                          line = list(color = '#decb90',
                                                                                      width = 1)))
