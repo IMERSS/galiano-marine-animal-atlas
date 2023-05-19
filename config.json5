@@ -1,64 +1,215 @@
 {
-    reknitJobs: [{
-        infile: "%maxwell/docs/Molluscs.html",
-        outfile: "%maxwell/docs/Molluscs-Reknitted.html",
-        options: {
-            template: "%maxwell/src/html/template.html",
-            paneHandlers: {
-                Diversity: {
-                    type: "maxwell.scrollyPaneHandler",
-                    gradeNames: [ "maxwell.scrollyVizBinder"],
-                    vizFile: "%resourceBase/data/Galiano-2023-Scrolly-Mollusca.json.lz4",
-                    regionIdFromLabel: true
-                },
-                TopContributions: {
-                    type: "maxwell.iNatComponentsPaneHandler"
-                },
-                Status: {
-                    type: "maxwell.scrollyPaneHandler",
-                    gradeNames: [ "maxwell.scrollyVizBinder", "maxwell.howeVizBinder", "maxwell.howeStatusBinder"],
-                    vizFile: "%resourceBase/data/Galiano-2023-Scrolly-Status-Mollusca.json.lz4",
-                    markup: {
-                        region: "Selected reporting status: %region"
+    reknitJobs: [
+        {
+            infile: "%maxwell/docs/Molluscs.html",
+            outfile: "%maxwell/docs/Molluscs-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Molluscs.json.lz4",
                     },
-                    widgets: {
-                        reportingStatus: {
-                            type: "maxwell.regionSelectionBar"
-                        }
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Molluscs.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Molluscs.json.lz4",
+                    }
+                }
+            }
+        }, {
+            infile: "%maxwell/docs/Annelids.html",
+            outfile: "%maxwell/docs/Annelids-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Annelids.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Annelids.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Annelids.json.lz4",
+                    }
+                }
+            }
+        }, {
+            infile: "%maxwell/docs/Chaetognaths.html",
+            outfile: "%maxwell/docs/Chaetognaths-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Chaetognaths.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Chaetognaths.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Chaetognaths.json.lz4",
+                    }
+                }
+            }
+        }, {
+            infile: "%maxwell/docs/Cnidarians.html",
+            outfile: "%maxwell/docs/Cnidarians-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Cnidarians.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Cnidarians.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Cnidarians.json.lz4",
+                    }
+                }
+            }
+        }, {
+            infile: "%maxwell/docs/Ctenophores.html",
+            outfile: "%maxwell/docs/Ctenophores-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Ctenophores.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Ctenophores.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Ctenophores.json.lz4",
+                    }
+                }
+            }
+        }, {
+            infile: "%maxwell/docs/Fishes.html",
+            outfile: "%maxwell/docs/Fishes-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Fishes.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Fishes.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Fishes.json.lz4",
+                    }
+                }
+            }
+        }, {
+            infile: "%maxwell/docs/Nemerteans.html",
+            outfile: "%maxwell/docs/Nemerteans-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Nemerteans.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Nemerteans.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Nemerteans.json.lz4",
+                    }
+                }
+            }
+        }, {
+            infile: "%maxwell/docs/Platyhelminthes.html",
+            outfile: "%maxwell/docs/Platyhelminthes-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Platyhelminthes.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Platyhelminthes.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Platyhelminthes.json.lz4",
+                    }
+                }
+            }
+        }, {
+            infile: "%maxwell/docs/Sipuncula.html",
+            outfile: "%maxwell/docs/Sipuncula-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Sipuncula.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Sipuncula.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Sipuncula.json.lz4",
+                    }
+                }
+            }
+        }, {
+            infile: "%maxwell/docs/Sponges.html",
+            outfile: "%maxwell/docs/Sponges-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Sponges.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Sponges.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Sponges.json.lz4",
                     }
                 }
             }
         }
-    }],
+    ],
     copyJobs: [{
         source: "%infusion/dist/infusion-framework.js",
         target: "%maxwell/docs/js/infusion-framework.js",
         replaceSource: "sourceMappingURL=infusion-framework.js.map",
         replaceTarget: "sourceMappingURL=../../node_modules/infusion/dist/infusion-framework.js.map"
     }, {
-        source: "%maxwell/src/js/client/leaflet-providers.js",
-        target: "%maxwell/docs/js/leaflet-providers.js"
-    }, {
-        source: "%maxwell/src/js/client/plotly-2.1.1.js",
-        target: "%maxwell/docs/js/plotly-2.1.1.js"
-    }, {
-        source: "%maxwell/src/js/client/htmlwidgets.js",
-        target: "%maxwell/docs/js/htmlwidgets.js"
-    }, {
-        source: "%maxwell/src/js/client/htmlwidgets-plotly.js",
-        target: "%maxwell/docs/js/htmlwidgets-plotly.js"
-    }, {
-        source: "%maxwell/src/js/client/reknit-client.js",
-        target: "%maxwell/docs/js/reknit-client.js"
-    }, {
-        source: "%maxwell/src/js/client/imerss-viz-reknit.js",
-        target: "%maxwell/docs/js/imerss-viz-reknit.js"
-    }, {
-        source: "%maxwell/src/js/client/inat-components-build.js",
-        target: "%maxwell/docs/js/inat-components-build.js"
-    }, {
-        source: "%maxwell/src/js/client/howe.js",
-        target: "%maxwell/docs/js/howe.js"
+        source: "%maxwell/src/js/client/*.js",
+        target: "%maxwell/docs/js/"
     }, {
         source: "%maxwell/src/css/maxwell.css",
         target: "%maxwell/docs/css/maxwell.css"
@@ -85,9 +236,9 @@
     }, {
         source: "%imerss-bioinfo/src/client/img/external-link.svg",
         target: "%maxwell/docs/img/external-link.svg"
-    }, {
-        source: "%maxwell/img/12993632-large.jpeg",
-        target: "%maxwell/docs/img/12993632-large.jpeg"
+    }, { // Note that R Markdown embeds all images so we don't currently reference these
+        source: "%maxwell/media/",
+        target: "%maxwell/docs/media"
     }, {
         source: "%imerss-bioinfo/docs/css/imerss-viz-all.css",
         target: "%maxwell/docs/css/imerss-viz-all.css"
@@ -101,11 +252,8 @@
         source: "%maxwell/src/html/imerss-viz-scrolly.html",
         target: "%maxwell/docs/html/imerss-viz-scrolly.html"
     }, {
-        source: "%maxwell/viz_data/Galiano-2023-Scrolly-Mollusca.json.lz4",
-        target: "%maxwell/docs/data/Galiano-2023-Scrolly-Mollusca.json.lz4"
-    }, {
-        source: "%maxwell/viz_data/Galiano-2023-Scrolly-Status-Mollusca.json.lz4",
-        target: "%maxwell/docs/data/Galiano-2023-Scrolly-Status-Mollusca.json.lz4"
+        source: "%maxwell/viz_data/*.lz4",
+        target: "%maxwell/docs/data"
     }]
 }
 

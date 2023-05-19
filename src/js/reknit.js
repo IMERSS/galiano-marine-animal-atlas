@@ -3,6 +3,8 @@
 "use strict";
 
 const fs = require("fs-extra"),
+    glob = require("glob"),
+    path = require("path"),
     linkedom = require("linkedom"),
     fluid = require("infusion");
 
@@ -80,12 +82,32 @@ maxwell.movePlotlyWidgets = function (template, sections, container) {
         console.log("Found section for plotly widget at index " + index);
         if (index !== -1) {
             toMove.setAttribute("data-section-index", "" + index);
-            dataDivs[index].appendChild(toMove);
+            dataDivs[index].prepend(toMove);
         } else {
             console.log("Ignoring widget at index " + i + " since it has no sibling map");
         }
     });
     return dataDivs;
+};
+
+maxwell.transferNodeContent = function (container, template, selector) {
+    const containerNode = container.querySelector(selector);
+    const templateNode = template.querySelector(selector);
+    templateNode.innerHTML = containerNode.innerHTML;
+    containerNode.remove();
+};
+
+maxwell.integratePaneHandler = function (paneHandler, key) {
+    const plotDataFile = "%maxwell/viz_data/" + key + "-plotData.json";
+    let plotData;
+    const resolved = fluid.module.resolvePath(plotDataFile);
+    if (fs.existsSync(resolved)) {
+        plotData = maxwell.loadJSON5File(resolved);
+    } else {
+        console.log("plotData file for pane " + key + " not found");
+    }
+    const toMerge = fluid.censorKeys(plotData, ["palette", "taxa"]);
+    return {...paneHandler, ...toMerge};
 };
 
 maxwell.reknitFile = async function (infile, outfile, options) {
@@ -94,8 +116,10 @@ maxwell.reknitFile = async function (infile, outfile, options) {
     const sections = maxwell.hideLeafletWidgets(container);
     const template = maxwell.parseDocument(fluid.module.resolvePath(options.template));
     maxwell.movePlotlyWidgets(template, sections, container);
-    container.querySelector("h1").remove();
-    // TODO: Move title and h1 into template
+
+    maxwell.transferNodeContent(document, template, "h1");
+    maxwell.transferNodeContent(document, template, "title");
+
     await maxwell.asyncForEach(options.transforms || [], async (rec) => {
         const file = require(fluid.module.resolvePath(rec.file));
         const transform = file[rec.func];
@@ -105,7 +129,11 @@ maxwell.reknitFile = async function (infile, outfile, options) {
     target.appendChild(container);
     const paneHandlers = options.paneHandlers;
     if (paneHandlers) {
-        const paneMapText = "maxwell.scrollyPaneHandlers = " + JSON.stringify(paneHandlers) + ";\n";
+        const integratedHandlers = fluid.transform(paneHandlers, function (paneHandler, key) {
+            // TODO: Allow prefix to be contributed representing entire page, e.g. "Mollusca-"
+            return maxwell.integratePaneHandler(paneHandler, key);
+        });
+        const paneMapText = "maxwell.scrollyPaneHandlers = " + JSON.stringify(integratedHandlers) + ";\n";
         const scriptNode = template.createElement("script");
         scriptNode.innerHTML = paneMapText;
         const head = template.querySelector("head");
@@ -113,6 +141,21 @@ maxwell.reknitFile = async function (infile, outfile, options) {
     }
     const outMarkup = "<!DOCTYPE html>" + template.documentElement.outerHTML;
     maxwell.writeFile(fluid.module.resolvePath(outfile), outMarkup);
+};
+
+const copyGlob = function (sourcePattern, targetDir) {
+    glob(sourcePattern, {}, (error, fileNames) => {
+        if (error) {
+            throw ("Error finding files: ", error);
+        }
+        fileNames.forEach(filePath => {
+            const fileName = path.basename(filePath);
+            const destinationPath = path.join(targetDir, fileName);
+
+            fs.copyFileSync(filePath, destinationPath);
+            console.log(`Copied file: ${fileName}`);
+        });
+    });
 };
 
 /** Copy dependencies into docs directory for GitHub pages **/
@@ -128,6 +171,8 @@ const copyDep = function (source, target, replaceSource, replaceTarget) {
         const text = fs.readFileSync(sourcePath, "utf8");
         const replaced = text.replace(replaceSource, replaceTarget);
         fs.writeFileSync(targetPath, replaced, "utf8");
+    } else if (sourcePath.includes("*")) {
+        copyGlob(sourcePath, targetPath);
     } else {
         fs.copySync(sourcePath, targetPath);
     }

@@ -12,34 +12,6 @@ maxwell.toggleClass = function (container, isVisible, clazz, inverse) {
     container.classList[isVisible ^ inverse ? "remove" : "add"](clazz);
 };
 
-fluid.defaults("maxwell.iNatComponentsPaneHandler", {
-    gradeNames: "maxwell.scrollyPaneHandler",
-    scriptLocation: "js/inat-components-build.js",
-    events: { // TODO: Better as a resource
-        scriptLoaded: null
-    },
-    listeners: {
-        "onCreate.injectScript" : "maxwell.reactScriptInjector"
-    },
-    modelListeners: {
-        paneVisible: {
-            path: "{paneHandler}.model.isVisible",
-            func: "maxwell.toggleClass",
-            args: ["{scrollyLeafletMap}.container.0", "{change}.value", "mxcw-hideMap", true]
-        }
-    }
-});
-
-maxwell.reactScriptInjector = function (that) {
-    const host = document.createElement("div");
-    host.id = "inat-components";
-    that.container[0].appendChild(host);
-    const script = document.createElement("script");
-    script.onload = that.events.scriptLoaded.fire(that);
-    script.src = that.options.scriptLocation;
-    document.head.appendChild(script);
-};
-
 // mixin grade which mediates event flow from IMERSS viz to Leaflet pane
 fluid.defaults("maxwell.scrollyVizBinder", {
     // Put these last to continue to override "container" member due to FLUID-5800
