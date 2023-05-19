@@ -24,9 +24,9 @@ unobserved <- fishes.summary %>% filter(iNatObservationStatus == 'unobserved')
 
 Actinopterygii contain over 33,000 described taxa and Chondrichthyes (cartilaginous fish) over 1,100 taxa, including both freshwater and marine species. Over 1,500 marine species are estimated to occur between the Beaufort Sea, Alaska, to the tip of Baja California, Mexico and over 400 species reported for Canadian waters in the Northeast Pacific. To date, `r nrow(fishes.summary)` species of ray-finned and cartilaginous fish have been reported for Galiano Island, through the combined efforts of more than `r length(unique(fishes$recordedBy))` individuals.
 
-Rockfish are a long-lived and diverse genus of fish in the Northeast Pacific, 11 of which are represented in the Galiano Island record. Species present include the threatened quillback rockfish (*Sebastes maliger*) and yellow-eye rockfish (*S. ruberrimus*), the latter of which is ranked as a species of special concern in Canada. This species may attain large sizes (~ 1 m, 12.6 kg). However, as with other species in the genus, it is slow to mature and reproduce and is, therefore, vulnerable to overfishing and fatality due to barotrauma from catch and release. As a consequence, many species of Sebastes are at low levels of abundance in the region. Spatially-managed rockfish conservation areas that remain permanently closed to all fishing and extraction activities are vital to ensure their recovery.
-
 ![Yellow-eye rockfish (*Sebastes ruberrimus*) – Photograph by Don Gordon](media/Sebastes_ruberrimus_Don_Gordon.jpg)
+
+Rockfish are a long-lived and diverse genus of fish in the Northeast Pacific, 11 of which are represented in the Galiano Island record. Species present include the threatened quillback rockfish (*Sebastes maliger*) and yellow-eye rockfish (*S. ruberrimus*), the latter of which is ranked as a species of special concern in Canada. This species may attain large sizes (~ 1 m, 12.6 kg). However, as with other species in the genus, it is slow to mature and reproduce and is, therefore, vulnerable to overfishing and fatality due to barotrauma from catch and release. As a consequence, many species of Sebastes are at low levels of abundance in the region. Spatially-managed rockfish conservation areas that remain permanently closed to all fishing and extraction activities are vital to ensure their recovery.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
@@ -53,7 +53,7 @@ figs$reportingStatusFig
 
 ## Top community contributions to our knowledge of the island fish diversity
 
-Here, you can browse photos of fish species commonly documented around Galiano Island, as well as recent observations and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island fish diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
+Please help contribute to the growing record of the island fish diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) Here, you can browse photos of fish species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. 
 
 <span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
 

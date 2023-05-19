@@ -24,8 +24,7 @@ unobserved <- brachiopods.summary %>% filter(iNatObservationStatus == 'unobserve
 
 Brachiopods (brachiopods) are a phylum of shelled marine animals found in intertidal and subtidal waters, represented by over 400 species worldwide. The phylum may be divided into three extant subphyla, including the Craniiformea, Linguliformea and Rhynchonelliformea. Of the seven lampshell species known to British Columbia, only three are expected to occur within the Salish Sea: *Laqueus californicus*, *Terebratalia transversa* and *Terebratulina unguicula*. One species, *T. transversa*, is known to Galiano Island.
 
-![*Terebratalia transversa* – Photograph by Bernard Hanby](media/Terebratalia_transversa_Bernard_Hanby.jpg)
-
+![The lampshell *Terebratalia transversa* – Photograph by Bernard Hanby](media/Terebratalia_transversa_Bernard_Hanby.jpg)
 Traditionally, brachiopods were classified into two major groups, based on whether their valve hinge structures are articulate or inarticulate. Shells are orientated in a dorsal-ventral manner, closely resembling bivalve molluscs, the shells of which are lateral in orientation. Yet, whereas bivalves are symmetrical between valves (valves mirror each other), the plane of symmetry in brachiopods cuts through the middle of their valves (valves do not mirror each other). In contrast to bivalves, brachiopods are also typically attached to the substrate by a stalk. They share their feeding organ, the lophophore, in common with the Bryozoa, Entoprocta and Phoronida. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}

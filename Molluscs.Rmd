@@ -26,7 +26,7 @@ With about 49,000 extant species, Mollusca are the second largest phylum after A
 
 The cold, rich waters surrounding Galiano Island are home to many remarkable molluscs, including the giant Pacific octopus (*Enteroctopus dofleini*), the largest octopus in the world. The largest chiton in the world, the gumboot chiton (*Cryptochiton stelleri*), is also known to the region and is reported for Galiano Island. Introduced bivalves present around Galiano Island include Pacific oyster (*Magallana gigas*), soft-shelled clam (*Mya arenaria*), purple mahogany clam (*Nuttalia obscurata*), and Japanese littleneck (*Ruditapes philippinarum*), all of which are now prolific in the Northeast Pacific. Introduced gastropods present include Japanese false cerith (*Batillaria attramentaria*) and the mouse-eared snail (*Myosotella myosotis*).
 
-![Giant Pacific octopus (*Enteroctopus dofleini*) – Photograph by Peter Luckham.](media/Enteroctopus_dofleini_Peter_Luckham.jpeg)
+![Giant Pacific octopus (*Enteroctopus dofleini*) – Photograph by Peter Luckham](media/Enteroctopus_dofleini_Peter_Luckham.jpeg)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
@@ -40,7 +40,7 @@ Since the Biodiversity Galiano project began in 2016, our community has document
 
 Mollusc inventories have historically been limited by outdated taxonomy and other challenges, leaving much hidden diversity that remains to be discovered in the region. As with other groups, European species concepts have historically been misapplied to Northeast Pacific taxa among Mollusca. One example is the aeolid nudibranch *Cuthona pustulata*, originally described from the Northeast Atlantic in 1854. Specimens collected under this name from Porlier Pass off Galiano Island by Sandra Millen in 1982 (RBCM 983-00026-001) have since been described as *Zelentia nepunicea*, based on genetic sequencing results. Other novel nudibranch species have also been circumscribed in part based on specimens collected from local waters. One species complex, which was reported as *Cadlina luteomarginata* for over 50 years, has since been split into four different species, including *C. klasmalmbergi*, first collected from Baines Bay on Galiano Island.
 
-![Pimpled aeolid (*Zelentia nepunicea*) – Photograph by Karin Fletcher.](media/Zelentia_nepunicea_Karin_Fletcher.jpeg)
+![Pimpled aeolid (*Zelentia nepunicea*) – Photograph by Karin Fletcher](media/Zelentia_nepunicea_Karin_Fletcher.jpeg)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Status_map_script.R")
@@ -51,7 +51,7 @@ figs$reportingStatusFig
 
 ## Top community contributions to our knowledge of the island mollusc diversity
 
-Here, you can browse photos of mollusc species commonly documented around Galiano Island, as well as recent observations and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island mollusc diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
+Please help contribute to the growing record of the island mollusc diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) Here, you can browse photos of mollusc species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. 
 
 <span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
 

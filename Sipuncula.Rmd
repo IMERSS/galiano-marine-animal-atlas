@@ -43,12 +43,6 @@ figs$reportingStatusMap
 figs$reportingStatusFig
 ```
 
-## Top community contributions to our knowledge of the island peanut.worm diversity
-
-Here, you can browse photos of peanut.worm species commonly documented around Galiano Island, as well as recent observations and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island peanut.worm diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
-
-<span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
-
 ## Sources
 
 [Simon, A. D., Adamczyk, E. M., Basman, A., Chu, J. W., Gartner, H. N., Fletcher, K., ... & Starzomski, B. M. (2022). Toward an atlas of Salish Sea biodiversity: the flora and fauna of Galiano Island, British Columbia, Canada. Part I. Marine zoology. Biodiversity Data Journal, 10.](https://bdj.pensoft.net/article/76050/)

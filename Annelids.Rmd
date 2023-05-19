@@ -26,9 +26,9 @@ Annelida are a large phylum of invertebrates, commonly referred to as ringed or 
 
 Over 450 polychaete species are reported for coastal British Columbia. However, many of these species have been identified based on European concepts now known to represent complexes of morphologically similar but genetically different organisms, including many newly-recognised outside of Europe. In the greater Salish Sea bioregion, no less than 860 annelid species are currently reported from intertidal areas through shelf depths. Once deep water and cryptic species are considered, however, the total number of annelids expected to occur in our waters will likely double. Of these, `r nrow(annelid.summary)` species have been reported to date from Galiano Island, through the combined efforts of more than `r length(unique(annelids$recordedBy))` individuals.
 
-The majority of taxa reported in this dataset are polychaetes, though a few clitellates are also represented. Many of the names reported reflect the ongoing challenges facing those studying this group. Uncertainty is indicated by older reports, such as *Chaetopterus variopedatus* and *Nereis zonata* (here reported as the *Chaetopterus variopedatus* complex and *Nereis* cf *zonata*), which refer to European concepts in which undescribed native species likely remain hidden. Even conspicuous species, such as tubeworms in the genus *Myxicola*, commonly reported as *M. aesthetica* or *M. infundibulum* (here listed as *Myxicola* aff. *aesthetica* and *Myxicola* aff. *infundibulum*), are currently under revision. Many other specimens catalogued in this dataset are not determined past genus as specimens were either unavailable or require further examination in light of recent taxonomic revisions.
+![The petite slime-tube feather-duster *Myxicola* aff. *aesthetica* – Photograph by Karolle Wall](media/Myxicola_Karolle_Wall.png)
 
-![*Myxicola* aff. *aesthetica* (*Myxicola* sp. A, sensu Leslie Harris, provisional name) – Photograph by Karolle Wall.](media/Myxicola_Karolle_Wall.png)
+The majority of taxa reported in this dataset are polychaetes, though a few clitellates are also represented. Many of the names reported reflect the ongoing challenges facing those studying this group. Uncertainty is indicated by older reports, such as *Chaetopterus variopedatus* and *Nereis zonata* (here reported as the *Chaetopterus variopedatus* complex and *Nereis* cf *zonata*), which refer to European concepts in which undescribed native species likely remain hidden. Even conspicuous species, such as tubeworms in the genus *Myxicola*, commonly reported as *M. aesthetica* or *M. infundibulum* (here listed as *Myxicola* aff. *aesthetica* and *Myxicola* aff. *infundibulum*), are currently under revision. Many other specimens catalogued in this dataset are not determined past genus as specimens were either unavailable or require further examination in light of recent taxonomic revisions.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
@@ -51,7 +51,7 @@ figs$reportingStatusFig
 
 ## Top community contributions to our knowledge of the island annelid diversity
 
-Here, you can browse photos of annelid species commonly documented around Galiano Island, as well as recent observations and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island annelid diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
+Please help contribute to the growing record of the island annelid diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) Here, you can browse photos of annelid species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data.
 
 <span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
 
