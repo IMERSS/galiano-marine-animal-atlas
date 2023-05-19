@@ -7,6 +7,8 @@ You can browse the published output of this project in these documents:
 
 * [Annelids - Raw Storymapping Output](https://imerss.github.io/galiano-bioblitz-2023/Annelids.html#)
 * [Annelids - Storymapping Reknitted into Scrollytelling Interface](https://imerss.github.io/galiano-bioblitz-2023/Annelids-Reknitted.html#)
+* [Brachiopods - Raw Storymapping Output](https://imerss.github.io/galiano-bioblitz-2023/Brachiopods.html#)
+* [Brachiopods - Storymapping Reknitted into Scrollytelling Interface](https://imerss.github.io/galiano-bioblitz-2023/Brachiopods-Reknitted.html#)
 * [Chaetognaths - Raw Storymapping Output](https://imerss.github.io/galiano-bioblitz-2023/Chaetognaths.html#)
 * [Chaetognaths - Storymapping Reknitted into Scrollytelling Interface](https://imerss.github.io/galiano-bioblitz-2023/Chaetognaths-Reknitted.html#)
 * [Cnidarians - Raw Storymapping Output](https://imerss.github.io/galiano-bioblitz-2023/Cnidarians.html#)

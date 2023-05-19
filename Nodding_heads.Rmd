@@ -1,0 +1,56 @@
+---
+title: Nodding heads
+author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Elaine Humphrey, Andy Lamb, Andrew Simon
+date: May 18th, 2023
+output: html_document
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+nodding.heads <- read.csv("tabular_data/nodding_heads_reported_records_gridded.csv")
+nodding.heads.summary <- read.csv("tabular_data/nodding_heads_summary.csv")
+new <- nodding.heads.summary %>% filter(str_detect(reportingStatus, "new")) 
+confirmed <- nodding.heads.summary %>% filter(reportingStatus == 'confirmed') 
+reported <- nodding.heads.summary %>% filter(reportingStatus == 'reported') 
+observed <- nodding.heads.summary %>% filter(iNatObservationStatus == 'observed') 
+unobserved <- nodding.heads.summary %>% filter(iNatObservationStatus == 'unobserved') 
+```
+
+## Galiano Island's nodding head diversity
+
+*‘Entoprocta’ derives from the Greek ἐντός (entos), meaning “inside”, and πρωκτός (prōktos), meaning “anus.”*
+
+Entoprocta (nodding-heads) are a small phylum of mainly sessile marine invertebrates that comprises 253 described species worldwide. The phylum was traditionally divided into two orders: the Solitaria and Coloniales. Solitaria included solitary species that usually attach to larger organisms which produce feeding currents, such as sponges, bryozoans, polychaetes, sipunculans and ascidians, and are typically associated with just one or a few host species. Coloniales, by contrast, included colonial species that form crusts on various surfaces. However, the traditional system is no longer followed; instead four families are now recognised. Of the 11 species known to British Columbia, one species is reported for Galiano Island: *Barentsia* sp..
+
+![*Barentsia* sp. – Photograph by Bernard Hanby](media/Barentsia_sp_Bernard_Hanby.jpg)
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Diversity_map_script.R")
+animal.grid.map <- mx_diversity_map("nodding_heads")
+animal.grid.map
+```
+
+## Community science contributions
+
+Since the Biodiversity Galiano project began in 2016, our community has not yet documented *Barentsia* sp., the only entoproct known to occur around Galiano Island, though this species has been observed historically through the Pacific Marine Life Surveys.
+
+Entoprocts are filter feeders, trapping small particles in the mucus secreted by their tentacles. An understudied group, they are easily overlooked because of their diminutive size (< 1 mm) and the superficial similarities they share with the Cnidaria and Bryozoa. With further search effort, others are likely to be detected locally.
+
+The body plan of entoprocts consists of a cup-like calyx that bears a ring of ciliated tentacles called the lophophore, which is attached on its dorsal surface to the substrate by a long, thin stalk or pedicel. Entoprocta have their anus inside their ring of tentacles, while bryozoans (formally known as the Ectoprocta), have their anus outside of their ring of tentacles.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Status_map_script.R")
+figs <- mx_status_map("nodding_heads")
+figs$reportingStatusMap
+figs$reportingStatusFig
+```
+
+## Sources
+
+[Simon, A. D., Adamczyk, E. M., Basman, A., Chu, J. W., Gartner, H. N., Fletcher, K., ... & Starzomski, B. M. (2022). Toward an atlas of Salish Sea biodiversity: the flora and fauna of Galiano Island, British Columbia, Canada. Part I. Marine zoology. Biodiversity Data Journal, 10.](https://bdj.pensoft.net/article/76050/)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```

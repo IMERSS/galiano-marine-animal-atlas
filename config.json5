@@ -41,6 +41,26 @@
                 }
             }
         }, {
+            infile: "%maxwell/docs/Brachiopods.html",
+            outfile: "%maxwell/docs/Brachiopods-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Brachiopods.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Brachiopods.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Brachiopods.json.lz4",
+                    }
+                }
+            }
+        },  {
             infile: "%maxwell/docs/Chaetognaths.html",
             outfile: "%maxwell/docs/Chaetognaths-Reknitted.html",
             options: {
@@ -81,6 +101,46 @@
                 }
             }
         }, {
+            infile: "%maxwell/docs/Brachiopods.html",
+            outfile: "%maxwell/docs/Brachiopods-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Brachiopods.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Brachiopods.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Brachiopods.json.lz4",
+                    }
+                }
+            }
+        }, {
+            infile: "%maxwell/docs/Crustaceans.html",
+            outfile: "%maxwell/docs/Crustaceans-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Crustaceans.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Crustaceans.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Crustaceans.json.lz4",
+                    }
+                }
+            }
+        },  {
             infile: "%maxwell/docs/Ctenophores.html",
             outfile: "%maxwell/docs/Ctenophores-Reknitted.html",
             options: {
@@ -121,6 +181,26 @@
                 }
             }
         }, {
+            infile: "%maxwell/docs/Mammals.html",
+            outfile: "%maxwell/docs/Mammals-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Mammals.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Mammals.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Mammals.json.lz4",
+                    }
+                }
+            }
+        }, {
             infile: "%maxwell/docs/Nemerteans.html",
             outfile: "%maxwell/docs/Nemerteans-Reknitted.html",
             options: {
@@ -137,6 +217,26 @@
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Status-Nemerteans.json.lz4",
+                    }
+                }
+            }
+        }, {
+            infile: "%maxwell/docs/Nodding_heads.html",
+            outfile: "%maxwell/docs/Nodding_heads-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Nodding_heads.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Nodding_heads.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Nodding_heads.json.lz4",
                     }
                 }
             }
