@@ -38,8 +38,9 @@ mx_diversity_map <- function (taxon) {
     # Plot choropleth
     
     tmap_mode("view")
+    bbox <- st_bbox(c(xmin = -123.6, xmax = -123.2917, ymin = 48.85, ymax = 49.03), crs = st_crs(4326))
     
-    grid.map = tm_shape(choropleth) +
+    grid.map = tm_shape(choropleth, bbox=bbox) +
       tm_fill(
         col = "richness",
         palette = "viridis",

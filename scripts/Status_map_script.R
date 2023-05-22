@@ -23,6 +23,10 @@ library(plotly)
 
 source("scripts/utils.R")
 
+mx_statusRowToOptions <- function (row) {
+  return (list(mx_regionId = row$status, mx_cell_id = row$cell_id, mx_richness = row$richness))
+}
+
 mx_status_map <- function (taxon) {
     # Read records and summary
     
@@ -78,16 +82,21 @@ mx_status_map <- function (taxon) {
     pal <- leaflet::colorFactor(viridis_pal(option = "D")(t), domain = values)
     
     # Plot map
-    
+
     reportingStatusMap <- leaflet(options=list(mx_mapId="Status")) %>%
+      fitBounds(-123.6, 48.85,  -123.2917, 49.03) %>%
       addTiles(options = providerTileOptions(opacity = 0.5)) %>%
-      addPolygons(data = gridded.confirmed.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = mx_labelToOption("confirmed")) %>%
-      addPolygons(data = gridded.historic.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = mx_labelToOption("historic")) %>%
-      addPolygons(data = gridded.new.records, fillColor = ~pal(richness), fillOpacity = 0.6, weight = 0, options = mx_labelToOption("new")) %>%
       addLegend(position = 'topright',
                 colors = viridis_pal(option = "D")(t),
                 labels = values)
     
+    # Draw the gridded data in a funny way so that richness, cell_id etc. can be tunnelled through options one at a time
+    for (i in 1:nrow(gridded.records)) {
+       row <- gridded.records[i,]
+       reportingStatusMap <- reportingStatusMap %>% addPolygons(data = row, fillColor = pal(row$richness), fillOpacity = 0.6, weight = 0, 
+                                                                options = mx_statusRowToOptions(row))
+    }
+
     #Note that this statement is only effective in standalone R
     print(reportingStatusMap)
     
@@ -100,20 +109,19 @@ mx_status_map <- function (taxon) {
     
     reporting.status <- data.frame(y, confirmed.no, historic.no, new.no)
     
-    reportingStatusFig <- plot_ly(reporting.status, x = ~confirmed.no, y = ~y, type = 'bar', orientation = 'h', name = 'confirmed',
-                                  
+    reportingStatusFig <- plot_ly(reporting.status, height=140, x = ~confirmed.no, y = ~y, type = 'bar', orientation = 'h', name = 'confirmed',
                                   marker = list(color = '#5a96d2',
-                                                line = list(color = '#5a96d2',
-                                                            width = 1)))
+                                           line = list(color = '#5a96d2',
+                                                      width = 1)))
     reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~historic.no, name = 'historic',
-                                                           marker = list(color = '#decb90',
-                                                                         line = list(color = '#decb90',
-                                                                                     width = 1)))
+                                  marker = list(color = '#decb90',
+                                           line = list(color = '#decb90',
+                                                      width = 1)))
     reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~new.no, name = 'new',
-                                                           marker = list(color = '#7562b4',
-                                                                         line = list(color = '#7562b4',
-                                                                                     width = 1)))
-    reportingStatusFig <- reportingStatusFig %>% layout(barmode = 'stack', autosize=F, height=140, showlegend=FALSE,
+                                  marker = list(color = '#7562b4',
+                                           line = list(color = '#7562b4',
+                                                      width = 1)))
+    reportingStatusFig <- reportingStatusFig %>% layout(barmode = 'stack', autosize=F, showlegend=FALSE,
                                                         xaxis = list(title = "Species Reported"),
                                                         yaxis = list(title ="Records")) %>% 
       layout(meta = list(mx_widgetId = "reportingStatus")) %>%

@@ -50,10 +50,6 @@
                         type: "maxwell.bioblitzDiversityPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Diversity-Brachiopods.json.lz4",
                     },
-                    TopContributions: {
-                        type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Brachiopods.js"
-                    },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Status-Brachiopods.json.lz4",
@@ -69,10 +65,6 @@
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Diversity-Chaetognaths.json.lz4",
-                    },
-                    TopContributions: {
-                        type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Chaetognaths.js"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
@@ -97,26 +89,6 @@
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Status-Cnidarians.json.lz4",
-                    }
-                }
-            }
-        }, {
-            infile: "%maxwell/docs/Brachiopods.html",
-            outfile: "%maxwell/docs/Brachiopods-Reknitted.html",
-            options: {
-                template: "%maxwell/src/html/template.html",
-                paneHandlers: {
-                    Diversity: {
-                        type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Brachiopods.json.lz4",
-                    },
-                    TopContributions: {
-                        type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Brachiopods.js"
-                    },
-                    Status: {
-                        type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Brachiopods.json.lz4",
                     }
                 }
             }
@@ -230,10 +202,6 @@
                         type: "maxwell.bioblitzDiversityPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Diversity-Nodding_heads.json.lz4",
                     },
-                    TopContributions: {
-                        type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Nodding_heads.js"
-                    },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Status-Nodding_heads.json.lz4",
@@ -270,10 +238,6 @@
                         type: "maxwell.bioblitzDiversityPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Diversity-Sipuncula.json.lz4",
                     },
-                    TopContributions: {
-                        type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Sipuncula.js"
-                    },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Status-Sipuncula.json.lz4",
@@ -302,6 +266,10 @@
             }
         }
     ],
+    transforms: [{
+        file: "%maxwell/src/js/reknit-bioblitz.js",
+        func: "addHeader"
+    }],
     copyJobs: [{
         source: "%infusion/dist/infusion-framework.js",
         target: "%maxwell/docs/js/infusion-framework.js",
@@ -311,11 +279,8 @@
         source: "%maxwell/src/js/client/*.js",
         target: "%maxwell/docs/js/"
     }, {
-        source: "%maxwell/src/css/maxwell.css",
-        target: "%maxwell/docs/css/maxwell.css"
-    }, {
-        source: "%maxwell/src/css/howe.css",
-        target: "%maxwell/docs/css/howe.css"
+        source: "%maxwell/src/css/*.css",
+        target: "%maxwell/docs/css"
     }, {
         source: "%imerss-bioinfo/docs/js/imerss-viz-all.js",
         target: "%maxwell/docs/js/imerss-viz-all.js"
@@ -351,6 +316,9 @@
     }, {
         source: "%maxwell/src/html/imerss-viz-scrolly.html",
         target: "%maxwell/docs/html/imerss-viz-scrolly.html"
+    }, {
+        source: "%maxwell/src/html/pane-info.html",
+        target: "%maxwell/docs/html/pane-info.html"
     }, {
         source: "%maxwell/viz_data/*.lz4",
         target: "%maxwell/docs/data"

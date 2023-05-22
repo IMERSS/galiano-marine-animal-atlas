@@ -17,12 +17,20 @@ fluid.defaults("maxwell.scrollyVizBinder", {
     // Put these last to continue to override "container" member due to FLUID-5800
     gradeNames: ["hortis.scrollyMapLoader", "maxwell.scrollyPaneHandler", "maxwell.templateScrollyPaneHandler"],
     resourceBase: ".",
+    // Override this since we need proper ordering of overrides, review why the comment in leafletMap.js refers to FLUID-5836
+    mapFlavourGrade: [],
     markupTemplate: "%resourceBase/html/imerss-viz-scrolly.html",
     renderMarkup: true,
     events: {
         selectRegion: null
     },
     regionIdFromLabel: false,
+    regionStyles: {
+        strokeWidth: 2,
+        noSelectionOpacity: 0.6,
+        selectedOpacity: 0.8,
+        unselectedOpacity: 0.5
+    },
     listeners: {
         // Override the built-in old fashioned rendering
         "onResourcesLoaded.renderMarkup": "fluid.identity",
@@ -43,16 +51,19 @@ fluid.defaults("maxwell.scrollyVizBinder", {
     distributeOptions: {
         bareRegionsExtra: {
             target: "{that hortis.leafletMap}.options.gradeNames",
-            record: "maxwell.bareRegionsExtra"
+            record: ["hortis.leafletMap.withBareRegions", "maxwell.bareRegionsExtra"]
         },
         map: {
             target: "{that hortis.leafletMap}.options.members.map",
             record: "{scrollyLeafletMap}.map"
+        },
+        regionStyles: {
+            target: "{that hortis.leafletMap}.options.regionStyles",
+            record: "{paneHandler}.options.regionStyles"
         }
     }
 });
 
-// TODO: Remember to add this to all Howe panes
 fluid.defaults("maxwell.scrollyVizBinder.withLegend", {
     distributeOptions: {
         withLegend: {
@@ -100,7 +111,8 @@ maxwell.legendKey.drawLegend = function (map) {
         const rowSel = ".fld-imerss-legend-row-" + hortis.normaliseToClass(regionName);
         const row = container.querySelector(rowSel);
         row.addEventListener("click", function () {
-            map.events.selectRegion.fire(regionName, regionName);
+            // TODO: this used to be regionName, regionName - we've decided that we're using "status" as "class" and "cell_id" as "community".
+            map.events.selectRegion.fire(null, regionName);
         });
     });
     return container;
@@ -113,6 +125,11 @@ fluid.defaults("maxwell.bareRegionsExtra", {
             path: "mapBlockTooltipId",
             func: "maxwell.scrollyViz.updateRegionHash",
             args: ["{that}", "{change}"]
+        },
+        sortRegions: {
+            path: "mapBlockTooltipId",
+            func: "maxwell.scrollyViz.sortRegions",
+            args: ["{paneHandler}", "{scrollyPage}"]
         }
     },
     listeners: {
@@ -161,11 +178,13 @@ maxwell.regionClass = function (className) {
 // Identical to last part of hortis.leafletMap.withRegions.drawRegions
 maxwell.drawBareRegions = function (map, scrollyPage) {
     map.applier.change("selectedRegions", hortis.leafletMap.selectedRegions(null, map.classes));
+    const r = fluid.getForComponent(map, ["options", "regionStyles"]);
 
     const highlightStyle = Object.keys(map.regions).map(function (key) {
         return "." + maxwell.regionClass(key) + " {\n" +
             "  fill-opacity: var(" + hortis.regionOpacity(key) + ");\n" +
             "  stroke: var(" + hortis.regionBorder(key) + ");\n" +
+            "  stroke-width: " + r.strokeWidth + ";\n" + // For some reason Leaflet ignores our weight
             "}\n";
     });
     hortis.addStyle(highlightStyle.join("\n"));
@@ -189,16 +208,38 @@ maxwell.drawBareRegions = function (map, scrollyPage) {
 
 };
 
-// Hack override to agree with base opacity in rendered map
+// TODO: port this back into leafletMapWithBareRegions now it is responsive to options
 hortis.leafletMap.showSelectedRegions = function (map, selectedRegions) {
     const style = map.container[0].style;
     const noSelection = map.model.mapBlockTooltipId === null;
+    const r = map.options.regionStyles;
     Object.keys(map.regions).forEach(function (key) {
         const lineFeature = map.classes[key].color;
-        // TODO: Move these opacities out into options
-        const opacity = noSelection ? "0.6" : selectedRegions[key] ? "0.8" : "0.5";
+        const opacity = noSelection ? r.noSelectionOpacity : selectedRegions[key] ? r.selectedOpacity : r.unselectedOpacity;
         style.setProperty(hortis.regionOpacity(key), opacity);
         style.setProperty(hortis.regionBorder(key), selectedRegions[key] ? "#FEF410" : (lineFeature ? fluid.colour.arrayToString(lineFeature) : "none"));
+    });
+};
+
+maxwell.regionForPath = function (path) {
+    let region;
+    path.classList.forEach(function (clazz) {
+        if (clazz.startsWith("fld-imerss-region-")) {
+            region = clazz.substring("fld-imerss-region-".length);
+        }
+    });
+    return region;
+};
+
+maxwell.scrollyViz.sortRegions = function (paneHandler, scrollyPage) {
+    const paneIndex = paneHandler.options.paneIndex;
+    const pane = scrollyPage.leafletWidgets[paneIndex].paneInfo.pane;
+    const paths = [...pane.querySelectorAll("path")];
+    paths.forEach(function (path) {
+        const region = maxwell.regionForPath(path);
+        if (region && region === paneHandler.map.model.mapBlockTooltipId) {
+            path.parentNode.appendChild(path);
+        }
     });
 };
 
@@ -211,8 +252,9 @@ maxwell.scrollyViz.polyOptions = function (paneHandler, shapeOptions, label) {
     const region = maxwell.scrollyViz.regionIdForPoly(paneHandler, shapeOptions, label);
     const overlay = {};
     if (region) {
+        const r = fluid.getForComponent(paneHandler, ["options", "regionStyles"]);
         overlay.className = (shapeOptions.className || "") + " fld-imerss-region " + maxwell.regionClass(region);
-        overlay.weight = 3;
+        overlay.weight = r.strokeWidth;
         overlay.opacity = "1.0";
     }
     return {...shapeOptions, ...overlay};
@@ -225,18 +267,20 @@ maxwell.scrollyViz.handlePoly = function (paneHandler, Lpolygon, shapeOptions, l
         Lpolygon.on("click", function () {
             console.log("Map clicked on region ", region, " polygon ", Lpolygon);
             const map = paneHandler.map;
-            map.events.selectRegion.fire(region, region);
+            // TODO: Upstairs this said "region, region"
+            map.events.selectRegion.fire(null, region);
         });
     }
 };
 
+// TODO: Lots here - demultiplex by panel, etc.
 maxwell.scrollyViz.listenHash = function (paneHandler) {
     const map = paneHandler.map;
     window.addEventListener("hashchange", function () {
         const hash = location.hash;
         if (hash.startsWith("#region:")) {
             const region = hash.substring("#region:".length);
-            map.events.selectRegion.fire(region, region, "hash");
+            map.events.selectRegion.fire(null, region, "hash");
         } else {
             map.events.clearMapSelection.fire();
         }

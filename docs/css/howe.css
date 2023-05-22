@@ -12,9 +12,35 @@ body {
     flex-direction: column;
     margin-top: 0px;
 }
-.fld-imerss-region {
+
+.fld-imerss-pane-info {
+    padding: 1em 0.8em 0.7em 0.8em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.fld-imerss-region-pane {
+    display: flex;
+    flex-direction: column;
+}
+
+.fld-imerss-download {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    visibility: hidden;
+}
+
+.fld-imerss-download.fl-active {
+    visibility: visible;
+}
+
+.fld-imerss-status, .fld-imerss-cell {
     padding: 3px;
 }
+
 .mxcw-widgetPane {
     height: 100%;
 }
@@ -102,4 +128,8 @@ body {
 
 #inat-components > div {
     padding-top: 40px;
+}
+
+.mxcw-content img {
+    width: 100%;
 }

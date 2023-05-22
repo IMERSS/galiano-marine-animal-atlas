@@ -110,7 +110,7 @@ maxwell.integratePaneHandler = function (paneHandler, key) {
     return {...paneHandler, ...toMerge};
 };
 
-maxwell.reknitFile = async function (infile, outfile, options) {
+maxwell.reknitFile = async function (infile, outfile, options, config) {
     const document = maxwell.parseDocument(fluid.module.resolvePath(infile));
     const container = document.querySelector(".main-container");
     const sections = maxwell.hideLeafletWidgets(container);
@@ -120,10 +120,12 @@ maxwell.reknitFile = async function (infile, outfile, options) {
     maxwell.transferNodeContent(document, template, "h1");
     maxwell.transferNodeContent(document, template, "title");
 
-    await maxwell.asyncForEach(options.transforms || [], async (rec) => {
+    const transforms = (config.transforms || []).concat(options.transforms || []);
+
+    await maxwell.asyncForEach(transforms || [], async (rec) => {
         const file = require(fluid.module.resolvePath(rec.file));
         const transform = file[rec.func];
-        await transform(document, container);
+        await transform(document, container, template, {infile, outfile, options}, config);
     });
     const target = template.querySelector(".mxcw-content");
     target.appendChild(container);
@@ -180,7 +182,7 @@ const copyDep = function (source, target, replaceSource, replaceTarget) {
 
 const reknit = async function () {
     const config = maxwell.loadJSON5File("%maxwell/config.json5");
-    await maxwell.asyncForEach(config.reknitJobs, async (rec) => maxwell.reknitFile(rec.infile, rec.outfile, rec.options));
+    await maxwell.asyncForEach(config.reknitJobs, async (rec) => maxwell.reknitFile(rec.infile, rec.outfile, rec.options, config));
 
     config.copyJobs.forEach(function (dep) {
         copyDep(dep.source, dep.target, dep.replaceSource, dep.replaceTarget);

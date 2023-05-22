@@ -3,6 +3,8 @@
 // noinspection ES6ConvertVarToLetConst // otherwise this is a duplicate on minifying
 var maxwell = fluid.registerNamespace("maxwell");
 
+// Leftover contents from Howe Sound
+
 fluid.defaults("maxwell.iNatComponentsPaneHandler", {
     gradeNames: "maxwell.scrollyPaneHandler",
     // scriptLocation: "js/inat-components-build-Molluscs.js",
@@ -29,36 +31,6 @@ maxwell.reactScriptInjector = function (that) {
     script.onload = that.events.scriptLoaded.fire(that);
     script.src = that.options.scriptLocation;
     document.head.appendChild(script);
-};
-
-
-
-fluid.defaults("maxwell.regionNameBinder", {
-    phyloMap: "%resourceBase/json/howePhyloMap.json",
-    markup: {
-        region: "Selected biogeoclimatic region: %region"
-    },
-
-    selectors: {
-        regionDisplay: ".fld-imerss-region"
-    },
-    invokers: {
-        renderRegionName: "maxwell.renderRegionName({that}.dom.regionDisplay, {that}.options.markup.region, {arguments}.0)"
-    },
-    distributeOptions: {
-        target: "{that hortis.leafletMap}.options.modelListeners.regionTextDisplay",
-        record: {
-            // TOOD: rename mapBlockTooltipId to selectedRegion
-            path: "{that}.model.mapBlockTooltipId",
-            listener: "{maxwell.regionNameBinder}.renderRegionName",
-            args: "{change}.value"
-        }
-    }
-});
-
-maxwell.renderRegionName = function (target, template, region) {
-    const text = fluid.stringTemplate(template, {region: region || "None"});
-    target.text(text);
 };
 
 /*
