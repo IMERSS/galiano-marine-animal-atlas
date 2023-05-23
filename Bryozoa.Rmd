@@ -1,0 +1,64 @@
+---
+title: Bryozoans
+author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Heidi Gartner, Andy Lamb, Andrew Simon
+date: May 23rd, 2023
+output: html_document
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+bryozoans <- read.csv("tabular_data/bryozoans_reported_records_gridded.csv")
+bryozoans.summary <- read.csv("tabular_data/bryozoans_summary.csv")
+new <- bryozoans.summary %>% filter(str_detect(reportingStatus, "new")) 
+confirmed <- bryozoans.summary %>% filter(reportingStatus == 'confirmed') 
+reported <- bryozoans.summary %>% filter(reportingStatus == 'reported') 
+observed <- bryozoans.summary %>% filter(iNatObservationStatus == 'observed') 
+unobserved <- bryozoans.summary %>% filter(iNatObservationStatus == 'unobserved') 
+```
+
+## Galiano Island's bryozoan diversity
+
+*‘Bryozoa’ derives from the Ancient Greek βρύον (brúon), “moss”, and ζῷα (zôia), which
+means “animals.”*
+
+Bryozoans, or ‘moss animals’, are colonial animals that are composed of many connected individuals, globally represented by over 6,000 species. While no recently published lists are available to summarise the regional diversity of this phylum, conservative estimates of British Columbia’s bryozoan diversity falls between 210 and 260 species. A total of`r nrow(bryozoans.summary)` bryozoan species have been reported for Galiano Island, through the combined efforts of more than `r length(unique(bryozoans$recordedBy))` individuals.
+
+As aquatic suspension feeders, bryozoans pluck food particles from the surrounding water with a specialised structure called a lophophore. Each individual or zooid is typically protected within a covering of calcium carbonate or chitinous material. The protective features and structure of this covering are polymorphic and used to distinguish species.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Diversity_map_script.R")
+animal.grid.map <- mx_diversity_map("bryozoans")
+animal.grid.map
+```
+
+## Community science contributions
+
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` marine mammal species in the waters around Galiano Island, confirming `r nrow(confirmed)` historical records and adding `r nrow(new)` new species to the list.
+
+Of the 17 bryozoan species reported for Galiano Island, one is introduced to British Columbia: the orange ripple bryozoan (*Schizoporella japonica*). Native to Japan, *S. japonica* was described by Powell (1970) as an abundant intertidal organism in the Strait of Georgia, where the species is suspected to have been
+introduced in the early to mid-1930s along with Magallana gigas. The species has since been found in fouling communities from Morro Bay, California to Prince William Sound, Alaska.
+
+![The orange ripple bryozoan (*Schizoporella japonica*) – Photograph by Scott Gilmore](media/Schizoporella_japonica_Scott_Gilmore.jpg)
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Status_map_script.R")
+figs <- mx_status_map("bryozoans")
+figs$reportingStatusMap
+figs$reportingStatusFig
+```
+
+## Top community contributions to our knowledge of Galiano Island's bryozoan diversity
+
+Please help contribute to the growing record of the island bryozoan diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) Here, you can browse photos of mammal species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. 
+
+<span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
+
+## Sources
+
+[Simon, A. D., Adamczyk, E. M., Basman, A., Chu, J. W., Gartner, H. N., Fletcher, K., ... & Starzomski, B. M. (2022). Toward an atlas of Salish Sea biodiversity: the flora and fauna of Galiano Island, British Columbia, Canada. Part I. Marine zoology. Biodiversity Data Journal, 10.](https://bdj.pensoft.net/article/76050/)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
