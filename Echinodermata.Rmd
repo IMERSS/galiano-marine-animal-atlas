@@ -1,0 +1,65 @@
+---
+title: Echinoderms
+author: Antranig Basman, Charles J. Gibbs, Donna M. Gibbs, Andy Lamb, Philip Lambert, Andrew Simon
+date: May 23rd, 2023
+output: html_document
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+echinoderms <- read.csv("tabular_data/echinoderms_records_gridded.csv")
+echinoderm.summary <- read.csv("tabular_data/echinoderms_summary.csv")
+new <- echinoderm.summary %>% filter(str_detect(reportingStatus, "new")) 
+confirmed <- echinoderm.summary %>% filter(reportingStatus == 'confirmed') 
+reported <- echinoderm.summary %>% filter(reportingStatus == 'reported') 
+observed <- echinoderm.summary %>% filter(iNatObservationStatus == 'observed') 
+unobserved <- echinoderm.summary %>% filter(iNatObservationStatus == 'unobserved') 
+```
+
+## Galiano Island's echinoderm diversity
+
+*‘Echinodermata’ is rooted in the Ancient Greek ἐχῖνος (echīnos), meaning “hedgehog”,
+and δέρμα (derma), “skin”.*
+
+Echinoderms are a phylum of marine invertebrates characterised by tough, spiny skin and radial symmetry, containing over 7,000 recognised species worldwide. The phylum comprises five extant classes, all of which are represented locally. These include Asteroidea (sea stars), Crinoidea (crinoids), Echinoidea (sea urchins and sand dollars), Holothuroidea (sea cucumbers) and Ophiuroidea (brittle stars). In total, 111 echinoderm species are known to British Columbia Of these, 41 species have been reported for Galiano Island, through the combined efforts of more than `r length(unique(echinoderms$recordedBy))` individuals.
+
+![Sunflower sea star (*Pycnopodia helianthoides*) – Photograph by Karolle Wall](media/Pycnopodia_helianthoides_Karolle_Wall.jpg)
+
+Echinoderms, especially sea stars, are an ecologically important component of the marine fauna of the Northeast Pacific. The term “keystone species” was first coined by Paine (1966) to describe the dominant influence of the predatory ochre sea star (*Pisaster ochraceus*) over the structure and composition of intertidal communities. Since 2013, sea stars, such as the ochre sea star and the sunflower sea star *Pycnopodia helianthoides*, have undergone severe declines in the region due to sea star wasting syndrome and their populations have not yet recovered. Research indicates that sea star wasting syndrome may be the consequence of elevated microbial activities induced by high organic matter concentrations, which causes depleted oxygen conditions at the animal-water interface, such that sea stars cannot meet the respiratory oxygen demand of tissues. This phenomenon is likely exacerbated under warmer ocean conditions and anthropogenic nutrient pollution.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Diversity_map_script.R")
+animal.grid.map <- mx_diversity_map("echinoderms")
+animal.grid.map
+```
+
+## Community science contributions
+
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` echinoderm species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records and adding no new species to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
+
+Under-represented echinoderms in the Galiano Island record include the holothuroids and ophiuroids. This gap is likely due to sampling bias, as many of these taxa are found at deeper depths than have been sampled locally or otherwise tend to be buried beneath rock and sediment. Gaps otherwise relate to limits in taxonomic knowledge. For example, the genus *Henricia* is highly variable and in need of clarification. Genetic studies are underway to sort out many suspected new species of *Henricia* between Alaska and California. *Leptasterias hexactis* also belongs to a species complex (*Leptasterias aequalis* species complex) requiring further study.
+
+![*Henricia* sp. – Photograph by Isabelle Côte](media/Henricia_Isabelle_Cote.jpeg)
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Status_map_script.R")
+figs <- mx_status_map("echinoderms")
+figs$reportingStatusMap
+figs$reportingStatusFig
+```
+
+## Top community contributions to our knowledge of the island echinoderm diversity
+
+Please help contribute to the growing record of the island echinoderm diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) Here, you can browse photos of echinoderm species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. 
+
+<span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
+
+## Sources
+
+[Simon, A. D., Adamczyk, E. M., Basman, A., Chu, J. W., Gartner, H. N., Fletcher, K., ... & Starzomski, B. M. (2022). Toward an atlas of Salish Sea biodiversity: the flora and fauna of Galiano Island, British Columbia, Canada. Part I. Marine zoology. Biodiversity Data Journal, 10.](https://bdj.pensoft.net/article/76050/)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
