@@ -1,6 +1,6 @@
 {
     "name": "galiano-bioblitz.2023",
-    "description": "Howe Sound Biosphere Vegetation Analysis Storymapping in R",
+    "description": "Galiano Bioblitz 2023 Storymapping in R",
     "version": "0.0.1",
     "author": "IMERSS, Transition Salt Spring",
     "scripts": {
@@ -12,9 +12,10 @@
         "infusion": "4.6.0",
         "imerss-bioinfo": "1.7.0",
         "json5": "2.2.3",
-        "linkedom": "0.14.25",
+        "lz4": "0.6.5",
+        "linkedom": "0.14.26",
         "fs-extra": "11.1.1",
-        "eslint": "8.39.0",
+        "eslint": "8.41.0",
         "eslint-config-fluid": "2.1.1",
         "fluid-lint-all": "1.2.9"
     },

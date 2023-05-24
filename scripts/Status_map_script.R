@@ -126,7 +126,8 @@ mx_status_map <- function (taxon) {
                                                         yaxis = list(title ="Records")) %>% 
       layout(meta = list(mx_widgetId = "reportingStatus")) %>%
       layout(yaxis= list(showticklabels = FALSE)) %>%
-      layout(yaxis= list(title = ""))
+      layout(yaxis= list(title = "")) %>%
+      config(displayModeBar = FALSE)
     
     reportingStatusFig
     

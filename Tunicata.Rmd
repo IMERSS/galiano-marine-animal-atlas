@@ -9,8 +9,8 @@ knit: (function(inputFile, encoding) {
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-tunicates <- read.csv("tabular_data/tunicates_records_gridded.csv")
-tunicates.summary <- read.csv("tabular_data/tunicates_summary.csv")
+tunicates <- read.csv("tabular_data/tunicata_records_gridded.csv")
+tunicates.summary <- read.csv("tabular_data/tunicata_summary.csv")
 new <- tunicates.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- tunicates.summary %>% filter(reportingStatus == 'confirmed') 
 reported <- tunicates.summary %>% filter(reportingStatus == 'reported') 
@@ -31,7 +31,7 @@ Ascidians are sessile organisms found at all ocean depths worldwide, attaching t
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
-animal.grid.map <- mx_diversity_map("tunicates")
+animal.grid.map <- mx_diversity_map("tunicata")
 animal.grid.map
 ```
 
@@ -43,7 +43,7 @@ Tunicates are generally under-represented in this study as they are easily overl
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Status_map_script.R")
-figs <- mx_status_map("tunicates")
+figs <- mx_status_map("tunicata")
 figs$reportingStatusMap
 figs$reportingStatusFig
 ```

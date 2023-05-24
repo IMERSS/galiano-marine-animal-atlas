@@ -6,12 +6,15 @@ var maxwell = fluid.registerNamespace("maxwell");
 var hortis = fluid.registerNamespace("hortis");
 
 fluid.defaults("maxwell.bioblitzDiversityPane", {
-    gradeNames: ["maxwell.scrollyPaneHandler", "maxwell.scrollyVizBinder"],
+    gradeNames: ["maxwell.scrollyPaneHandler", "maxwell.scrollyVizBinder", "maxwell.withNativeLegend"],
+    regionStyles: {
+        unselectedOpacity: 0
+    },
     regionIdFromLabel: true
 });
 
 fluid.defaults("maxwell.bioblitzStatusPane", {
-    gradeNames: ["maxwell.scrollyPaneHandler", "maxwell.scrollyVizBinder", "maxwell.scrollyVizBinder.withLegend"],
+    gradeNames: ["maxwell.scrollyPaneHandler", "maxwell.scrollyVizBinder", "maxwell.withNativeLegend"],
     members: {
         allCellKeys: {}
     },
@@ -21,7 +24,7 @@ fluid.defaults("maxwell.bioblitzStatusPane", {
         }
     },
     regionStyles: {
-        unselectedOpacity: 0.2
+        unselectedOpacity: 0
     },
     components: {
         paneInfo: {
@@ -57,12 +60,18 @@ fluid.defaults("maxwell.mapWithStatus", {
         selectedStatus: null,
         selectedCell: null
     },
+    members: {
+        // to make regionSelectionBar work again, in the presence of bareRegionsExtra definition which makes this equal to communities
+        // TODO: awkward cross-linking. regions is the unit of drawability in base bare map, but communities is in status map
+        regions: "{sunburst}.viz.classes"
+    },
     modelRelay: {
         // We relay these up because of our timing issues - we need to communicate to the paneHandler but we are not created
         // in time because of the awkward construction model of the viz
         paneHandlerStatus: {
             source: "selectedStatus",
-            target: "{paneHandler}.model.selectedStatus"
+            target: "{paneHandler}.model.selectedStatus",
+            func: status => status && (status + " records")
         },
         paneHandlerCell: {
             source: "selectedCell",
@@ -74,7 +83,7 @@ fluid.defaults("maxwell.mapWithStatus", {
         // overrides listener from hortis.leafletMap.withRegionsBase
         //                                                                                class,        community,      source
         "selectRegion.regionSelection": "hortis.leafletMap.statusRegionSelection({that}, {arguments}.0, {arguments}.1, {arguments}.2)",
-        "clearMapSelection.status": "hortis.clearSelectedStatusRegions({that}, {arguments}.0)",
+        "clearMapSelection.status": "hortis.clearSelectedStatusRegions({that}, {arguments}.0)"
     }
 });
 
@@ -150,6 +159,7 @@ hortis.leafletMap.showSelectedStatusRegions = function (paneHandler, map) {
     const selectedCell = map.model.selectedCell;
     const noSelection = map.model.mapBlockTooltipId === null;
     const r = map.options.regionStyles;
+    // This hash is initialised in polyStatusOptions as we see them go by for the first time
     Object.keys(paneHandler.allCellKeys).forEach(function (key) {
         const parsed = maxwell.parseCellKey(key);
         const isSelected = !noSelection && (parsed.status === selectedStatus || parsed.cell_id === selectedCell);

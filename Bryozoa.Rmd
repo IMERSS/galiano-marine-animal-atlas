@@ -9,8 +9,8 @@ knit: (function(inputFile, encoding) {
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-bryozoans <- read.csv("tabular_data/bryozoans_reported_records_gridded.csv")
-bryozoans.summary <- read.csv("tabular_data/bryozoans_summary.csv")
+bryozoans <- read.csv("tabular_data/bryozoa_reported_records_gridded.csv")
+bryozoans.summary <- read.csv("tabular_data/bryozoa_summary.csv")
 new <- bryozoans.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- bryozoans.summary %>% filter(reportingStatus == 'confirmed') 
 reported <- bryozoans.summary %>% filter(reportingStatus == 'reported') 
@@ -29,7 +29,7 @@ As aquatic suspension feeders, bryozoans pluck food particles from the surroundi
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
-animal.grid.map <- mx_diversity_map("bryozoans")
+animal.grid.map <- mx_diversity_map("bryozoa")
 animal.grid.map
 ```
 
@@ -44,7 +44,7 @@ introduced in the early to mid-1930s along with Magallana gigas. The species has
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Status_map_script.R")
-figs <- mx_status_map("bryozoans")
+figs <- mx_status_map("bryozoa")
 figs$reportingStatusMap
 figs$reportingStatusFig
 ```

@@ -56,7 +56,27 @@
                     }
                 }
             }
-        },  {
+        }, {
+            infile: "%maxwell/docs/Bryozoa.html",
+            outfile: "%maxwell/docs/Bryozoa-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Bryozoa.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Bryozoa.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Bryozoa.json.lz4",
+                    }
+                }
+            }
+        }, {
             infile: "%maxwell/docs/Chaetognaths.html",
             outfile: "%maxwell/docs/Chaetognaths-Reknitted.html",
             options: {
@@ -112,7 +132,7 @@
                     }
                 }
             }
-        },  {
+        }, {
             infile: "%maxwell/docs/Ctenophores.html",
             outfile: "%maxwell/docs/Ctenophores-Reknitted.html",
             options: {
@@ -129,6 +149,26 @@
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Status-Ctenophores.json.lz4",
+                    }
+                }
+            }
+        }, {
+            infile: "%maxwell/docs/Echinodermata.html",
+            outfile: "%maxwell/docs/Echinodermata-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Echinodermata.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Echinodermata.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Echinodermata.json.lz4",
                     }
                 }
             }
@@ -209,6 +249,26 @@
                 }
             }
         }, {
+            infile: "%maxwell/docs/Phoronida.html",
+            outfile: "%maxwell/docs/Phoronida-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Horseshoe_worms.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Horseshoe_worms.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Horseshoe_worms.json.lz4",
+                    }
+                }
+            }
+        }, {
             infile: "%maxwell/docs/Platyhelminthes.html",
             outfile: "%maxwell/docs/Platyhelminthes-Reknitted.html",
             options: {
@@ -236,11 +296,11 @@
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Sipuncula.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Peanut_worms.json.lz4",
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Sipuncula.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Peanut_worms.json.lz4",
                     }
                 }
             }
@@ -261,6 +321,26 @@
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Status-Sponges.json.lz4",
+                    }
+                }
+            },
+        }, {
+            infile: "%maxwell/docs/Tunicata.html",
+            outfile: "%maxwell/docs/Tunicata-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Tunicata.json.lz4",
+                    },
+                    TopContributions: {
+                        type: "maxwell.iNatComponentsPaneHandler",
+                        scriptLocation: "js/inat-components-build-Tunicata.js"
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Tunicata.json.lz4",
                     }
                 }
             }

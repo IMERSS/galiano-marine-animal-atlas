@@ -9,13 +9,13 @@ knit: (function(inputFile, encoding) {
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-echinoderms <- read.csv("tabular_data/echinoderms_records_gridded.csv")
-echinoderm.summary <- read.csv("tabular_data/echinoderms_summary.csv")
-new <- echinoderm.summary %>% filter(str_detect(reportingStatus, "new")) 
-confirmed <- echinoderm.summary %>% filter(reportingStatus == 'confirmed') 
-reported <- echinoderm.summary %>% filter(reportingStatus == 'reported') 
-observed <- echinoderm.summary %>% filter(iNatObservationStatus == 'observed') 
-unobserved <- echinoderm.summary %>% filter(iNatObservationStatus == 'unobserved') 
+echinodermata <- read.csv("tabular_data/echinodermata_records_gridded.csv")
+echinodermata.summary <- read.csv("tabular_data/echinodermata_summary.csv")
+new <- echinodermata.summary %>% filter(str_detect(reportingStatus, "new")) 
+confirmed <- echinodermata.summary %>% filter(reportingStatus == 'confirmed') 
+reported <- echinodermata.summary %>% filter(reportingStatus == 'reported') 
+observed <- echinodermata.summary %>% filter(iNatObservationStatus == 'observed') 
+unobserved <- echinodermata.summary %>% filter(iNatObservationStatus == 'unobserved') 
 ```
 
 ## Galiano Island's echinoderm diversity
@@ -23,7 +23,7 @@ unobserved <- echinoderm.summary %>% filter(iNatObservationStatus == 'unobserved
 *‘Echinodermata’ is rooted in the Ancient Greek ἐχῖνος (echīnos), meaning “hedgehog”,
 and δέρμα (derma), “skin”.*
 
-Echinoderms are a phylum of marine invertebrates characterised by tough, spiny skin and radial symmetry, containing over 7,000 recognised species worldwide. The phylum comprises five extant classes, all of which are represented locally. These include Asteroidea (sea stars), Crinoidea (crinoids), Echinoidea (sea urchins and sand dollars), Holothuroidea (sea cucumbers) and Ophiuroidea (brittle stars). In total, 111 echinoderm species are known to British Columbia Of these, 41 species have been reported for Galiano Island, through the combined efforts of more than `r length(unique(echinoderms$recordedBy))` individuals.
+Echinoderms are a phylum of marine invertebrates characterised by tough, spiny skin and radial symmetry, containing over 7,000 recognised species worldwide. The phylum comprises five extant classes, all of which are represented locally. These include Asteroidea (sea stars), Crinoidea (crinoids), Echinoidea (sea urchins and sand dollars), Holothuroidea (sea cucumbers) and Ophiuroidea (brittle stars). In total, 111 echinoderm species are known to British Columbia Of these, 41 species have been reported for Galiano Island, through the combined efforts of more than `r length(unique(echinodermata$recordedBy))` individuals.
 
 ![Sunflower sea star (*Pycnopodia helianthoides*) – Photograph by Karolle Wall](media/Pycnopodia_helianthoides_Karolle_Wall.jpg)
 
@@ -31,7 +31,7 @@ Echinoderms, especially sea stars, are an ecologically important component of th
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
-animal.grid.map <- mx_diversity_map("echinoderms")
+animal.grid.map <- mx_diversity_map("echinodermata")
 animal.grid.map
 ```
 
@@ -45,7 +45,7 @@ Under-represented echinoderms in the Galiano Island record include the holothuro
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Status_map_script.R")
-figs <- mx_status_map("echinoderms")
+figs <- mx_status_map("echinodermata")
 figs$reportingStatusMap
 figs$reportingStatusFig
 ```

@@ -237,6 +237,138 @@ maxwell.hoverPopup = function (layer, paneOptions) {
     });
 };
 
+fluid.defaults("maxwell.withNativeLegend", {
+    modelListeners: {
+        legendVisible: {
+            path: "{paneHandler}.model.isVisible",
+            func: "maxwell.toggleClass",
+            args: ["{that}.legendContainer", "{change}.value", "mxcw-hidden"]
+        }
+    }
+});
+
+// From https://github.com/rstudio/leaflet/blob/main/javascript/src/methods.js#LL713C1-L859C3
+maxwell.addNativeLegend = function (options, map, paneHandler) {
+    const legend = L.control({position: options.position});
+    const div = L.DomUtil.create("div", options.className);
+
+    legend.onAdd = function () {
+        const colors = options.colors,
+            labels = options.labels;
+        let legendHTML = "";
+        if (options.type === "numeric") {
+            // # Formatting constants.
+            const singleBinHeight = 20;  // The distance between tick marks, in px
+            const vMargin = 8; // If 1st tick mark starts at top of gradient, how
+            // many extra px are needed for the top half of the
+            // 1st label? (ditto for last tick mark/label)
+            const tickWidth = 4;     // How wide should tick marks be, in px?
+            const labelPadding = 6;  // How much distance to reserve for tick mark?
+            // (Must be >= tickWidth)
+
+            // # Derived formatting parameters.
+
+            // What's the height of a single bin, in percentage (of gradient height)?
+            // It might not just be 1/(n-1), if the gradient extends past the tick
+            // marks (which can be the case for pretty cut points).
+            const singleBinPct = (options.extra.p_n - options.extra.p_1) / (labels.length - 1);
+            // Each bin is `singleBinHeight` high. How tall is the gradient?
+            const totalHeight = (1 / singleBinPct) * singleBinHeight + 1;
+            // How far should the first tick be shifted down, relative to the top
+            // of the gradient?
+            const tickOffset = (singleBinHeight / singleBinPct) * options.extra.p_1;
+
+            const gradSpan = $("<span/>").css({
+                "background": "linear-gradient(" + colors + ")",
+                "opacity": options.opacity,
+                "height": totalHeight + "px",
+                "width": "18px",
+                "display": "block",
+                "margin-top": vMargin + "px"
+            });
+            const leftDiv = $("<div/>").css("float", "left"),
+                rightDiv = $("<div/>").css("float", "left");
+            leftDiv.append(gradSpan);
+            $(div).append(leftDiv).append(rightDiv)
+                .append($("<br>"));
+
+            // Have to attach the div to the body at this early point, so that the
+            // svg text getComputedTextLength() actually works, below.
+            document.body.appendChild(div);
+
+            const ns = "http://www.w3.org/2000/svg";
+            const svg = document.createElementNS(ns, "svg");
+            rightDiv.append(svg);
+            const g = document.createElementNS(ns, "g");
+            $(g).attr("transform", "translate(0, " + vMargin + ")");
+            svg.appendChild(g);
+
+            // max label width needed to set width of svg, and right-justify text
+            let maxLblWidth = 0;
+
+            // Create tick marks and labels
+            $.each(labels, function (i) {
+                let y = tickOffset + i * singleBinHeight + 0.5;
+
+                let thisLabel = document.createElementNS(ns, "text");
+                $(thisLabel)
+                    .text(labels[i])
+                    .attr("y", y)
+                    .attr("dx", labelPadding)
+                    .attr("dy", "0.5ex");
+                g.appendChild(thisLabel);
+                maxLblWidth = Math.max(maxLblWidth, thisLabel.getComputedTextLength());
+
+                let thisTick = document.createElementNS(ns, "line");
+                $(thisTick)
+                    .attr("x1", 0)
+                    .attr("x2", tickWidth)
+                    .attr("y1", y)
+                    .attr("y2", y)
+                    .attr("stroke-width", 1);
+                g.appendChild(thisTick);
+            });
+
+            // Now that we know the max label width, we can right-justify
+            $(svg).find("text")
+                .attr("dx", labelPadding + maxLblWidth)
+                .attr("text-anchor", "end");
+            // Final size for <svg>
+            $(svg).css({
+                width: (maxLblWidth + labelPadding) + "px",
+                height: totalHeight + vMargin * 2 + "px"
+            });
+
+            if (options.na_color && ($.inArray(options.na_label, labels) < 0) ) {
+                $(div).append("<div><i style=\"" +
+                    "background:" + options.na_color +
+                    ";opacity:" + options.opacity +
+                    ";margin-right:" + labelPadding + "px" +
+                    ";\"></i>" + options.na_label + "</div>");
+            }
+        } else {
+            if (options.na_color && ($.inArray(options.na_label, labels) < 0) ) {
+                colors.push(options.na_color);
+                labels.push(options.na_label);
+            }
+            for (let i = 0; i < colors.length; i++) {
+                legendHTML += "<i style=\"background:" + colors[i] + ";opacity:" +
+                    options.opacity + "\"></i> " + labels[i] + "<br>";
+            }
+            div.innerHTML = legendHTML;
+        }
+        if (options.title) {
+            $(div).prepend("<div style=\"margin-bottom:3px\"><strong>" +
+                options.title + "</strong></div>");
+        }
+        return div;
+    };
+    paneHandler.legendContainer = div;
+
+    legend.addTo(map);
+};
+
+
 maxwell.addMarkers = function (lat, lon, iconOrRadius, options, label, labelOptions, paneOptions, group) {
     const pane = paneOptions.pane;
     // Note that labelOnlyMarkers are spat out in https://github.com/rstudio/leaflet/blob/main/R/layers.R#L826
@@ -349,11 +481,16 @@ maxwell.assignPolyToPane = function (rawPaneHandler, callArgs, polyMethod, paneI
         const r = v => maxwell.resolveVectorOptions(v, index);
         const args = maxwell.projectArgs(callArgs, index);
         const shapeOptions = r(options);
+        const popup = args[4];
+        const popupOptions = args[5];
         const label = args[6];
         const labelOptions = args[7];
         const finalOptions = paneHandler.polyOptions(shapeOptions, label, labelOptions);
         const polygon = L[polyMethod](maxwell.leafletiseCoords(shape), finalOptions).addTo(paneInfo.group);
-        if (label) {
+        if (popup) {
+            polygon.bindPopup(popup, {closeButton: false, ...popupOptions});
+            maxwell.hoverPopup(polygon, paneInfo.paneOptions);
+        } else if (label) {
             polygon.bindPopup(label, {closeButton: false, ...labelOptions});
             maxwell.hoverPopup(polygon, paneInfo.paneOptions);
         }
@@ -432,6 +569,10 @@ maxwell.decodeLeafletWidgetCall = function (options, call) {
             }
         } else {
             maxwell.addMarkers.apply(null, markerArgs);
+        }
+    } else if (call.method === "addLegend") {
+        if (fluid.componentHasGrade(paneHandler, "maxwell.withNativeLegend")) {
+            maxwell.addNativeLegend(call.args[0], map, paneHandler);
         }
     } else {
         console.log("Unknown R leaflet method " + call.method + " discarded");
@@ -779,7 +920,8 @@ fluid.defaults("maxwell.scrollyLeafletMap", {
     members: {
         map: "@expand:maxwell.makeLeafletMap({that}.container)"
     },
-    zoomDuration: 2000,
+    // TODO: Expose this as a top-level config option - it is 2000 in Howe/Janszen
+    zoomDuration: 100,
     listeners: {
         "onCreate.getTiles": "maxwell.applyZerothTiles({scrollyPage}.leafletWidgets, {that}.map)"
     }
@@ -882,7 +1024,7 @@ fluid.defaults("maxwell.statusCellPaneInfo", {
                     region: "{paneHandler}.model.selectedStatus"
                 }
             }
-        },
+        }/*, // AS decided we don't want, keep it in reserve
         cellBinder: {
             type: "maxwell.regionNameBinder",
             options: {
@@ -897,7 +1039,7 @@ fluid.defaults("maxwell.statusCellPaneInfo", {
                     region: "{paneHandler}.model.selectedCell"
                 }
             }
-        }
+        }*/
     },
     injectionType: "prepend"
 });

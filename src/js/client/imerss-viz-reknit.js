@@ -73,6 +73,7 @@ fluid.defaults("maxwell.scrollyVizBinder.withLegend", {
     }
 });
 
+
 fluid.registerNamespace("maxwell.legendKey");
 
 maxwell.legendKey.rowTemplate = "<div class=\"fld-imerss-legend-row %rowClass\">" +
@@ -132,12 +133,24 @@ fluid.defaults("maxwell.bareRegionsExtra", {
             args: ["{paneHandler}", "{scrollyPage}"]
         }
     },
+    members: {
+        // Standard regions are drawn in hortis.leafletMap.showSelectedRegions which iterates over map.regions
+        // Check that this works in Howe - it at least worked in Xetthecum where "community" was "unit of selection"
+        regions: "{sunburst}.viz.communities"
+    },
     listeners: {
+        "buildMap.fixVizResources": "maxwell.fixVizResources({sunburst})",
         "buildMap.drawRegions": "maxwell.drawBareRegions({that}, {scrollyPage})",
         //                                                                          class,       community       source
         "selectRegion.regionSelection": "hortis.leafletMap.regionSelection({that}, {arguments}.0, {arguments}.1, {arguments}.2)"
     }
 });
+
+// Fix for horrific members merging bug occurring through lines like regions: "{sunburst}.viz.communities" above
+maxwell.fixVizResources = function (sunburst) {
+    sunburst.viz.classes = fluid.copyImmutableResource(sunburst.viz.classes);
+    sunburst.viz.communities = fluid.copyImmutableResource(sunburst.viz.communities);
+};
 
 fluid.defaults("maxwell.bareRegionsExtra.withLegend", {
     selectors: {
@@ -177,7 +190,7 @@ maxwell.regionClass = function (className) {
 
 // Identical to last part of hortis.leafletMap.withRegions.drawRegions
 maxwell.drawBareRegions = function (map, scrollyPage) {
-    map.applier.change("selectedRegions", hortis.leafletMap.selectedRegions(null, map.classes));
+    map.applier.change("selectedRegions", hortis.leafletMap.selectedRegions(null, map.regions));
     const r = fluid.getForComponent(map, ["options", "regionStyles"]);
 
     const highlightStyle = Object.keys(map.regions).map(function (key) {
@@ -208,13 +221,29 @@ maxwell.drawBareRegions = function (map, scrollyPage) {
 
 };
 
+// TODO: Monkey-patches of versions in leafletMapWithBareRegions swapping map.classes to map.regions
+hortis.leafletMap.regionSelection = function (map, className, community, source) {
+    map.applier.change("mapBlockTooltipId", community, "ADD", source);
+    map.applier.change("selectedRegions", hortis.leafletMap.selectedRegions(className, map.regions), "ADD", source);
+    map.applier.change("selectedCommunities", hortis.leafletMap.selectedRegions(community, map.communities), "ADD", source);
+};
+
+hortis.clearSelectedRegions = function (map, source) {
+    // mapBlockTooltipId is cleared in LeafletMap
+    map.applier.change("selectedRegions", hortis.leafletMap.selectedRegions(null, map.regions), "ADD", source);
+    map.applier.change("selectedCommunities", hortis.leafletMap.selectedRegions(null, map.communities), "ADD", source);
+};
+
+
 // TODO: port this back into leafletMapWithBareRegions now it is responsive to options
 hortis.leafletMap.showSelectedRegions = function (map, selectedRegions) {
     const style = map.container[0].style;
     const noSelection = map.model.mapBlockTooltipId === null;
     const r = map.options.regionStyles;
     Object.keys(map.regions).forEach(function (key) {
-        const lineFeature = map.classes[key].color;
+        // TODO: This used to be map.classes - but for diversity map and presumably for others now everything selectable
+        // is in "communities". For status map it remains in "colours" but this has its own code.
+        const lineFeature = map.regions[key].color;
         const opacity = noSelection ? r.noSelectionOpacity : selectedRegions[key] ? r.selectedOpacity : r.unselectedOpacity;
         style.setProperty(hortis.regionOpacity(key), opacity);
         style.setProperty(hortis.regionBorder(key), selectedRegions[key] ? "#FEF410" : (lineFeature ? fluid.colour.arrayToString(lineFeature) : "none"));
@@ -267,8 +296,8 @@ maxwell.scrollyViz.handlePoly = function (paneHandler, Lpolygon, shapeOptions, l
         Lpolygon.on("click", function () {
             console.log("Map clicked on region ", region, " polygon ", Lpolygon);
             const map = paneHandler.map;
-            // TODO: Upstairs this said "region, region"
-            map.events.selectRegion.fire(null, region);
+            // Old style - region must be in first argument, unlike for "status" where it should be second.
+            map.events.selectRegion.fire(region, region);
         });
     }
 };
