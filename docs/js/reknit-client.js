@@ -79,6 +79,16 @@ maxwell.findPlotlyWidgetId = function (widget) {
     return widget.layout?.meta?.mx_widgetId;
 };
 
+maxwell.makeResizableWidth = function (element, paneHandler) {
+    // TODO: remove listener on destruction
+    window.addEventListener("resize", function () {
+        const newWidth = paneHandler.container[0].clientWidth;
+        if (newWidth > 0) {
+            Plotly.relayout(element, {width: newWidth});
+        }
+    });
+};
+
 fluid.defaults("maxwell.choroplethSlider", {
     gradeNames: "maxwell.widgetHandler",
     listeners: {
@@ -162,6 +172,7 @@ maxwell.regionSelectionBar.bind = function (element, that, paneHandler) {
         const regionName = e.points[0].data.name;
         vizBinder.map.events.selectRegion.fire(null, regionName);
     });
+    maxwell.makeResizableWidth(element, paneHandler);
 };
 
 maxwell.findPlotlyWidgets = function (scrollyPage) {
@@ -688,6 +699,7 @@ maxwell.flyToBounds = function (map, xData, durationInMs) {
     return new Promise(function (resolve) {
         const bounds = xData.fitBounds;
         if (bounds && map._loaded) {
+            map.invalidateSize();
             map.flyToBounds([[bounds[0], bounds[1]], [bounds[2], bounds[3]]], {
                 duration: durationInMs / 1000
             });

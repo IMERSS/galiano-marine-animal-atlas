@@ -109,7 +109,7 @@ mx_status_map <- function (taxon) {
     
     reporting.status <- data.frame(y, confirmed.no, historic.no, new.no)
     
-    reportingStatusFig <- plot_ly(reporting.status, height=140, x = ~confirmed.no, y = ~y, type = 'bar', orientation = 'h', name = 'confirmed',
+    reportingStatusFig <- plot_ly(reporting.status, x = ~confirmed.no, y = ~y, type = 'bar', orientation = 'h', name = 'confirmed',
                                   marker = list(color = '#5a96d2',
                                            line = list(color = '#5a96d2',
                                                       width = 1)))
@@ -121,13 +121,13 @@ mx_status_map <- function (taxon) {
                                   marker = list(color = '#7562b4',
                                            line = list(color = '#7562b4',
                                                       width = 1)))
-    reportingStatusFig <- reportingStatusFig %>% layout(barmode = 'stack', autosize=F, showlegend=FALSE,
+    reportingStatusFig <- reportingStatusFig %>% layout(barmode = 'stack', autosize=T, showlegend=FALSE,
                                                         xaxis = list(title = "Species Reported"),
                                                         yaxis = list(title ="Records")) %>% 
       layout(meta = list(mx_widgetId = "reportingStatus")) %>%
       layout(yaxis= list(showticklabels = FALSE)) %>%
       layout(yaxis= list(title = "")) %>%
-      config(displayModeBar = FALSE)
+      config(displayModeBar = FALSE, responsive = TRUE)
     
     reportingStatusFig
     
