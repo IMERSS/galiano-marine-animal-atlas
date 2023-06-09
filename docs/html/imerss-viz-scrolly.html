@@ -13,8 +13,8 @@
     }
     .fld-imerss-taxonDisplay {
         width: 480px;
-    }
-    .fld-imerss-taxonDisplay {
+        /* TODO: This needs to be ported into imerss-viz since otherwise we have overflow */
+        min-width: 0px;
         height: auto;
         margin-left: 1rem;
     }
@@ -22,16 +22,18 @@
   <div class="fld-imerss-region"></div>
 
   <div class="fl-imerss-map-and-taxa">
-
-    <div class="fld-imerss-checklist-holder fl-imerss-checklist-holder fl-imerss-panel">
-      <div class="fld-imerss-panel-label"></div>
-      <div class="fld-imerss-checklist-up" title="Go to parent taxon" alt="Go to parent taxon">
-      </div>
-      <div class="fld-imerss-checklist">
+    <div class="fl-imerss-checklist-outer">
+      <div class="fl-imerss-checklist-widgets"></div>
+      <div class="fld-imerss-checklist-holder fl-imerss-checklist-holder fl-imerss-panel">
+        <div class="fld-imerss-panel-label"></div>
+        <div class="fld-imerss-checklist-up" title="Go to parent taxon" alt="Go to parent taxon">
+        </div>
+        <div class="fld-imerss-checklist">
+        </div>
       </div>
     </div>
 
-    <div class="fl-imerss-taxa fld-imerss-nodismiss-map">
+    <div class="fl-imerss-taxa fld-imerss-nodismiss-map" style="display:none">
 
       <div class="fl-imerss-tabs-and-search">
 

@@ -79,10 +79,11 @@ maxwell.findPlotlyWidgetId = function (widget) {
     return widget.layout?.meta?.mx_widgetId;
 };
 
-maxwell.makeResizableWidth = function (element, paneHandler) {
+maxwell.makeResizableWidth = function (element, paneHandler, selector) {
     // TODO: remove listener on destruction
     window.addEventListener("resize", function () {
-        const newWidth = paneHandler.container[0].clientWidth;
+        const parent = element.closest(selector);
+        const newWidth = parent.clientWidth;
         if (newWidth > 0) {
             Plotly.relayout(element, {width: newWidth});
         }
@@ -140,7 +141,7 @@ maxwell.withSliderAnimation.bind = function (element, that, paneHandler, scrolly
 fluid.defaults("maxwell.regionSelectionBar", {
     gradeNames: "maxwell.widgetHandler",
     listeners: {
-        "bindWidget.regionSelectionBar": "maxwell.regionSelectionBar.bind"
+        "bindWidget.impl": "maxwell.regionSelectionBar.bind"
     }
 });
 
@@ -172,7 +173,8 @@ maxwell.regionSelectionBar.bind = function (element, that, paneHandler) {
         const regionName = e.points[0].data.name;
         vizBinder.map.events.selectRegion.fire(null, regionName);
     });
-    maxwell.makeResizableWidth(element, paneHandler);
+    // TODO: Parameterise a bit
+    maxwell.makeResizableWidth(element, paneHandler, ".fl-imerss-checklist-outer");
 };
 
 maxwell.findPlotlyWidgets = function (scrollyPage) {
@@ -1126,7 +1128,7 @@ fluid.defaults("maxwell.paneHandler", {
         }
     },
     listeners: {
-        "onCreate.addPaneClass": "maxwell.paneHandler.addPaneClass"
+        "onCreate.addPaneClass": "maxwell.paneHandler.addPaneClass({that}, {that}.options.parentContainer)"
     },
     resolvedWidgets: "@expand:maxwell.unflattenOptions({that}.options.widgets)",
     dynamicComponents: {
@@ -1156,8 +1158,8 @@ maxwell.widgetHandler.bindFirst = function (element, that) {
     that.element = element;
 };
 
-maxwell.paneHandler.addPaneClass = function (that) {
-    that.container[0].classList.add("mxcw-widgetPane-" + that.options.paneKey);
+maxwell.paneHandler.addPaneClass = function (that, parentContainer) {
+    parentContainer[0].classList.add("mxcw-widgetPane-" + that.options.paneKey);
 };
 
 fluid.defaults("maxwell.scrollyPaneHandler", {

@@ -22,12 +22,10 @@ const addHeader = function (document, container, template, rec, config) {
             text: extractName(job.infile)
         };
     });
-    console.log("Got links ", links);
     const linkmark = links.map(function (link) {
         return link.active ? `<a class="mx-header-link active" href="${link.target}">${link.text}</a>` : `<span class="mx-header-link inactive">${link.text}</span>`;
     }).join("\n");
     const header = `<div class="mx-header">${linkmark}</div>`;
-    console.log("Produced markup ", header);
     const h1 = template.querySelector("h1");
     const node = linkedom.parseHTML(header).document.firstChild;
     h1.parentNode.insertBefore(node, h1);

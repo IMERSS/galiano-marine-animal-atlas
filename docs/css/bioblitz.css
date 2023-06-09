@@ -8,10 +8,7 @@
 
 .mxcw-widgetPane-Status {
     padding-top: 10px;
-}
-
-.mxcw-widgetPane-Status.mxcw-noStretch {
-    height: calc(100% - 165px);
+    height: calc(100% - 15px);
 }
 
 .mxcw-container {
@@ -31,3 +28,23 @@
     display: flex;
     gap: 6px;
 }
+
+.fl-imerss-checklist-outer {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+}
+
+.fl-imerss-map-and-taxa > * {
+    flex-grow: 1
+}
+
+/** Prevent this jank on selecting different checklists **/
+.fld-imerss-checklist-holder {
+    width: auto;
+}
+
+.fl-imerss-checklist-widgets {
+    width: 0
+}
+

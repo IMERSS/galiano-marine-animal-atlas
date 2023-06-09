@@ -13,6 +13,23 @@ fluid.defaults("maxwell.bioblitzDiversityPane", {
     regionIdFromLabel: true
 });
 
+// AS has requested the region selection bar to appear in a special area above the taxonomy
+fluid.defaults("maxwell.regionSelectionBar.withHoist", {
+    gradeNames: "maxwell.widgetHandler",
+    listeners: {
+        "bindWidget.hoist": {
+            funcName: "maxwell.regionSelectionBar.hoist",
+            priority: "before:impl"
+        }
+    }
+});
+
+maxwell.regionSelectionBar.hoist = function (element, that, paneHandler) {
+    const target = paneHandler.container[0].querySelector(".fl-imerss-checklist-widgets");
+    target.appendChild(element);
+};
+
+
 fluid.defaults("maxwell.bioblitzStatusPane", {
     gradeNames: ["maxwell.scrollyPaneHandler", "maxwell.scrollyVizBinder", "maxwell.withNativeLegend"],
     members: {
@@ -20,7 +37,8 @@ fluid.defaults("maxwell.bioblitzStatusPane", {
     },
     widgets: {
         reportingStatus: {
-            type: "maxwell.regionSelectionBar"
+            type: "maxwell.regionSelectionBar",
+            gradeNames: "maxwell.regionSelectionBar.withHoist"
         }
     },
     regionStyles: {

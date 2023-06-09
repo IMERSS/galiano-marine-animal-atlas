@@ -3,7 +3,7 @@ body {
     margin: 8px
 }
 .mxcw-widgetPane {
-    padding: 1em
+    padding: 10px;
 }
 .mxcw-container {
     height: calc(100vh - 10rem)
@@ -11,6 +11,7 @@ body {
 .fl-imerss-container {
     flex-direction: column;
     margin-top: 0px;
+    margin-right: 0px;
 }
 
 .fld-imerss-pane-info {
