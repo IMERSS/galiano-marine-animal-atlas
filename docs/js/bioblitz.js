@@ -42,7 +42,8 @@ fluid.defaults("maxwell.bioblitzStatusPane", {
         }
     },
     regionStyles: {
-        unselectedOpacity: 0
+        unselectedOpacity: 0,
+        noSelectionOpacity: 0.4
     },
     components: {
         paneInfo: {

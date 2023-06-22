@@ -12,10 +12,23 @@ maxwell.toggleClass = function (container, isVisible, clazz, inverse) {
     container.classList[isVisible ^ inverse ? "remove" : "add"](clazz);
 };
 
+fluid.defaults("maxwell.markupTemplateRenderer", {
+    // Bodge the sunburst loader to being a traditional templateRenderingView so that its markup arrives earlier -
+    // In practice didn't manage to break the race condition. Port this into core imerss-viz
+    rendererTemplateResources: {
+        template: false,
+        markup: true
+    },
+    invokers: {
+        renderMarkup: "fluid.identity({that}.resources.markup.parsed)"
+    }
+});
+
 // mixin grade which mediates event flow from IMERSS viz to Leaflet pane
 fluid.defaults("maxwell.scrollyVizBinder", {
     // Put these last to continue to override "container" member due to FLUID-5800
-    gradeNames: ["hortis.scrollyMapLoader", "maxwell.scrollyPaneHandler", "maxwell.templateScrollyPaneHandler"],
+    gradeNames: ["hortis.scrollyMapLoader", "maxwell.scrollyPaneHandler",
+        "maxwell.templateScrollyPaneHandler", "maxwell.markupTemplateRenderer"],
     resourceBase: ".",
     // Override this since we need proper ordering of overrides, review why the comment in leafletMap.js refers to FLUID-5836
     mapFlavourGrade: [],

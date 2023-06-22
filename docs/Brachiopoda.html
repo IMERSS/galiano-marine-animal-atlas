@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Antranig Basman, Charlie Gibbs, Donna Gibbs, Elaine Humphrey, Andy Lamb, Andrew Simon" />
+
+
+<title>Brachiopoda</title>
+
+<script src="Brachiopoda_files/header-attrs-2.14/header-attrs.js"></script>
+<script src="Brachiopoda_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="Brachiopoda_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="Brachiopoda_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="Brachiopoda_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="Brachiopoda_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="Brachiopoda_files/navigation-1.1/tabsets.js"></script>
+<link href="Brachiopoda_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="Brachiopoda_files/highlightjs-9.12.0/highlight.js"></script>
+<script src="Brachiopoda_files/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="Brachiopoda_files/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="Brachiopoda_files/leaflet-1.3.1/leaflet.js"></script>
+<link href="Brachiopoda_files/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="Brachiopoda_files/proj4-2.6.2/proj4.min.js"></script>
+<script src="Brachiopoda_files/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="Brachiopoda_files/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="Brachiopoda_files/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="Brachiopoda_files/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="Brachiopoda_files/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+<script src="Brachiopoda_files/plotly-binding-4.10.1/plotly.js"></script>
+<script src="Brachiopoda_files/typedarray-0.1/typedarray.min.js"></script>
+<link href="Brachiopoda_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="Brachiopoda_files/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="Brachiopoda_files/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="Brachiopoda_files/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Brachiopoda</h1>
+<h4 class="author">Antranig Basman, Charlie Gibbs, Donna Gibbs, Elaine
+Humphrey, Andy Lamb, Andrew Simon</h4>
+<h4 class="date">May 18th, 2023</h4>
+
+</div>
+
+
+<div id="galiano-islands-lampshell-diversity" class="section level2">
+<h2>Galiano Island’s lampshell diversity</h2>
+<p><em>‘Brachiopoda’ is formed of the Ancient Greek βραχίων (brakhíōn),
+meaning “arm”, and πούς (poús), for “foot”.</em></p>
+<p>Brachiopods (brachiopods) are a phylum of shelled marine animals
+found in intertidal and subtidal waters, represented by over 400 species
+worldwide. The phylum may be divided into three extant subphyla,
+including the Craniiformea, Linguliformea and Rhynchonelliformea. Of the
+seven lampshell species known to British Columbia, only three are
+expected to occur within the Salish Sea: <em>Laqueus californicus</em>,
+<em>Terebratalia transversa</em> and <em>Terebratulina unguicula</em>.
+One species, <em>T. transversa</em>, is known to Galiano Island.</p>
+<p><img src="Brachiopoda_files/media/Terebratalia_transversa_Bernard_Hanby.jpg"
+alt="The lampshell Terebratalia transversa – Photograph by Bernard Hanby" />
+Traditionally, brachiopods were classified into two major groups, based
+on whether their valve hinge structures are articulate or inarticulate.
+Shells are orientated in a dorsal-ventral manner, closely resembling
+bivalve molluscs, the shells of which are lateral in orientation. Yet,
+whereas bivalves are symmetrical between valves (valves mirror each
+other), the plane of symmetry in brachiopods cuts through the middle of
+their valves (valves do not mirror each other). In contrast to bivalves,
+brachiopods are also typically attached to the substrate by a stalk.
+They share their feeding organ, the lophophore, in common with the
+Bryozoa, Entoprocta and Phoronida.</p>
+<div id="htmlwidget-d497ecbaa1c389d403dc" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d497ecbaa1c389d403dc">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"mx_mapId":"Diversity"},"calls":[{"method":"createMapPane","args":["tmap401",401]},{"method":"addProviderTiles","args":["Esri.WorldGrayCanvas",null,"Esri.WorldGrayCanvas",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap",null,"OpenStreetMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldTopoMap",null,"Esri.WorldTopoMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addPolygons","args":[[[[{"lng":[-123.354132344904,-123.354195820022,-123.34056012692,-123.340499095325,-123.354132344904],"lat":[48.8590006931995,48.8679963516721,48.868037431263,48.8590417598609,48.8590006931995]}]],[[{"lng":[-123.340499095325,-123.34056012692,-123.326924403561,-123.326865815508,-123.340499095325],"lat":[48.8590417598609,48.868037431263,48.8680768983898,48.8590812145655,48.8590417598609]}]],[[{"lng":[-123.313232506666,-123.313288651158,-123.299652870921,-123.299599170008,-123.313232506666],"lat":[48.8591190573049,48.8681147530437,48.8681509952165,48.8591552880706,48.8591190573049]}]],[[{"lng":[-123.340682280897,-123.340743403318,-123.327100342061,-123.327041666819,-123.340682280897],"lat":[48.8860287315769,48.8950243604899,48.8950638649095,48.8860682235612,48.8860287315769]}]],[[{"lng":[-123.340743403318,-123.340804556053,-123.327159046404,-123.327100342061,-123.340743403318],"lat":[48.8950243604899,48.904019975241,48.9040594921004,48.8950638649095,48.8950243604899]}]],[[{"lng":[-123.463612632173,-123.463695860737,-123.450048218399,-123.449967439239,-123.463612632173],"lat":[48.9035916723372,48.9125871380513,48.9126412020415,48.9036457193078,48.9035916723372]}]],[[{"lng":[-123.518565359802,-123.518658570484,-123.505001291252,-123.504910534729,-123.518565359802],"lat":[48.9393408253539,48.9483361609694,48.9483967608087,48.9394014061129,48.9393408253539]}]],[[{"lng":[-123.587366696263,-123.587472439394,-123.573803115367,-123.573699832338,-123.587366696263],"lat":[48.9839896962484,48.9929848574847,48.9930536499029,48.9840584670026,48.9839896962484]}]],[[{"lng":[-123.587472439394,-123.587578235048,-123.573906449698,-123.573803115367,-123.587472439394],"lat":[48.9929848574847,49.001980004454,49.0020488185441,48.9930536499029,48.9929848574847]}]],[[{"lng":[-123.601249967841,-123.601358278563,-123.587684083258,-123.587578235048,-123.601249967841],"lat":[49.0019095704825,49.0109046809956,49.0109751371569,49.001980004454,49.0019095704825]}]],[[{"lng":[-123.587578235048,-123.587684083258,-123.574009835363,-123.573906449698,-123.587578235048],"lat":[49.001980004454,49.0109751371569,49.0110439729266,49.0020488185441,49.001980004454]}]],[[{"lng":[-123.601358278563,-123.601466643097,-123.587789984057,-123.587684083258,-123.601358278563],"lat":[49.0109046809956,49.0198997772349,49.019970255594,49.0109751371569,49.0109046809956]}]],[[{"lng":[-123.587684083258,-123.587789984057,-123.574113272394,-123.574009835363,-123.587684083258],"lat":[49.0109751371569,49.019970255594,49.0200391130511,49.0110439729266,49.0109751371569]}]]],["X42","X43","X45","X112","X135","X149","X237","X347","X370","X392","X393","X415","X416"],"choropleth",{"interactive":true,"className":"","pane":"tmap401","stroke":true,"color":"#666666","weight":0.7,"opacity":1,"fill":true,"fillColor":["#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154","#440154"],"fillOpacity":[0.498039215686275,0.498039215686275,0.498039215686275,0.498039215686275,0.498039215686275,0.498039215686275,0.498039215686275,0.498039215686275,0.498039215686275,0.498039215686275,0.498039215686275,0.498039215686275,0.498039215686275],"dashArray":"none","smoothFactor":1,"noClip":false},["<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>42<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>43<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>45<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>112<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>135<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>149<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>237<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>347<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>370<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>392<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>393<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>415<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>","<style> div.leaflet-popup-content {width:auto !important;overflow-y:auto; overflow-x:hidden;}<\/style><div style=\"max-height:25em;padding-right:0px;\"><table>\n\t\t\t   <thead><tr><th colspan=\"2\"><b>416<\/b><\/th><\/thead><\/tr><tr><td style=\"color: #888888;\"><nobr>Richness: <\/nobr><\/td><td align=\"right\"><nobr>1<\/nobr><\/td><\/tr><\/table><\/div>"],null,["42","43","45","112","135","149","237","347","370","392","393","415","416"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#440154"],"labels":["1"],"na_color":null,"na_label":"NA","opacity":0.498039215686275,"position":"topright","type":"unknown","title":"Richness","extra":null,"layerId":"legend401","className":"info legend choropleth","group":"choropleth"}]},{"method":"addLayersControl","args":[["Esri.WorldGrayCanvas","OpenStreetMap","Esri.WorldTopoMap"],"choropleth",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[48.8590006931995,49.0200391130511],"lng":[-123.601466643097,-123.299599170008]},"fitBounds":[48.85,-123.6,49.03,-123.2917,[]]},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="community-science-contributions" class="section level2">
+<h2>Community science contributions</h2>
+<p>Since the Biodiversity Galiano project began in 2016, our community
+has documented one lampshell, <em>Terebratalia transversa</em>, the only
+species known to occur around Galiano Island.</p>
+<p>Most lampshells live at great depths and are thus seldom encountered.
+<em>Laqueus californicus</em> is known to occur in mass aggregations
+(945 m-2) at depths as deep as 700 m, which is likely why this species
+has eluded search efforts to date. <em>Terebratulina unguicula</em>
+occurs within the subtidal range sampled; however, this species is
+notable for inhabiting the extremely low-oxygen waters occurring in some
+fjords within British Columbia and, thus, may not be expected to occur
+locally.</p>
+<div id="htmlwidget-171905423232ea9896b0" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-171905423232ea9896b0">{"x":{"options":{"mx_mapId":"Status"},"fitBounds":[48.85,-123.6,49.03,-123.2917,[]],"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"errorTileUrl":"","noWrap":false,"opacity":0.5,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addLegend","args":[{"colors":["#440154FF"],"labels":[1],"na_color":null,"na_label":"NA","opacity":0.5,"position":"topright","type":"unknown","title":null,"extra":null,"layerId":null,"className":"info legend","group":null}]},{"method":"addPolygons","args":[[[[{"lng":[-123.354132344904,-123.354195820022,-123.34056012692,-123.340499095325,-123.354132344904],"lat":[48.8590006931995,48.8679963516721,48.868037431263,48.8590417598609,48.8590006931995]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":42,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolygons","args":[[[[{"lng":[-123.340499095325,-123.34056012692,-123.326924403561,-123.326865815508,-123.340499095325],"lat":[48.8590417598609,48.868037431263,48.8680768983898,48.8590812145655,48.8590417598609]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":43,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolygons","args":[[[[{"lng":[-123.313232506666,-123.313288651158,-123.299652870921,-123.299599170008,-123.313232506666],"lat":[48.8591190573049,48.8681147530437,48.8681509952165,48.8591552880706,48.8591190573049]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":45,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolygons","args":[[[[{"lng":[-123.340682280897,-123.340743403318,-123.327100342061,-123.327041666819,-123.340682280897],"lat":[48.8860287315769,48.8950243604899,48.8950638649095,48.8860682235612,48.8860287315769]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":112,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolygons","args":[[[[{"lng":[-123.340743403318,-123.340804556053,-123.327159046404,-123.327100342061,-123.340743403318],"lat":[48.8950243604899,48.904019975241,48.9040594921004,48.8950638649095,48.8950243604899]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":135,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolygons","args":[[[[{"lng":[-123.463612632173,-123.463695860737,-123.450048218399,-123.449967439239,-123.463612632173],"lat":[48.9035916723372,48.9125871380513,48.9126412020415,48.9036457193078,48.9035916723372]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":149,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolygons","args":[[[[{"lng":[-123.518565359802,-123.518658570484,-123.505001291252,-123.504910534729,-123.518565359802],"lat":[48.9393408253539,48.9483361609694,48.9483967608087,48.9394014061129,48.9393408253539]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":237,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolygons","args":[[[[{"lng":[-123.587366696263,-123.587472439394,-123.573803115367,-123.573699832338,-123.587366696263],"lat":[48.9839896962484,48.9929848574847,48.9930536499029,48.9840584670026,48.9839896962484]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":347,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolygons","args":[[[[{"lng":[-123.587472439394,-123.587578235048,-123.573906449698,-123.573803115367,-123.587472439394],"lat":[48.9929848574847,49.001980004454,49.0020488185441,48.9930536499029,48.9929848574847]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":370,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolygons","args":[[[[{"lng":[-123.601249967841,-123.601358278563,-123.587684083258,-123.587578235048,-123.601249967841],"lat":[49.0019095704825,49.0109046809956,49.0109751371569,49.001980004454,49.0019095704825]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":392,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolygons","args":[[[[{"lng":[-123.587578235048,-123.587684083258,-123.574009835363,-123.573906449698,-123.587578235048],"lat":[49.001980004454,49.0109751371569,49.0110439729266,49.0020488185441,49.001980004454]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":393,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolygons","args":[[[[{"lng":[-123.601358278563,-123.601466643097,-123.587789984057,-123.587684083258,-123.601358278563],"lat":[49.0109046809956,49.0198997772349,49.019970255594,49.0109751371569,49.0109046809956]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":415,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addPolygons","args":[[[[{"lng":[-123.587684083258,-123.587789984057,-123.574113272394,-123.574009835363,-123.587684083258],"lat":[49.0109751371569,49.019970255594,49.0200391130511,49.0110439729266,49.0109751371569]}]]],null,null,{"mx_regionId":"confirmed","mx_cell_id":416,"mx_richness":1,"stroke":true,"color":"#03F","weight":0,"opacity":0.5,"fill":true,"fillColor":"#440154FF","fillOpacity":0.4,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[48.8590006931995,49.0200391130511],"lng":[-123.601466643097,-123.299599170008]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3632235871077d4d221f" style="width:672px;height:140px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3632235871077d4d221f">{"x":{"visdat":{"66f43cba1a59":["function () ","plotlyVisDat"]},"cur_data":"66f43cba1a59","attrs":{"66f43cba1a59":{"x":{},"y":{},"orientation":"h","marker":{"color":"#5a96d2","line":{"color":"#5a96d2","width":1}},"name":"confirmed","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"},"66f43cba1a59.1":{"x":{},"y":{},"orientation":"h","marker":{"color":"#decb90","line":{"color":"#decb90","width":1}},"name":"historic","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true},"66f43cba1a59.2":{"x":{},"y":{},"orientation":"h","marker":{"color":"#7562b4","line":{"color":"#7562b4","width":1}},"name":"new","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar","inherit":true}},"layout":{"height":140,"margin":{"b":40,"l":60,"t":25,"r":10},"barmode":"stack","showlegend":false,"xaxis":{"domain":[0,1],"automargin":true,"title":"Species Reported"},"yaxis":{"domain":[0,1],"automargin":true,"title":"","showticklabels":false,"type":"category","categoryorder":"array","categoryarray":["records"]},"meta":{"mx_widgetId":"reportingStatus"},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false,"responsive":true},"data":[{"x":[1],"y":["records"],"orientation":"h","marker":{"color":"#5a96d2","line":{"color":"#5a96d2","width":1}},"name":"confirmed","type":"bar","error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0],"y":["records"],"orientation":"h","marker":{"color":"#decb90","line":{"color":"#decb90","width":1}},"name":"historic","type":"bar","error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[0],"y":["records"],"orientation":"h","marker":{"color":"#7562b4","line":{"color":"#7562b4","width":1}},"name":"new","type":"bar","error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="sources" class="section level2">
+<h2>Sources</h2>
+<p><a href="https://bdj.pensoft.net/article/76050/">Simon, A. D.,
+Adamczyk, E. M., Basman, A., Chu, J. W., Gartner, H. N., Fletcher, K., …
+&amp; Starzomski, B. M. (2022). Toward an atlas of Salish Sea
+biodiversity: the flora and fauna of Galiano Island, British Columbia,
+Canada. Part I. Marine zoology. Biodiversity Data Journal, 10.</a></p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1177,14 +1177,5 @@ fluid.defaults("maxwell.scrollyPaneHandler", {
 
 fluid.defaults("maxwell.templateScrollyPaneHandler", {
     gradeNames: ["maxwell.paneHandler", "fluid.templateRenderingView"],
-    // Bodge the sunburst loader to being a traditional templateRenderingView so that its markup arrives earlier -
-    // In practice didn't manage to break the race condition. Port this into core imerss-viz
-    rendererTemplateResources: {
-        template: false,
-        markup: true
-    },
-    invokers: {
-        renderMarkup: "fluid.identity({that}.resources.markup.parsed)"
-    },
     parentContainer: "@expand:maxwell.dataPaneForPaneHandler({that}, {maxwell.scrollyPage})"
 });

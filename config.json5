@@ -1,58 +1,60 @@
 {
     reknitJobs: [
         {
-            infile: "%maxwell/docs/Molluscs.html",
-            outfile: "%maxwell/docs/Molluscs-Reknitted.html",
+            infile: "%maxwell/docs/Mollusca.html",
+            outfile: "%maxwell/docs/Mollusca-Reknitted.html",
             options: {
                 template: "%maxwell/src/html/template.html",
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Molluscs.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Mollusca.json.lz4",
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Molluscs.js"
+                        taxonId: 47115,
+                        taxonName: "Mollusca"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Molluscs.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Mollusca.json.lz4",
                     }
                 }
             }
         }, {
-            infile: "%maxwell/docs/Annelids.html",
-            outfile: "%maxwell/docs/Annelids-Reknitted.html",
+            infile: "%maxwell/docs/Annelida.html",
+            outfile: "%maxwell/docs/Annelida-Reknitted.html",
             options: {
                 template: "%maxwell/src/html/template.html",
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Annelids.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Annelida.json.lz4",
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Annelids.js"
+                        taxonId: 47491,
+                        taxonName: "Annelida"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Annelids.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Annelida.json.lz4",
                     }
                 }
             }
         }, {
-            infile: "%maxwell/docs/Brachiopods.html",
-            outfile: "%maxwell/docs/Brachiopods-Reknitted.html",
+            infile: "%maxwell/docs/Brachiopoda.html",
+            outfile: "%maxwell/docs/Brachiopoda-Reknitted.html",
             options: {
                 template: "%maxwell/src/html/template.html",
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Brachiopods.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Brachiopoda.json.lz4",
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Brachiopods.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Brachiopoda.json.lz4",
                     }
                 }
             }
@@ -68,7 +70,8 @@
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Bryozoa.js"
+                        taxonId: 68104,
+                        taxonName: "Bryozoa"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
@@ -77,78 +80,81 @@
                 }
             }
         }, {
-            infile: "%maxwell/docs/Chaetognaths.html",
-            outfile: "%maxwell/docs/Chaetognaths-Reknitted.html",
+            infile: "%maxwell/docs/Chaetognatha.html",
+            outfile: "%maxwell/docs/Chaetognatha-Reknitted.html",
             options: {
                 template: "%maxwell/src/html/template.html",
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Chaetognaths.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Chaetognatha.json.lz4",
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Chaetognaths.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Chaetognatha.json.lz4",
                     }
                 }
             }
         }, {
-            infile: "%maxwell/docs/Cnidarians.html",
-            outfile: "%maxwell/docs/Cnidarians-Reknitted.html",
+            infile: "%maxwell/docs/Cnidaria.html",
+            outfile: "%maxwell/docs/Cnidaria-Reknitted.html",
             options: {
                 template: "%maxwell/src/html/template.html",
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Cnidarians.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Cnidaria.json.lz4",
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Cnidarians.js"
+                        taxonId: 47534,
+                        taxonName: "Cnidaria"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Cnidarians.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Cnidaria.json.lz4",
                     }
                 }
             }
         }, {
-            infile: "%maxwell/docs/Crustaceans.html",
-            outfile: "%maxwell/docs/Crustaceans-Reknitted.html",
+            infile: "%maxwell/docs/Crustacea.html",
+            outfile: "%maxwell/docs/Crustacea-Reknitted.html",
             options: {
                 template: "%maxwell/src/html/template.html",
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Crustaceans.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Crustacea.json.lz4",
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Crustaceans.js"
+                        taxonId: 85493,
+                        taxonName: "Crustacea"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Crustaceans.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Crustacea.json.lz4",
                     }
                 }
             }
         }, {
-            infile: "%maxwell/docs/Ctenophores.html",
-            outfile: "%maxwell/docs/Ctenophores-Reknitted.html",
+            infile: "%maxwell/docs/Ctenophora.html",
+            outfile: "%maxwell/docs/Ctenophora-Reknitted.html",
             options: {
                 template: "%maxwell/src/html/template.html",
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Ctenophores.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Ctenophora.json.lz4",
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Ctenophores.js"
+                        taxonId: 51508,
+                        taxonName: "Ctenophore"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Ctenophores.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Ctenophora.json.lz4",
                     }
                 }
             }
@@ -164,7 +170,8 @@
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Echinodermata.js"
+                        taxonId: 47549,
+                        taxonName: "Echinodermata"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
@@ -184,7 +191,8 @@
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Fishes.js"
+                        taxonId: 47178, // Actually Actinopterygii, which all are except for 3 Elasmobranchii
+                        taxonName: "Fish"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
@@ -193,58 +201,60 @@
                 }
             }
         }, {
-            infile: "%maxwell/docs/Mammals.html",
-            outfile: "%maxwell/docs/Mammals-Reknitted.html",
+            infile: "%maxwell/docs/Mammalia.html",
+            outfile: "%maxwell/docs/Mammalia-Reknitted.html",
             options: {
                 template: "%maxwell/src/html/template.html",
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Mammals.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Mammalia.json.lz4",
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Mammals.js"
+                        taxonId: 925158, // Actually Whippomorpha which half are, the rest are Mustelidae, Phocidae, etc
+                        taxonName: "Mammalia"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Mammals.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Mammalia.json.lz4",
                     }
                 }
             }
         }, {
-            infile: "%maxwell/docs/Nemerteans.html",
-            outfile: "%maxwell/docs/Nemerteans-Reknitted.html",
+            infile: "%maxwell/docs/Nemertea.html",
+            outfile: "%maxwell/docs/Nemertea-Reknitted.html",
             options: {
                 template: "%maxwell/src/html/template.html",
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Nemerteans.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Nemertea.json.lz4",
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Nemerteans.js"
+                        taxonId: 51280,
+                        taxonName: "Nemertea"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Nemerteans.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Nemertea.json.lz4",
                     }
                 }
             }
         }, {
-            infile: "%maxwell/docs/Nodding_heads.html",
-            outfile: "%maxwell/docs/Nodding_heads-Reknitted.html",
+            infile: "%maxwell/docs/Entoprocta.html",
+            outfile: "%maxwell/docs/Entoprocta-Reknitted.html",
             options: {
                 template: "%maxwell/src/html/template.html",
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Nodding_heads.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Entoprocta.json.lz4",
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Nodding_heads.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Entoprocta.json.lz4",
                     }
                 }
             }
@@ -256,15 +266,16 @@
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Horseshoe_worms.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Phoronida.json.lz4",
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Horseshoe_worms.js"
+                        taxonId: 48051,
+                        taxonName: "Phoronida"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Horseshoe_worms.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Phoronida.json.lz4",
                     }
                 }
             }
@@ -280,7 +291,8 @@
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Platyhelminthes.js"
+                        taxonId: 52319,
+                        taxonName: "Platyhelminthes"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
@@ -296,31 +308,32 @@
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Peanut_worms.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Sipuncula.json.lz4",
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Peanut_worms.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Sipuncula.json.lz4",
                     }
                 }
             }
         }, {
-            infile: "%maxwell/docs/Sponges.html",
-            outfile: "%maxwell/docs/Sponges-Reknitted.html",
+            infile: "%maxwell/docs/Porifera.html",
+            outfile: "%maxwell/docs/Porifera-Reknitted.html",
             options: {
                 template: "%maxwell/src/html/template.html",
                 paneHandlers: {
                     Diversity: {
                         type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Sponges.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Porifera.json.lz4",
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Sponges.js"
+                        taxonId: 48824,
+                        taxonName: "Porifera"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Sponges.json.lz4",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Porifera.json.lz4",
                     }
                 }
             },
@@ -336,7 +349,8 @@
                     },
                     TopContributions: {
                         type: "maxwell.iNatComponentsPaneHandler",
-                        scriptLocation: "js/inat-components-build-Tunicata.js"
+                        taxonId: 130868,
+                        taxonName: "Tunicata"
                     },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
@@ -350,14 +364,17 @@
         file: "%maxwell/src/js/reknit-bioblitz.js",
         func: "addHeader"
     }],
-    copyJobs: [{
+    copyJobs: [ {
+        source: "%maxwell/src/js/client/*.js",
+        target: "%maxwell/docs/js/"
+    }, {
         source: "%infusion/dist/infusion-framework.js",
         target: "%maxwell/docs/js/infusion-framework.js",
         replaceSource: "sourceMappingURL=infusion-framework.js.map",
         replaceTarget: "sourceMappingURL=../../node_modules/infusion/dist/infusion-framework.js.map"
-    }, {
-        source: "%maxwell/src/js/client/*.js",
-        target: "%maxwell/docs/js/"
+    }, { // TODO: Extend module-relative addressing to 3rd-party modules
+        source: "%maxwell/node_modules/@imerss/inat-components/dist/standalone.min.js",
+        target: "%maxwell/docs/js/inat-components-standalone.min.js"
     }, {
         source: "%maxwell/src/css/*.css",
         target: "%maxwell/docs/css"
@@ -381,9 +398,6 @@
     }, {
         source: "%imerss-bioinfo/src/client/img/external-link.svg",
         target: "%maxwell/docs/img/external-link.svg"
-    }, { // Note that R Markdown embeds all images so we don't currently reference these
-        source: "%maxwell/media/",
-        target: "%maxwell/docs/media"
     }, {
         source: "%imerss-bioinfo/docs/css/imerss-viz-all.css",
         target: "%maxwell/docs/css/imerss-viz-all.css"

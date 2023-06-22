@@ -2,15 +2,17 @@
 title: Sipuncula
 author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Scott Gilmore, Andy Lamb, Andrew Simon
 date: May 16th, 2023
-output: html_document
+output: 
+  html_document:
+    self_contained: false
 knit: (function(inputFile, encoding) {
-  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs", output_options = list(copy_resources = TRUE)) })
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-peanut.worms <- read.csv("tabular_data/peanut_worms_records_gridded.csv")
-peanut.worm.summary <- read.csv("tabular_data/peanut_worms_summary.csv")
+peanut.worms <- read.csv("tabular_data/sipuncula_all_records_gridded.csv")
+peanut.worm.summary <- read.csv("tabular_data/sipuncula_summary.csv")
 new <- peanut.worm.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- peanut.worm.summary %>% filter(reportingStatus == 'confirmed') 
 reported <- peanut.worm.summary %>% filter(reportingStatus == 'reported') 
@@ -28,7 +30,7 @@ Sipuncula (peanut worms) are a small phylum of bilaterally symmetrical, unsegmen
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
-animal.grid.map <- mx_diversity_map("peanut_worms")
+animal.grid.map <- mx_diversity_map("sipuncula")
 animal.grid.map
 ```
 
@@ -38,7 +40,7 @@ Since the Biodiversity Galiano project began in 2016, our community has not yet 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Status_map_script.R")
-figs <- mx_status_map("peanut_worms")
+figs <- mx_status_map("sipuncula")
 figs$reportingStatusMap
 figs$reportingStatusFig
 ```

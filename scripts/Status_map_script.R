@@ -65,9 +65,13 @@ mx_status_map <- function (taxon) {
     
     # Load choropleths
     
-    gridded.confirmed.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_confirmed"))
-    gridded.new.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_new"))
-    gridded.historic.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_reported"))
+    gridded.confirmed.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_confirmed_grid"))
+    gridded.new.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_new_grid"))
+    gridded.historic.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_reported_grid"))
+    
+    # Note that the term "reported" which was used in data preparation is now "historic" at all levels of the UI
+    
+    gridded.historic.records <- gridded.historic.records %>% mutate(status = "historic")
     
     # Combine records to create normalized palette
     
@@ -93,7 +97,7 @@ mx_status_map <- function (taxon) {
     # Draw the gridded data in a funny way so that richness, cell_id etc. can be tunnelled through options one at a time
     for (i in 1:nrow(gridded.records)) {
        row <- gridded.records[i,]
-       reportingStatusMap <- reportingStatusMap %>% addPolygons(data = row, fillColor = pal(row$richness), fillOpacity = 0.6, weight = 0, 
+       reportingStatusMap <- reportingStatusMap %>% addPolygons(data = row, fillColor = pal(row$richness), fillOpacity = 0.4, weight = 0, 
                                                                 options = mx_statusRowToOptions(row))
     }
 
@@ -109,7 +113,7 @@ mx_status_map <- function (taxon) {
     
     reporting.status <- data.frame(y, confirmed.no, historic.no, new.no)
     
-    reportingStatusFig <- plot_ly(reporting.status, x = ~confirmed.no, y = ~y, type = 'bar', orientation = 'h', name = 'confirmed',
+    reportingStatusFig <- plot_ly(height = 140, reporting.status, x = ~confirmed.no, y = ~y, type = 'bar', orientation = 'h', name = 'confirmed',
                                   marker = list(color = '#5a96d2',
                                            line = list(color = '#5a96d2',
                                                       width = 1)))
@@ -121,7 +125,7 @@ mx_status_map <- function (taxon) {
                                   marker = list(color = '#7562b4',
                                            line = list(color = '#7562b4',
                                                       width = 1)))
-    reportingStatusFig <- reportingStatusFig %>% layout(barmode = 'stack', autosize=T, showlegend=FALSE,
+    reportingStatusFig <- reportingStatusFig %>% layout(barmode = 'stack', showlegend=FALSE,
                                                         xaxis = list(title = "Species Reported"),
                                                         yaxis = list(title ="Records")) %>% 
       layout(meta = list(mx_widgetId = "reportingStatus")) %>%

@@ -21,7 +21,7 @@ mx_diversity_map <- function (taxon) {
 
     # Read gridded marine animal dataset
     
-    records.gridded <- read.csv(mx_paste("tabular_data/", taxon, "_records_gridded.csv"))
+    records.gridded <- read.csv(mx_paste("tabular_data/", taxon, "_all_records_gridded.csv"))
     
     # Summarize species by grid cell and export to JSON file for viz
     
@@ -33,7 +33,7 @@ mx_diversity_map <- function (taxon) {
     
     # Load choropleth
     
-    choropleth <- mx_read(mx_paste("spatial_data/vectors/", taxon))
+    choropleth <- mx_read(str_glue("spatial_data/vectors/{taxon}_all_grid"))
     
     # Plot choropleth
     

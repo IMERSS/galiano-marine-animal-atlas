@@ -1,16 +1,18 @@
 ---
-title: Horseshoe worms
+title: Phoronida
 author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Scott Gilmore, Andy Lamb, Andrew Simon
 date: May 23rd, 2023
-output: html_document
+output: 
+  html_document:
+    self_contained: false
 knit: (function(inputFile, encoding) {
-  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs", output_options = list(copy_resources = TRUE)) })
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-horseshoe.worms <- read.csv("tabular_data/horseshoe_worms_reported_records_gridded.csv")
-horseshoe.worms.summary <- read.csv("tabular_data/horseshoe_worms_summary.csv")
+horseshoe.worms <- read.csv("tabular_data/phoronida_reported_records_gridded.csv")
+horseshoe.worms.summary <- read.csv("tabular_data/phoronida_summary.csv")
 new <- horseshoe.worms.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- horseshoe.worms.summary %>% filter(reportingStatus == 'confirmed') 
 reported <- horseshoe.worms.summary %>% filter(reportingStatus == 'reported') 
@@ -32,7 +34,7 @@ Phoronids are called “horseshoe worms” because the top of their worm-like bo
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
-animal.grid.map <- mx_diversity_map("horseshoe_worms")
+animal.grid.map <- mx_diversity_map("phoronida")
 animal.grid.map
 ```
 
@@ -45,7 +47,7 @@ are sparse for this understudied phylum and much doubt surrounds the taxonomy an
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Status_map_script.R")
-figs <- mx_status_map("horseshoe_worms")
+figs <- mx_status_map("phoronida")
 figs$reportingStatusMap
 figs$reportingStatusFig
 ```

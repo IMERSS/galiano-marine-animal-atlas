@@ -1,15 +1,17 @@
 ---
-title: Echinoderms
+title: Echinodermata
 author: Antranig Basman, Charles J. Gibbs, Donna M. Gibbs, Andy Lamb, Philip Lambert, Andrew Simon
 date: May 23rd, 2023
-output: html_document
+output: 
+  html_document:
+    self_contained: false
 knit: (function(inputFile, encoding) {
-  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs", output_options = list(copy_resources = TRUE)) })
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-echinodermata <- read.csv("tabular_data/echinodermata_records_gridded.csv")
+echinodermata <- read.csv("tabular_data/echinodermata_all_records_gridded.csv")
 echinodermata.summary <- read.csv("tabular_data/echinodermata_summary.csv")
 new <- echinodermata.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- echinodermata.summary %>% filter(reportingStatus == 'confirmed') 

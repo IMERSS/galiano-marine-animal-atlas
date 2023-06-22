@@ -1,0 +1,65 @@
+---
+title: Marine mammals
+author:  Antranig Basman, Charlie Gibbs, Donna Gibbs, Andy Lamb, Jessica Scott, Andrew Simon
+date: May 18th, 2023
+output: 
+  html_document:
+    self_contained: false
+knit: (function(inputFile, encoding) {
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs", output_options = list(copy_resources = TRUE)) })
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+mammals <- read.csv("tabular_data/mammalia_all_records_gridded.csv")
+mammals.summary <- read.csv("tabular_data/mammalia_summary.csv")
+new <- mammals.summary %>% filter(str_detect(reportingStatus, "new")) 
+confirmed <- mammals.summary %>% filter(reportingStatus == 'confirmed') 
+reported <- mammals.summary %>% filter(reportingStatus == 'reported') 
+observed <- mammals.summary %>% filter(iNatObservationStatus == 'observed') 
+unobserved <- mammals.summary %>% filter(iNatObservationStatus == 'unobserved') 
+```
+
+## Galiano Island's marine mammal diversity
+
+*The name ‘Mammalia’ was coined in 1758 by Linnaeus, from Late Latin (neuter plural) 'mammalis', meaning “of the breast.”*
+
+Mammalia are a class of vertebrates containing 6,400 species worldwide. Within British Columbia, 31 marine mammal species are represented among two orders, including Carnivora (carnivores) and Cetacea (cetaceans). Twenty-two marine mammals have been documented within the Salish Sea, including fifteen cetaceans, five species of pinniped and two mustelids. Of these taxa, `r nrow(mammals.summary)` marine mammal have been reported in waters around Galiano Island to date, through the combined efforts of more than `r length(unique(mammals$recordedBy))` individuals. 
+
+![River otter (*Lontra canadensis*) – Photograph by Joan Septembre](media/Lontra_canadensis_Joan_Septembre.jpeg)
+
+Among locally occurring cetaceans are: baleen whales, distinguished by their enlarged head containing baleen plates suspended from the upper jaw, their double blowhole and their thick blubber; and toothed whales, distinguished by their teeth and single external blowhole. Certain cetaceans, such as fin whale (*Balaenoptera physalus*) and common minke whale (*Balaenoptera acutorostrata*) have been recorded infrequently in local waters, whereas others, such as humpback whale (*Megaptera novaeangliae*) and harbour porpoise (*Phocoena phocoeana*), are commonly seen. Among carnivores, both aquatic pinnipeds, such as harbour seal (*Phoca vitulina*) and semi-aquatic fissipeds, such as river otter (*Lontra canadensis*), are represented. Presently, there are no known haulouts of northern elephant seal (*Mirounga angustirostris*) around Galiano Island, though they are known not far away on Salt Spring Island.
+
+![Mother (J41) with baby (J51) of the Southern Resident Killer Whale J Pod – Photograph by Karoline Cullen](media/Orcinus_orca_Karoline_Cullen.jpeg)
+Populations of grey whale (*Eschrichtius robustus*), humpback whale, harbour porpoise and the southern resident orca population (*Orcinus orca*) are currently ranked as species of conservation concern in the region. Northern resident, transient and offshore orcas are also known to traverse local waters and are listed as threatened within Canada.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Diversity_map_script.R")
+animal.grid.map <- mx_diversity_map("mammalia")
+animal.grid.map
+```
+
+## Community science contributions
+
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` marine mammal species in the waters around Galiano Island, confirming all historical records and adding `r nrow(new)` new species to the list.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Status_map_script.R")
+figs <- mx_status_map("mammalia")
+figs$reportingStatusMap
+figs$reportingStatusFig
+```
+
+## Top community contributions to our knowledge of Galiano Island's marine mammal diversity
+
+Please help contribute to the growing record of the island marine mammal diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) Here, you can browse photos of mammal species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. 
+
+<span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
+
+## Sources
+
+[Simon, A. D., Adamczyk, E. M., Basman, A., Chu, J. W., Gartner, H. N., Fletcher, K., ... & Starzomski, B. M. (2022). Toward an atlas of Salish Sea biodiversity: the flora and fauna of Galiano Island, British Columbia, Canada. Part I. Marine zoology. Biodiversity Data Journal, 10.](https://bdj.pensoft.net/article/76050/)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```

@@ -2,14 +2,16 @@
 title: Platyhelminthes
 author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Scott Gilmore, Andy Lamb, Andrew Simon
 date: May 14th, 2023
-output: html_document
+output: 
+  html_document:
+    self_contained: false
 knit: (function(inputFile, encoding) {
-  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs", output_options = list(copy_resources = TRUE)) })
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-platyhelminthes <- read.csv("tabular_data/platyhelminthes_records_gridded.csv")
+platyhelminthes <- read.csv("tabular_data/platyhelminthes_all_records_gridded.csv")
 platyhelminthes.summary <- read.csv("tabular_data/platyhelminthes_summary.csv")
 new <- platyhelminthes.summary %>% filter(str_detect(reportingStatus, "new")) 
 confirmed <- platyhelminthes.summary %>% filter(reportingStatus == 'confirmed') 

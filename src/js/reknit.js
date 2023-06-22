@@ -145,18 +145,18 @@ maxwell.reknitFile = async function (infile, outfile, options, config) {
     maxwell.writeFile(fluid.module.resolvePath(outfile), outMarkup);
 };
 
+// TODO: copy up synchronous copyGlob
 const copyGlob = function (sourcePattern, targetDir) {
-    glob(sourcePattern, {}, (error, fileNames) => {
-        if (error) {
-            throw ("Error finding files: ", error);
-        }
-        fileNames.forEach(filePath => {
-            const fileName = path.basename(filePath);
-            const destinationPath = path.join(targetDir, fileName);
+    console.log("copyGlob ", sourcePattern);
+    const fileNames = glob.sync(sourcePattern);
+    console.log("Got files ", fileNames);
+    fileNames.forEach(filePath => {
+        const fileName = path.basename(filePath);
+        const destinationPath = path.join(targetDir, fileName);
 
-            fs.copyFileSync(filePath, destinationPath);
-            console.log(`Copied file: ${fileName}`);
-        });
+        fs.ensureDirSync(path.dirname(destinationPath));
+        fs.copyFileSync(filePath, destinationPath);
+        console.log(`Copied file: ${fileName}`);
     });
 };
 
@@ -173,12 +173,33 @@ const copyDep = function (source, target, replaceSource, replaceTarget) {
         const text = fs.readFileSync(sourcePath, "utf8");
         const replaced = text.replace(replaceSource, replaceTarget);
         fs.writeFileSync(targetPath, replaced, "utf8");
+        console.log(`Copied file: ${targetPath}`);
     } else if (sourcePath.includes("*")) {
         copyGlob(sourcePath, targetPath);
     } else {
+        fs.ensureDirSync(path.dirname(targetPath));
         fs.copySync(sourcePath, targetPath);
+        console.log(`Copied file: ${targetPath}`);
     }
 };
+
+/*
+// Currently unused - otherwise we can't load unknitted files
+const clearNonMedia = function () {
+    const directory = "docs";
+    const files = fs.readdirSync(directory, { withFileTypes: true });
+
+    files.forEach((file) => {
+        const filePath = path.join(directory, file.name);
+
+        if (file.isDirectory()) {
+            if (file.name !== "media") {
+                fs.rmSync(filePath, { recursive: true });
+            }
+        }
+    });
+};
+*/
 
 const reknit = async function () {
     const config = maxwell.loadJSON5File("%maxwell/config.json5");
