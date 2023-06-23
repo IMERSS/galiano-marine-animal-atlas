@@ -177,11 +177,13 @@ hortis.leafletMap.showSelectedStatusRegions = function (paneHandler, map) {
     const selectedStatus = map.model.selectedStatus;
     const selectedCell = map.model.selectedCell;
     const noSelection = map.model.mapBlockTooltipId === null;
+    const doubleSelection = selectedStatus && selectedCell;
     const r = map.options.regionStyles;
     // This hash is initialised in polyStatusOptions as we see them go by for the first time
     Object.keys(paneHandler.allCellKeys).forEach(function (key) {
         const parsed = maxwell.parseCellKey(key);
-        const isSelected = !noSelection && (parsed.status === selectedStatus || parsed.cell_id === selectedCell);
+        const isSelected = !noSelection && (doubleSelection ? parsed.status === selectedStatus && parsed.cell_id === selectedCell
+            : parsed.status === selectedStatus || parsed.cell_id === selectedCell);
         const opacity = noSelection ? r.noSelectionOpacity : isSelected ? r.selectedOpacity : r.unselectedOpacity;
         style.setProperty(hortis.regionOpacity(key), opacity);
         style.setProperty(hortis.regionBorder(key), map.model.selectedCommunities[key] ? "#FEF410" : "none");
