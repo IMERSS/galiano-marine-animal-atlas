@@ -10,6 +10,7 @@ library(ggthemes)
 library(gifski)
 library(hrbrthemes)
 library(leaflet)
+library(leaflegend)
 library(raster)
 library(sf)
 library(stringr)
@@ -32,7 +33,7 @@ mx_status_map <- function (taxon) {
     
     marine <- read.csv("tabular_data/Galiano_marine_animal_records_consolidated_2023-04-22.csv")
     
-    summary <- read.csv(mx_paste("tabular_data/", taxon, "_summary.csv"))
+    summary <- read.csv(str_glue("tabular_data/{taxon}_summary.csv"))
     
     # Subset historical, confirmed and new records
     
@@ -54,7 +55,7 @@ mx_status_map <- function (taxon) {
     new.taxa.records <- new.taxa.records %>% mutate(status = "new")
     
     reported.taxa.records <- summary %>% filter(scientificName %in% reported.taxa)
-    reported.taxa.records <- reported.taxa.records %>% mutate(status = "historic")
+    reported.taxa.records <- reported.taxa.records %>% mutate(status = "historical")
     
     records <- rbind(new.taxa.records, confirmed.taxa.records, reported.taxa.records)
     
@@ -65,24 +66,23 @@ mx_status_map <- function (taxon) {
     
     # Load choropleths
     
-    gridded.confirmed.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_confirmed_grid"))
-    gridded.new.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_new_grid"))
-    gridded.historic.records <- mx_read(mx_paste("spatial_data/vectors/", taxon, "_reported_grid"))
+    gridded.confirmed.records <- mx_read(str_glue("spatial_data/vectors/{taxon}_confirmed_grid"))
+    gridded.new.records <- mx_read(str_glue("spatial_data/vectors/{taxon}_new_grid"))
+    gridded.historical.records <- mx_read(str_glue("spatial_data/vectors/{taxon}_reported_grid"))
     
     # Note that the term "reported" which was used in data preparation is now "historic" at all levels of the UI
     
-    gridded.historic.records <- gridded.historic.records %>% mutate(status = "historic")
+    gridded.historical.records <- gridded.historical.records %>% mutate(status = "historical")
     
     # Combine records to create normalized palette
     
-    gridded.records <- rbind(gridded.confirmed.records, gridded.historic.records, gridded.new.records)
+    gridded.records <- rbind(gridded.confirmed.records, gridded.historical.records, gridded.new.records)
     
     # Create color palette for species richness
     
     richness <- gridded.records$richness
-    values <- richness %>% unique
-    values <- sort(values)
-    t <- length(values)
+    t <- max(richness)
+    values <- 1:t
     pal <- leaflet::colorFactor(viridis_pal(option = "D")(t), domain = values)
     
     # Plot map
@@ -91,7 +91,11 @@ mx_status_map <- function (taxon) {
       fitBounds(-123.6, 48.85,  -123.2917, 49.03) %>%
       addTiles(options = providerTileOptions(opacity = 0.5)) %>%
       addLegend(position = 'topright',
-                colors = viridis_pal(option = "D")(t),
+                pal = pal,
+                bins = 20,
+                values = values,
+                #colors = viridis_pal(option = "D")(t),
+                title = "Richness",
                 labels = values)
     
     # Draw the gridded data in a funny way so that richness, cell_id etc. can be tunnelled through options one at a time
@@ -108,16 +112,16 @@ mx_status_map <- function (taxon) {
     
     y <- c('records')
     confirmed.no <- c(nrow(confirmed))
-    historic.no <- c(nrow(reported))
+    historical.no <- c(nrow(reported))
     new.no <- c(nrow(new))
     
-    reporting.status <- data.frame(y, confirmed.no, historic.no, new.no)
+    reporting.status <- data.frame(y, confirmed.no, historical.no, new.no)
     
     reportingStatusFig <- plot_ly(height = 140, reporting.status, x = ~confirmed.no, y = ~y, type = 'bar', orientation = 'h', name = 'confirmed',
                                   marker = list(color = '#5a96d2',
                                            line = list(color = '#5a96d2',
                                                       width = 1)))
-    reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~historic.no, name = 'historic',
+    reportingStatusFig <- reportingStatusFig %>% add_trace(x = ~historical.no, name = 'historical',
                                   marker = list(color = '#decb90',
                                            line = list(color = '#decb90',
                                                       width = 1)))
@@ -135,7 +139,7 @@ mx_status_map <- function (taxon) {
     
     reportingStatusFig
     
-    statusPal <- list("confirmed" = "#5a96d2", "historic" = "#decb90", "new" = "#7562b4")
+    statusPal <- list("confirmed" = "#5a96d2", "historical" = "#decb90", "new" = "#7562b4")
     
     # Read gridded marine per-taxon dataset
     
@@ -144,7 +148,7 @@ mx_status_map <- function (taxon) {
     records.reported.gridded <- read.csv(mx_paste("tabular_data/", taxon, "_reported_records_gridded.csv"))
     
     statusTaxa <- list("confirmed" = mx_griddedObsToHash(records.confirmed.gridded),
-                       "historic" = mx_griddedObsToHash(records.reported.gridded),
+                       "historical" = mx_griddedObsToHash(records.reported.gridded),
                        "new" = mx_griddedObsToHash(records.new.gridded))
     
     statusData <- structure(list(palette = statusPal, taxa = statusTaxa, mapTitle = "Species Reporting Status"))

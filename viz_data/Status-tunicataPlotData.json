@@ -1,7 +1,7 @@
 {
   "palette": {
     "confirmed": "#5a96d2",
-    "historic": "#decb90",
+    "historical": "#decb90",
     "new": "#7562b4"
   },
   "taxa": {
@@ -42,7 +42,7 @@
       "416": "Aplidium kottae, Ascidia paratropa, Boltenia villosa, Botrylloides violaceus, Chelyosoma productum, Ciona savignyi, Cnemidocarpa finmarkiensis, Corella inflata, Corella willmeriana, Cystodytes lobatus, Didemnum carnulentum, Didemnum spp., Distaplia occidentalis, Halocynthia aurantium, Halocynthia igaboja, Metandrocarpa taylori, Molgula pacifica, Perophora annectens, Pycnoclavella stanleyi, Pyura haustor, Styela gibbsii, Trididemnum alexi",
       "417": "Aplidium kottae, Ascidia paratropa, Cnemidocarpa finmarkiensis, Corella willmeriana, Didemnum spp., Halocynthia aurantium, Halocynthia igaboja, Metandrocarpa taylori, Perophora annectens, Pyura haustor"
     },
-    "historic": {
+    "historical": {
       "43": "Diplosoma listerianum, Eudistoma purpuropunctatum",
       "194": "Didemnum vexillum",
       "215": "Pyura mirabilis",

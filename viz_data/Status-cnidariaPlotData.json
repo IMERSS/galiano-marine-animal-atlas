@@ -1,7 +1,7 @@
 {
   "palette": {
     "confirmed": "#5a96d2",
-    "historic": "#decb90",
+    "historical": "#decb90",
     "new": "#7562b4"
   },
   "taxa": {
@@ -66,7 +66,7 @@
       "416": "Abietinaria spp., Aglaophenia spp., Alcyonium sp., Anthopleura artemisia, Anthopleura elegantissima, Aurelia labiata, Bougainvillia sp., Clytia gregaria, Cribrinopsis fernaldi, Cyanea ferruginea, Ectopleura crocea, Ectopleura marina, Epiactis lisbethae, Epiactis prolifera, Epizoanthus scotinus, Eutonina indicans, Garveia annulata, Halcampa decemtentaculata, Halecium densum, Hydrallmania franciscana, Lafoea dumosa, Metridium farcimen, Metridium senile, Mitrocoma cellularia, Nanomia bijuga, Neoturris breviconis, Obelia spp., Orthopyxis sp., Pachycerianthus fimbriatus, Peachia quinquecapitata, Phacellophora camtschatica, Plumularia setacea, Plumularia sp., Ptilosarcus gurneyi, Rhizocaulus verticillatus, Schuchertinia milleri, Similiclava nivea, Stomphia didemon, Stylantheca papillosa, Thrombophyton trachydermum, Thuiaria spp., Tubularia indivisa, Urticina clandestina, Urticina grebelnyi",
       "417": "Abietinaria spp., Alcyonium sp., Anthopleura artemisia, Anthopleura elegantissima, Aurelia labiata, Clytia gregaria, Cribrinopsis fernaldi, Cyanea ferruginea, Ectopleura crocea, Epizoanthus scotinus, Garveia annulata, Halecium densum, Metridium farcimen, Mitrocoma cellularia, Nanomia bijuga, Neoturris breviconis, Pachycerianthus fimbriatus, Plumularia sp., Polyorchis penicillatus, Ptilosarcus gurneyi, Schuchertinia milleri, Similiclava nivea, Solmundaegina nematophora, Stomphia didemon, Stylantheca papillosa, Thrombophyton trachydermum, Thuiaria spp., Thuiaria thuja, Tubularia indivisa, Urticina clandestina, Urticina grebelnyi"
     },
-    "historic": {
+    "historical": {
       "41": "Balanophyllia (Balanophyllia) elegans",
       "42": "Balanophyllia (Balanophyllia) elegans",
       "43": "Balanophyllia (Balanophyllia) elegans",

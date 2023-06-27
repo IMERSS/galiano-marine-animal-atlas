@@ -1,7 +1,7 @@
 {
   "palette": {
     "confirmed": "#5a96d2",
-    "historic": "#decb90",
+    "historical": "#decb90",
     "new": "#7562b4"
   },
   "taxa": {
@@ -75,7 +75,7 @@
       "416": "Acantholithodes hispidus, Argulus pugettensis, Balanus glandula, Balanus nubilus, Cancer productus, Caprella alaskana, Cryptolithodes typicus, Elassochirus gilli, Elassochirus tenuimanus, Glebocarcinus oregonensis, Hapalogaster mertensii, Heptacarpus kincaidi, Lopholithodes mandtii, Lophopanopeus bellus, Metacarcinus gracilis, Oedignathus inermis, Oregonia gracilis, Pagurus armatus, Pagurus beringanus, Pagurus caurinus, Pagurus granosimanus, Pagurus kennerlyi, Pandalus danae, Pandalus platyceros, Pandalus stenolepis, Petrolisthes eriomerus, Phyllolithodes papillosus, Pugettia gracilis, Pugettia producta, Rhinolithodes wosnessenskii, Scyra acutifrons",
       "417": "Balanus glandula, Balanus nubilus, Cancer productus, Elassochirus tenuimanus, Eusergestes similis, Glebocarcinus oregonensis, Gnorimosphaeroma oregonense, Hemigrapsus nudus, Hemigrapsus oregonensis, Lopholithodes mandtii, Metacarcinus magister, Neotrypaea californiensis, Pagurus beringanus, Pagurus caurinus, Pandalus danae, Pentidotea wosnesenskii, Pugettia producta, Rhinolithodes wosnessenskii, Scyra acutifrons, Semibalanus cariosus"
     },
-    "historic": {
+    "historical": {
       "39": "Hyas lyratus",
       "43": "Pandalus lucidirimicolus",
       "45": "Balanus rostratus, Discorsopagurus schmitti, Spirontocaris prionota",

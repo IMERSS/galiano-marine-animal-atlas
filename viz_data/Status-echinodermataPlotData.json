@@ -1,7 +1,7 @@
 {
   "palette": {
     "confirmed": "#5a96d2",
-    "historic": "#decb90",
+    "historical": "#decb90",
     "new": "#7562b4"
   },
   "taxa": {
@@ -75,7 +75,7 @@
       "416": "Apostichopus californicus, Crossaster papposus, Cucumaria miniata, Cucumaria pallida, Cucumaria piperata, Dermasterias imbricata, Eupentacta quinquesemita, Evasterias troschelii, Florometra serratissima, Gorgonocephalus eucnemis, Henricia leviuscula complex, Luidia foliolata, Mediaster aequalis, Mesocentrotus franciscanus, Ophiopholis kennerlyi, Ophiura luetkenii, Ophiura sarsii, Orthasterias koehleri, Pisaster brevispinus, Pisaster ochraceus, Psolus chitonoides, Psolus squamatus, Pteraster tesselatus, Pycnopodia helianthoides, Solaster dawsoni, Solaster endeca, Solaster stimpsoni, Strongylocentrotus droebachiensis, Stylasterias forreri",
       "417": "Apostichopus californicus, Crossaster papposus, Cucumaria miniata, Cucumaria pallida, Dermasterias imbricata, Eupentacta quinquesemita, Evasterias troschelii, Florometra serratissima, Gorgonocephalus eucnemis, Henricia leviuscula complex, Mediaster aequalis, Mesocentrotus franciscanus, Ophiopholis kennerlyi, Ophiura luetkenii, Orthasterias koehleri, Pisaster brevispinus, Pisaster ochraceus, Psolus chitonoides, Pteraster tesselatus, Pycnopodia helianthoides, Solaster dawsoni, Solaster endeca, Solaster stimpsoni, Strongylocentrotus droebachiensis, Stylasterias forreri"
     },
-    "historic": {
+    "historical": {
       "42": "Henricia aspera aspera",
       "43": "Henricia aspera aspera",
       "45": "Henricia aspera aspera, Strongylocentrotus purpuratus",

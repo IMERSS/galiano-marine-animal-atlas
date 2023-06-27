@@ -38,7 +38,7 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` fish species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records and adding `r nrow(new)` new species to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` fish species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the [historical records](#region:historical) and adding `r nrow(new)` [new species](#region:new) to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
 
 Marine fishes dwell in various habitats, from deep sea (pelagic) to near-shore and intertidal environments. Taxa under-represented in this dataset include cartilaginous fish (chondrichthyes), hagfish (myxinids) and smelts (osmerids). These gaps reflect search efforts mostly biased toward rocky reefs and exposed beach locales, to waters < 30 m in depth. Poachers (agonids), right-eyed flounders (pleuronectids) and eelpouts (zoarcids) are also under-represented. These are primarily subtidal, soft substrate inhabitants, indicating that sampling has been limited in these habitats. 
 

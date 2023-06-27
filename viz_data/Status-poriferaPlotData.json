@@ -1,7 +1,7 @@
 {
   "palette": {
     "confirmed": "#5a96d2",
-    "historic": "#decb90",
+    "historical": "#decb90",
     "new": "#7562b4"
   },
   "taxa": {
@@ -37,7 +37,7 @@
       "416": "Acarnus erithacus, Aplysilla polyraphis, Aplysilla sp., Cliona californiana, Craniella villosa, Hamigera sp., Isodictya rigida, Leucilla nuttingi, Leucosolenia eleanor, Leucosolenia nautilia, Pachychalina sp., Pleraplysilla sp., Polymastia pachymastia, Semisuberites cribrosa, Suberites concinnus, Sycon spp., Weberella perlucida, Xestospongia hispida",
       "417": "Aplysilla sp., Cliona californiana, Craniella villosa, Hamigera sp., Leucilla nuttingi, Polymastia pachymastia"
     },
-    "historic": {
+    "historical": {
       "42": "Clathria (Microciona) pennata, Tethya californiana",
       "43": "Antho (Plocamia) karykina, Clathria (Microciona) pennata, Halichondria (Halichondria) bowerbanki, Haliclona (Haliclona) sp.1, Haliclona (Haliclona) sp.2, Mycale (Aegogropila) adhaerens, Myxilla (Myxilla) incrustans, Myxilla (Myxilla) lacunosa",
       "45": "Clathria (Microciona) pennata, Haliclona (Haliclona) sp.2, Leucandra heathi",

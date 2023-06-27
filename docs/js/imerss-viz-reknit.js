@@ -326,6 +326,14 @@ maxwell.scrollyViz.listenHash = function (paneHandler) {
         } else {
             map.events.clearMapSelection.fire();
         }
+        if (hash.startsWith("#taxon:")) {
+            const sunburst = paneHandler.sunburst;
+            // cf. leafletMapWithRegions hortis.listenTaxonLinks
+            const row = hortis.linkToTaxon(sunburst, decodeURIComponent(hash));
+            if (row) {
+                sunburst.events.changeLayoutId.fire(row.id, "hash");
+            }
+        }
     });
 };
 

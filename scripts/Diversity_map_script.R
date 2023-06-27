@@ -48,6 +48,7 @@ mx_diversity_map <- function (taxon) {
         title = "Richness",
         showNA = FALSE,
         alpha = 0.5,
+        id = NULL,
         popup.vars = c(
           "Richness: " = "richness"
         ),

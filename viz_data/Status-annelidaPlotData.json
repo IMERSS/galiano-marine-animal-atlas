@@ -1,7 +1,7 @@
 {
   "palette": {
     "confirmed": "#5a96d2",
-    "historic": "#decb90",
+    "historical": "#decb90",
     "new": "#7562b4"
   },
   "taxa": {
@@ -47,7 +47,7 @@
       "416": "Arctonoe fragilis, Bispira pacifica, Chone aurantiaca, Diopatra ornata, Dodecaceria concharum, Dodecaceria fewkesi, Eudistylia vancouveri, Halosydna brevisetosa, Myxicola sp.B, Parasabella media, Phyllochaetopterus prolifica, Phyllochaetopterus sp., Pista elongata, Protula pacifica, Pseudochitinopoma occidentalis, Schizobranchia insignis, Serpula columbiana, Spiochaetopterus costarum, Thelepus spp., Tomopteris sp.",
       "417": "Chone aurantiaca, Diopatra ornata, Dodecaceria fewkesi, Myxicola sp.B, Parasabella media, Phyllochaetopterus prolifica, Pista elongata, Protula pacifica, Pseudochitinopoma occidentalis, Serpula columbiana, Thelepus spp."
     },
-    "historic": {
+    "historical": {
       "45": "Cirratulus spectabilis, Crucigera zygophora, Epigamia cf alexandri, Neoleprea spiralis, Nereis cf zonata, Pseudopotamilla occelata, Trypanedenta gemmipara",
       "112": "Limnodriloides victoriensis, Trypanosyllis sp.",
       "126": "Limnodriloides victoriensis",

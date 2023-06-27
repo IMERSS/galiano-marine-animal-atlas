@@ -54,11 +54,21 @@ body {
     width: 600px;
 }
 
+/* TODO: Port back up to imerss-viz */
+.fld-imerss-checklist-up {
+    background-size: 1.5rem;
+    background-repeat: no-repeat;
+}
+
 .mxcw-map {
     height: 50%;
+    /* For God's sake I mean it!!! */
+    min-height: 50%;
 }
 .mxcw-hideMap {
     height: 0;
+    min-height: 0;
+    border: none;
 }
 
 .mxcw-data {
