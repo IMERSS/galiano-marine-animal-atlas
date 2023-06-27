@@ -3,15 +3,7 @@
 # Load libraries
 
 library(dplyr)
-library(gapminder)
-library(gganimate)
-library(ggplot2)
-library(ggthemes)
-library(gifski)
-library(hrbrthemes)
 library(leaflet)
-library(leaflegend)
-library(raster)
 library(sf)
 library(stringr)
 library(tidyr)
@@ -83,7 +75,7 @@ mx_status_map <- function (taxon) {
     richness <- gridded.records$richness
     t <- max(richness)
     values <- 1:t
-    pal <- leaflet::colorFactor(viridis_pal(option = "D")(t), domain = values)
+    pal <- leaflet::colorNumeric(viridis_pal(option = "D")(t), domain = values)
     
     # Plot map
 
@@ -92,7 +84,7 @@ mx_status_map <- function (taxon) {
       addTiles(options = providerTileOptions(opacity = 0.5)) %>%
       addLegend(position = 'topright',
                 pal = pal,
-                bins = 20,
+                bins = 10,
                 values = values,
                 #colors = viridis_pal(option = "D")(t),
                 title = "Richness",

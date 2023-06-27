@@ -287,7 +287,7 @@ maxwell.scrollyViz.sortRegions = function (paneHandler, scrollyPage) {
 
 maxwell.scrollyViz.regionIdForPoly = function (paneHandler, shapeOptions, label) {
     const regionIdFromLabel = fluid.getForComponent(paneHandler, ["options", "regionIdFromLabel"]); // obviously unsatisfactory
-    return regionIdFromLabel ? label : shapeOptions.mx_regionId;
+    return "" + (regionIdFromLabel ? label : shapeOptions.mx_regionId);
 };
 
 maxwell.scrollyViz.polyOptions = function (paneHandler, shapeOptions, label) {

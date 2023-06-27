@@ -9,8 +9,7 @@ fluid.defaults("maxwell.bioblitzDiversityPane", {
     gradeNames: ["maxwell.scrollyPaneHandler", "maxwell.scrollyVizBinder", "maxwell.withNativeLegend"],
     regionStyles: {
         unselectedOpacity: 0
-    },
-    regionIdFromLabel: true
+    }
 });
 
 // AS has requested the region selection bar to appear in a special area above the taxonomy
