@@ -87,16 +87,6 @@ maxwell.instantiateINat = function (containerId, iNatOptions, taxonName) {
     inatComponents.initTaxonPanel(containerId, target);
 };
 
-maxwell.reactScriptInjector = function (that) {
-    const host = document.createElement("div");
-    host.id = "inat-components";
-    that.container[0].appendChild(host);
-    const script = document.createElement("script");
-    script.onload = that.events.scriptLoaded.fire(that);
-    script.src = that.options.scriptLocation;
-    document.head.appendChild(script);
-};
-
 /*
 We wanted to write
     modelRelay: {

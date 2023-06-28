@@ -74,7 +74,7 @@ mx_status_map <- function (taxon) {
     
     richness <- gridded.records$richness
     t <- max(richness)
-    values <- 1:t
+    values <- 0:t
     pal <- leaflet::colorNumeric(viridis_pal(option = "D")(t), domain = values)
     
     # Plot map

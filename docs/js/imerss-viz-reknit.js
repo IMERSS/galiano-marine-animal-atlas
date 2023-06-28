@@ -24,7 +24,7 @@ fluid.defaults("maxwell.markupTemplateRenderer", {
     }
 });
 
-// mixin grade which mediates event flow from IMERSS viz to Leaflet pane
+// mixin grade which mediates event flow from IMERSS viz (reached via hortis.scrollyMapLoader) to Leaflet pane
 fluid.defaults("maxwell.scrollyVizBinder", {
     // Put these last to continue to override "container" member due to FLUID-5800
     gradeNames: ["hortis.scrollyMapLoader", "maxwell.scrollyPaneHandler",
@@ -232,6 +232,17 @@ maxwell.drawBareRegions = function (map, scrollyPage) {
     const regions = container.querySelectorAll("path.fld-imerss-region");
     [...regions].forEach(region => region.setAttribute("stroke-width", 3));
 
+};
+
+// TODO: Monkey-patch of version in checklist.js to ensure we display Barentsia
+
+hortis.acceptChecklistRow = function (row, filterRanks) {
+    const acceptBasic = !filterRanks || filterRanks.includes(row.rank) || row.species;
+    // Special request from AS - suppress any checklist entry at species level if there are any ssp
+    const rejectSpecies = row.rank === "species" && row.children.length > 0;
+    // Presumed special request - display Barentsia spp. - perhaps we should display any leaf?
+    const acceptGenus = row.genus && row.children.length === 0;
+    return acceptBasic && !rejectSpecies || acceptGenus;
 };
 
 // TODO: Monkey-patches of versions in leafletMapWithBareRegions swapping map.classes to map.regions

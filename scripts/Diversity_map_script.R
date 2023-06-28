@@ -43,7 +43,7 @@ mx_diversity_map <- function (taxon) {
 
     richness <- choropleth$richness
     t <- max(richness)
-    values <- 1:t
+    values <- 0:t
     pal <- leaflet::colorNumeric(viridis_pal(option = "D")(t), domain = values)
     
     # Plot map
@@ -53,7 +53,7 @@ mx_diversity_map <- function (taxon) {
       addTiles(options = providerTileOptions(opacity = 0.5)) %>%
       addLegend(position = 'topright',
                 pal = pal,
-                bins = 10,
+                bins = ifelse(t < 10, t, 10),
                 values = values,
                 title = "Richness",
                 labels = values)

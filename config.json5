@@ -180,6 +180,25 @@
                 }
             }
         }, {
+            infile: "%maxwell/docs/Entoprocta.html",
+            outfile: "%maxwell/docs/Entoprocta-Reknitted.html",
+            options: {
+                template: "%maxwell/src/html/template.html",
+                paneHandlers: {
+                    Diversity: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Entoprocta.json.lz4",
+                        // Special exception to show Barentsia sp.
+                        checklistRanks: ["family", "phylum", "class", "order", "genus", "species"]
+                    },
+                    Status: {
+                        type: "maxwell.bioblitzStatusPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Status-Entoprocta.json.lz4",
+                        checklistRanks: ["family", "phylum", "class", "order", "genus", "species"]
+                    }
+                }
+            }
+        }, {
             infile: "%maxwell/docs/Fishes.html",
             outfile: "%maxwell/docs/Fishes-Reknitted.html",
             options: {
@@ -239,22 +258,6 @@
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Status-Nemertea.json.lz4",
-                    }
-                }
-            }
-        }, {
-            infile: "%maxwell/docs/Entoprocta.html",
-            outfile: "%maxwell/docs/Entoprocta-Reknitted.html",
-            options: {
-                template: "%maxwell/src/html/template.html",
-                paneHandlers: {
-                    Diversity: {
-                        type: "maxwell.bioblitzDiversityPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Diversity-Entoprocta.json.lz4",
-                    },
-                    Status: {
-                        type: "maxwell.bioblitzStatusPane",
-                        vizFile: "%resourceBase/data/Galiano-2023-Status-Entoprocta.json.lz4",
                     }
                 }
             }
