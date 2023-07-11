@@ -10,7 +10,7 @@
     "dependencies": {},
     "devDependencies": {
         "infusion": "4.6.0",
-        "imerss-bioinfo": "1.7.0",
+        "imerss-bioinfo": "1.8.0",
         "@imerss/inat-components": "2.0.1",
         "json5": "2.2.3",
         "lz4": "0.6.5",
