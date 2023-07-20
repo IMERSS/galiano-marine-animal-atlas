@@ -1,7 +1,7 @@
 {
     "name": "galiano-bioblitz.2023",
     "description": "Galiano Bioblitz 2023 Storymapping in R",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "author": "IMERSS, Transition Salt Spring",
     "scripts": {
         "lint": "fluid-lint-all",
@@ -10,7 +10,7 @@
     "dependencies": {},
     "devDependencies": {
         "infusion": "4.6.0",
-        "imerss-bioinfo": "1.8.0",
+        "imerss-bioinfo": "1.9.0",
         "@imerss/inat-components": "2.0.1",
         "json5": "2.2.3",
         "lz4": "0.6.5",
