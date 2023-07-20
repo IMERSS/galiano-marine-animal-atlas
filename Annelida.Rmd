@@ -1,7 +1,7 @@
 ---
 title: Annelids
 author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Scott Gilmore, Leslie Harris, Andy Lamb, Andrew Simon
-date: May 13th, 2023
+date: Jul 20th, 2023
 output: 
   html_document:
     self_contained: false
@@ -30,8 +30,7 @@ Over 450 polychaete species are reported for coastal British Columbia. However, 
 
 ![The petite slime-tube feather-duster *Myxicola* aff. *aesthetica* – Photograph by Karolle Wall](media/Myxicola_Karolle_Wall.png)
 
-The majority of taxa reported in this dataset are polychaetes, though a few clitellates are also represented. Many of the names reported reflect the ongoing challenges facing those studying this group. Uncertainty is indicated by older reports, such as *Chaetopterus variopedatus* and *Nereis zonata* (here reported as the 
-[*Chaetopterus variopedatus* complex](#taxon:Chaetopterus variopedatus) and [*Nereis* cf *zonata*](#taxon:Nereis zonata)), which refer to European concepts in which undescribed native species likely remain hidden. Even conspicuous species, such as tubeworms in the genus *Myxicola*, commonly reported as *M. aesthetica* or *M. infundibulum* (here listed as [*Myxicola* aff. *aesthetica*](#taxon:Myxicola aesthetica) and [*Myxicola* aff. *infundibulum*](#taxon:Myxicola infundibulum), are currently under revision. Many other specimens catalogued in this dataset are not determined past genus as specimens were either unavailable or require further examination in light of recent taxonomic revisions.
+The majority of taxa reported in this dataset are polychaetes, though a few clitellates are also represented. Many of the names reported reflect the ongoing challenges facing those studying this group. Uncertainty is indicated by older reports, such as [*Chaetopterus variopedatus*](#taxon:Chaetopterus variopedatus) (here reported as the [*Chaetopterus variopedatus* complex](#taxon:Chaetopterus variopedatus) and [*Nereis* cf *zonata*](#taxon:Nereis zonata)), which refer to European concepts in which undescribed native species likely remain hidden. Even conspicuous species, such as tubeworms in the genus *Myxicola*, commonly reported as *M. aesthetica* or *M. infundibulum* (here listed as [*Myxicola* sp.A](#taxon:Myxicola aesthetica) and [*Myxicola* sp.B](#taxon:Myxicola infundibulum)), are currently under revision. Many other specimens catalogued in this dataset are not determined past genus as specimens were either unavailable or require further examination in light of recent taxonomic revisions.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
@@ -41,7 +40,7 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` annelid species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the [historical records](#region:historical) and adding `r nrow(new)` [new species](#region:new) to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` annelid species in the waters around Galiano Island, [confirming](#region:confirmed) `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the [historical records](#region:historical) and adding `r nrow(new)` [new species](#region:new) to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
 
 Annelid life history is exceedingly diverse, exhibiting virtually all feeding modes, including suspension feeding, deposit feeding, scavenging, herbivory, and carnivory. This diversity is mirrored in their pervasive distribution throughout most benthic and pelagic marine environments. Gaps in our knowledge of Galiano Island’s annelid diversity partly reflect the challenges that have historically limited our broader understanding of the region’s diversity. Taxonomists working in the region in the past largely relied on European references and only assigned new names for taxa with strikingly different features. However, the characters defining organisms within this challenging group are often very small and difficult to ascertain without resorting to dissection or microscopic examination. Furthermore, the vast majority of polychaetes lie hidden in bottom sediment or among sessile organisms and are rarely noticed by casual observers. Specialised equipment, such as benthic grabs, dredges, sediment air lifts, plankton tows and settlement plates, are needed to capture more than the few conspicuous species seen by beach-goers and divers.
 
@@ -54,7 +53,7 @@ figs$reportingStatusFig
 
 ## Top community contributions to our knowledge of the island annelid diversity
 
-Please help contribute to the growing record of the island annelid diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) Here, you can browse photos of annelid species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data.
+Here, you can browse photos of annelid species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island annelid diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
 
 <span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
 
