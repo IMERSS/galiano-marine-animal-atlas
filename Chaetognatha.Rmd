@@ -36,7 +36,7 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has not yet identified any particular species of arrow worms around Galiano Island, though they have been observed historically through the Pacific Marine Life Surveys. *Parasagitta elegans* is the most abundant species reported from the sheltered inland waters of the Salish Sea. *Eukrohnia hamata* is also known to occur infrequently in inland channels, as an oceanic species that is occasionally borne in by the intrusion of offshore waters. Sampling by use of plankton tows and microscopic analysis would help confirm the local fauna.
+Since the Biodiversity Galiano project began in 2016, our community has not yet identified any arrow worms to species around Galiano Island, though arrow worms have been observed historically through the Pacific Marine Life Surveys. *Parasagitta elegans* is the most abundant species reported from the sheltered inland waters of the Salish Sea. *Eukrohnia hamata* is also known to occur infrequently in inland channels, as an oceanic species that is occasionally borne in by the intrusion of offshore waters. Sampling by use of plankton tows and microscopic analysis would help confirm the local fauna.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Status_map_script.R")

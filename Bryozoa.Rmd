@@ -37,10 +37,9 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` marine mammal species in the waters around Galiano Island, confirming `r nrow(confirmed)` historical records and adding `r nrow(new)` new species to the list.
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` bryozoan species in the waters around Galiano Island, [confirming](#region:confirmed) `r nrow(confirmed)` [historical records](#region:historical) and adding `r nrow(new)` [new species](#region:new) to the list.
 
-Of the 17 bryozoan species reported for Galiano Island, one is introduced to British Columbia: the orange ripple bryozoan (*Schizoporella japonica*). Native to Japan, *S. japonica* was described by Powell (1970) as an abundant intertidal organism in the Strait of Georgia, where the species is suspected to have been
-introduced in the early to mid-1930s along with Magallana gigas. The species has since been found in fouling communities from Morro Bay, California to Prince William Sound, Alaska.
+Of the 17 bryozoan species reported for Galiano Island, one is introduced to British Columbia: the orange ripple bryozoan ([*Schizoporella japonica*](#taxon:Schizoporella japonica)). Native to Japan, *S. japonica* was described by Powell (1970) as an abundant intertidal organism in the Strait of Georgia, where the species is suspected to have been introduced in the early to mid-1930s along with *Magallana gigas*. The species has since been found in fouling communities from Morro Bay, California to Prince William Sound, Alaska.
 
 ![The orange ripple bryozoan (*Schizoporella japonica*) – Photograph by Scott Gilmore](media/Schizoporella_japonica_Scott_Gilmore.jpg)
 
@@ -53,7 +52,7 @@ figs$reportingStatusFig
 
 ## Top community contributions to our knowledge of Galiano Island's bryozoan diversity
 
-Please help contribute to the growing record of the island bryozoan diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) Here, you can browse photos of mammal species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. 
+Here, you can browse photos of bryozoan species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island bryozoan diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
 
 <span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
 
