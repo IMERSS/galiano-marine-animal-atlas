@@ -1,7 +1,7 @@
 ---
 title: Tunicates
 author: Antranig Basman, Heidi Gartner, Charlie Gibbs, Donna Gibbs, Andy Lamb, Andrew Simon
-date: May 23rd, 2023
+date: August 7th, 2023
 output: 
   html_document:
     self_contained: false
@@ -28,8 +28,7 @@ unobserved <- tunicates.summary %>% filter(iNatObservationStatus == 'unobserved'
 Tunicates are filter-feeding marine animals that derive their name from their protective exoskeleton, called the tunic, which is formed of proteins and carbohydrates. A subphylum of Chordata, Tunicata are traditionally divided into three classes—Ascidiacea, Thaliacea and Appendicularia—though recent evidence suggests this group is paraphyletic. Ascidiacea, or ascidians, are the most diverse and common class of tunicates and are, indeed, the most well represented class in this dataset. There are around 2,815 described ascidian species worldwide. Four of the 71 taxa reported from the coast of British Columbia are extremely deep-water species, while five are restricted to northern BC and are, thus, not expected for Galiano Island. Of the 62 species that might be expected to occur locally, `r nrow(tunicates.summary)` species have been documented to date.
 
 ![*Botrylloides violaceus* – Photograph by Jennifer Grant](media/Botrylloides_violaceus_Jennifer_Grant.jpg)
-Ascidians are sessile organisms found at all ocean depths worldwide, attaching to natural surfaces such as rocky outcrops and invertebrate shells, as well as artificial structures such as pilings, docks and boat hulls. Notable reports for Galiano Island include several non-native species that have a long history of invasion, often resulting in measurable impacts in other parts of Canada and around the world. Native to Japan, the lined compound ascidian (*Botrylloides violaceus*) was first introduced to the Pacific coast in California in 1973 and spread northwards along the coast to Canada. The carpet sea squirt (*Didemnum vexillum*) is also thought to be native to Japan and was first reported for British Columbian waters in 2003. Other reported taxa, such as the sea vase (*Ciona savignyi*) and grey encrusting compound tunicate (*Diplosoma listerianum*) have unknown provenance and may, thus, be described as cryptogenic.
-
+Ascidians are sessile organisms found at all ocean depths worldwide, attaching to natural surfaces such as rocky outcrops and invertebrate shells, as well as artificial structures such as pilings, docks and boat hulls. Notable reports for Galiano Island include several non-native species that have a long history of invasion, often resulting in measurable impacts in other parts of Canada and around the world. Native to Japan, the lined compound ascidian ([*Botrylloides violaceus*](#taxon:Botrylloides violaceus)) was first introduced to the Pacific coast in California in 1973 and spread northwards along the coast to Canada. The carpet sea squirt ([*Didemnum vexillum*](#taxon:Didemnum vexillum)) is also thought to be native to Japan and was first reported for British Columbian waters in 2003. Other reported taxa, such as the sea vase ([*Ciona savignyi*](#taxon:Ciona savignyi)) and grey encrusting compound tunicate ([*Diplosoma listerianum*](#taxon:Diplosoma listerianum)) have unknown provenance and may, thus, be described as cryptogenic.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
@@ -39,7 +38,7 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` tunicate species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records and adding no new species to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` tunicate species in the waters around Galiano Island, [confirming](#region:confirmed) `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the [historical records](#region:historical) and adding no new species to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
 
 Tunicates are generally under-represented in this study as they are easily overlooked; new species are still being discovered in British Columbia. The Thaliacea and Appendicularia, in particular, are poorly represented—the former limited to a singular dive observation that has not been identified beyond the level of class and the latter not represented at all. Unlike ascidians, these groups include exclusively pelagic species that are more abundant in warmer waters, with low probability of being detected in surveys around Galiano Island.
 
