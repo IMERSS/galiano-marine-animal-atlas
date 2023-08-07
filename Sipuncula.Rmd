@@ -1,7 +1,7 @@
 ---
 title: Sipuncula
 author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Scott Gilmore, Andy Lamb, Andrew Simon
-date: May 16th, 2023
+date: August 7th, 2023
 output: 
   html_document:
     self_contained: false
@@ -24,7 +24,7 @@ unobserved <- peanut.worm.summary %>% filter(iNatObservationStatus == 'unobserve
 
 *‘Sipuncula’ is the Modern Latin plural form of the genus Sipunculus, based on the Latin 'siphunculus', meaning “small tube.”*
 
-Sipuncula (peanut worms) are a small phylum of bilaterally symmetrical, unsegmented marine worms, represented by 150 species worldwide—though a certain amount of cryptic diversity is understood to remain hidden in the phylum. Based on molecular evidence, Sipuncula are now considered to be nested within the phylum Annelida along with Echiura (spoon worms), yet are here treated as a separate phylum. Eight species of Sipuncula are known to the Northeast Pacific, of which one, *Golfingia* (*Golfingia*) *vulgaris vulgaris* is reported for Galiano Island.
+Sipuncula (peanut worms) are a small phylum of bilaterally symmetrical, unsegmented marine worms, represented by 150 species worldwide—though a certain amount of cryptic diversity is understood to remain hidden in the phylum. Based on molecular evidence, Sipuncula are now considered to be nested within the phylum Annelida along with Echiura (spoon worms), yet are here treated as a separate phylum. Eight species of Sipuncula are known to the Northeast Pacific, of which one, [*Golfingia* (*Golfingia*) *vulgaris vulgaris*](#taxon:Golfingia vulgaris) is reported for Galiano Island.
 
 ![*Golfingia vulgaris* – Photograph by Bernard P. Hanby.](media/Golfingia_vulgaris_Bernard_Hanby.jpg)
 
@@ -36,7 +36,7 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has not yet documented *Golfingia vulgaris*, the only species of peanut worm that is historically reported for the island, which will likely be uncovered with more search effort. Due to their burrowing habit, sipunculids are obscure organisms easily overlooked by divers and casual beachcombers. Some Sipuncula inhabit rock crevices or similar protected areas, while others are found in sand or mud. With further search effort, other taxa likely to be uncovered in the waters around Galiano Island include *Phascolosoma* (*Phascolosoma*) *agassizii* and *Themiste* (*Themiste*) *pyroides*. Identification relies on features of the tentacles which tend to be drawn into the body when contracted, hence the common name “peanut worms.”
+Since the Biodiversity Galiano project began in 2016, our community has not yet documented [*Golfingia vulgaris*](#taxon:Golfingia vulgaris), the only species of peanut worm that is historically reported for the island, which will likely be uncovered with more search effort. Due to their burrowing habit, sipunculids are obscure organisms easily overlooked by divers and casual beachcombers. Some Sipuncula inhabit rock crevices or similar protected areas, while others are found in sand or mud. With further search effort, other taxa likely to be uncovered in the waters around Galiano Island include *Phascolosoma* (*Phascolosoma*) *agassizii* and *Themiste* (*Themiste*) *pyroides*. Identification relies on features of the tentacles which tend to be drawn into the body when contracted, hence the common name “peanut worms.”
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Status_map_script.R")
