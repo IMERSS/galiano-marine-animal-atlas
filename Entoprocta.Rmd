@@ -1,7 +1,7 @@
 ---
 title: Entoprocta
 author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Elaine Humphrey, Andy Lamb, Andrew Simon
-date: May 18th, 2023
+date: August 7th, 2023
 output: 
   html_document:
     self_contained: false
@@ -24,7 +24,7 @@ unobserved <- nodding.heads.summary %>% filter(iNatObservationStatus == 'unobser
 
 *‘Entoprocta’ derives from the Greek ἐντός (entos), meaning “inside”, and πρωκτός (prōktos), meaning “anus.”*
 
-Entoprocta (nodding-heads) are a small phylum of mainly sessile marine invertebrates that comprises 253 described species worldwide. The phylum was traditionally divided into two orders: the Solitaria and Coloniales. Solitaria included solitary species that usually attach to larger organisms which produce feeding currents, such as sponges, bryozoans, polychaetes, sipunculans and ascidians, and are typically associated with just one or a few host species. Coloniales, by contrast, included colonial species that form crusts on various surfaces. However, the traditional system is no longer followed; instead four families are now recognised. Of the 11 species known to British Columbia, one species is reported for Galiano Island: *Barentsia* sp..
+Entoprocta (nodding-heads) are a small phylum of mainly sessile marine invertebrates that comprises 253 described species worldwide. The phylum was traditionally divided into two orders: the Solitaria and Coloniales. Solitaria included solitary species that usually attach to larger organisms which produce feeding currents, such as sponges, bryozoans, polychaetes, sipunculans and ascidians, and are typically associated with just one or a few host species. Coloniales, by contrast, included colonial species that form crusts on various surfaces. However, the traditional system is no longer followed; instead four families are now recognised. Of the 11 species known to British Columbia, one species is reported for Galiano Island: (*Barentsia* sp.)[#taxon:Barentsia sp.].
 
 ![*Barentsia* sp. – Photograph by Bernard Hanby](media/Barentsia_sp_Bernard_Hanby.jpg)
 
@@ -36,7 +36,7 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has not yet documented *Barentsia* sp., the only entoproct known to occur around Galiano Island, though this species has been observed historically through the Pacific Marine Life Surveys.
+Since the Biodiversity Galiano project began in 2016, our community has not yet documented [*Barentsia* sp.](#taxon:Barentsia sp.), the only entoproct known to occur around Galiano Island, though this species has been observed historically through the Pacific Marine Life Surveys.
 
 Entoprocts are filter feeders, trapping small particles in the mucus secreted by their tentacles. An understudied group, they are easily overlooked because of their diminutive size (< 1 mm) and the superficial similarities they share with the Cnidaria and Bryozoa. With further search effort, others are likely to be detected locally.
 
