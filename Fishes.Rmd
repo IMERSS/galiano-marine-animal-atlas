@@ -28,7 +28,7 @@ Actinopterygii contain over 33,000 described taxa and Chondrichthyes (cartilagin
 
 ![Yellow-eye rockfish (*Sebastes ruberrimus*) – Photograph by Don Gordon](media/Sebastes_ruberrimus_Don_Gordon.jpg)
 
-Rockfish are a long-lived and diverse genus of fish in the Northeast Pacific, 11 of which are represented in the Galiano Island record. Species present include the threatened quillback rockfish (*Sebastes maliger*) and yellow-eye rockfish (*S. ruberrimus*), the latter of which is ranked as a species of special concern in Canada. This species may attain large sizes (~ 1 m, 12.6 kg). However, as with other species in the genus, it is slow to mature and reproduce and is, therefore, vulnerable to overfishing and fatality due to barotrauma from catch and release. As a consequence, many species of Sebastes are at low levels of abundance in the region. Spatially-managed rockfish conservation areas that remain permanently closed to all fishing and extraction activities are vital to ensure their recovery.
+[Rockfish](#taxon:Sebastinae) are a long-lived and diverse genus of fish in the Northeast Pacific, 11 of which are represented in the Galiano Island record. Species present include the threatened quillback rockfish ([*Sebastes maliger*](#taxon:Sebastes maliger)) and yellow-eye rockfish ([*S. ruberrimus*](#taxon:Sebastes ruberrimus)), the latter of which is ranked as a species of special concern in Canada. This species may attain large sizes (~ 1 m, 12.6 kg). However, as with other species in the genus, it is slow to mature and reproduce and is, therefore, vulnerable to overfishing and fatality due to barotrauma from catch and release. As a consequence, many species of *Sebastes* are at low levels of abundance in the region. Spatially-managed rockfish conservation areas that remain permanently closed to all fishing and extraction activities are vital to ensure their recovery.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
@@ -38,9 +38,9 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` fish species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the [historical records](#region:historical) and adding `r nrow(new)` [new species](#region:new) to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` fish species in the waters around Galiano Island, [confirming](#region:confirmed) `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the [historical records](#region:historical) and adding `r nrow(new)` [new species](#region:new) to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
 
-Marine fishes dwell in various habitats, from deep sea (pelagic) to near-shore and intertidal environments. Taxa under-represented in this dataset include cartilaginous fish (chondrichthyes), hagfish (myxinids) and smelts (osmerids). These gaps reflect search efforts mostly biased toward rocky reefs and exposed beach locales, to waters < 30 m in depth. Poachers (agonids), right-eyed flounders (pleuronectids) and eelpouts (zoarcids) are also under-represented. These are primarily subtidal, soft substrate inhabitants, indicating that sampling has been limited in these habitats. 
+Marine fishes dwell in various habitats, from deep sea (pelagic) to near-shore and intertidal environments. Taxa under-represented in this dataset include cartilaginous fish (chondrichthyes), hagfish (myxinids) and smelts (osmerids). These gaps reflect search efforts mostly biased toward rocky reefs and exposed beach locales, to waters < 30 m in depth. Poachers (agonids), right-eyed flounders ([pleuronectids](#taxon:Pleuronectidae)) and eelpouts (zoarcids) are also under-represented. These are primarily subtidal, soft substrate inhabitants, indicating that sampling has been limited in these habitats. 
 
 We can look to nearby records to get a sense for other species that may be expected locally. For example, the near-threatened bluntnose sixgill shark (*Hexanchus griseus*) is known from adjacent waters around Mayne Island, BC. This species likely occurs around Galiano Island, though it has not yet been reported locally.
 
@@ -55,7 +55,7 @@ figs$reportingStatusFig
 
 ## Top community contributions to our knowledge of the island fish diversity
 
-Please help contribute to the growing record of the island fish diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) Here, you can browse photos of fish species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. 
+Here, you can browse photos of fish species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island fish diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
 
 <span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
 
