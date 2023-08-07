@@ -1,7 +1,7 @@
 ---
 title: Ctenophora
 author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Andy Lamb, Andrew Simon
-date: May 13th, 2023
+date: Aug 7th, 2023
 output: 
   html_document:
     self_contained: false
@@ -24,7 +24,7 @@ unobserved <- ctenophores.summary %>% filter(iNatObservationStatus == 'unobserve
 
 *‘Ctenophora’ means “comb-bearing”—deriving from the Greek κτείς (kteis), meaning "comb", and -φορος (-fóros), a suffix meaning "carrying”.*
 
-Ctenophora (comb jellies) are a phylum of predatory marine invertebrates that are characterised by having eight rows of ciliated plates for locomotion. The phylum is divided into two classes containing 150–200 extant species worldwide. Around 32 ctenophore species are known to the Pacific coast of North America, 13 of which are known within the Salish Sea—though only five or six of these species are relatively common. There are `r nrow(ctenophores.summary)` species reported in the Galiano Island record, the least common of which is *Euplokamis dunlapae*. This deep water species is abundant at 250 m depth, but only occasionally occurs above 100 m with mixing of the water column, especially during spring tides.
+Ctenophora (comb jellies) are a phylum of predatory marine invertebrates that are characterised by having eight rows of ciliated plates for locomotion. The phylum is divided into two classes containing 150–200 extant species worldwide. Around 32 ctenophore species are known to the Pacific coast of North America, 13 of which are known within the Salish Sea—though only five or six of these species are relatively common. There are `r nrow(ctenophores.summary)` species reported in the Galiano Island record, the least common of which is [*Euplokamis dunlapae*](#taxon:Euplokamis dunlapae). This deep water species is abundant at 250 m depth, but only occasionally occurs above 100 m with mixing of the water column, especially during spring tides.
 
 ![*Euplokamis dunlapae* – Photograph by Kathleen Reed](media/Euplokamis_dunlapae_Kathleen_Reed.jpeg)
 
@@ -36,7 +36,7 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` ctenophore species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records, with no new species to report.
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` ctenophore species in the waters around Galiano Island, [confirming](#region:confirmed) `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the historical records, with no new species to report.
 
 Most ctenophores are pelagic species, with those most well known occurring near the ocean surface and those less understood found at greater depths. Ctenophores possess sticky cells called colloblasts to capture prey and are are highly diverse in morphology (e.g. egg-shaped cydippids, flat and generally combless platyctenids and large-mouthed beroids). The phylogenetic position of Ctenophora in relation to other phyla is still debated and their taxonomy is in dire need of revision.
 
@@ -49,7 +49,7 @@ figs$reportingStatusFig
 
 ## Top community contributions to our knowledge of the island ctenophore diversity
 
-Please help contribute to the growing record of the island ctenophore diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) Here, you can browse photos of ctenophores commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. 
+Here, you can browse photos of ctenophores commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island ctenophore diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
 
 <span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
 
