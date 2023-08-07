@@ -1,7 +1,7 @@
 ---
 title: Cnidarians
 author: Antranig Basman, Charlie Gibbs, Donna Gibbs, Andy Lamb, Andrew Simon
-date: May 13th, 2023
+date: Aug 7th, 2023
 output: 
   html_document:
     self_contained: false
@@ -24,11 +24,11 @@ unobserved <- cnidarians.summary %>% filter(iNatObservationStatus == 'unobserved
 
 *‘Cnidaria’ is the Latinised plural form of the Greek κνίδη (knidē), which means “nettle.”*
 
-Cnidaria comprise 12,000 extant invertebrate species which primarily occur in marine environments. The phylum is characterised by the possession of a cell called the cnidocyte, which is used for protection or prey capture. Cnidarians may be polypoid, medusoid or alternate between life stages and are grouped into seven classes: Anthozoa (anemones, soft corals, stony corals and sea fans), Cubozoa (box jellies), Hydrozoa (hydrozoans), Myxozoa (obligate parasites), Polypodiozoa (endocellular parasite), Scyphozoa (true jellyfish) and Staurozoa (stalked jellyfishes). Nearly 600 cnidarian species are known to occur along the Pacific coast of North America, over 200 of which are reported for the coast of British Columbia. Of these taxa, `r nrow(cnidarians.summary)` species are reported in the Galiano Island record.
+Cnidaria comprise 12,000 extant invertebrate species which primarily occur in marine environments. The phylum is characterised by the possession of a cell called the cnidocyte, which is used for protection or prey capture. Cnidarians may be polypoid, medusoid or alternate between life stages and are grouped into seven classes: [Anthozoa](#taxon:Anthozoa) (anemones, soft corals, stony corals and sea fans), Cubozoa (box jellies), [Hydrozoa](#taxon:Hydrozoa) (hydrozoans), Myxozoa (obligate parasites), Polypodiozoa (endocellular parasite), [Scyphozoa](#taxon:Scyphozoa) (true jellyfish) and Staurozoa (stalked jellyfishes). Nearly 600 cnidarian species are known to occur along the Pacific coast of North America, over 200 of which are reported for the coast of British Columbia. Of these taxa, `r nrow(cnidarians.summary)` species are reported in the Galiano Island record.
 
 ![*Leuckartiara longicalcar* – Photograph by Karolle Wall](media/Leuckartiara_longicalcar_Karolle_Wall.jpg)
 
-Interesting cnidarians in the Galiano Island record include the recently-described hydroids *Leuckartiara longicalcar* and *Similiclava nivea*, the latter of which represents a novel family of athecate hydrozoan. Notable historical reports include the pink helmit hydrozoan (*Aglantha digitale*) and the non-native striped green sea anemone (*Diadumene lineata*), both collected from Galiano Island in 1859 by Alexander Agassiz
+Interesting cnidarians in the Galiano Island record include the recently-described hydroids [*Leuckartiara longicalcar*](#taxon:Leuckartiara longicalcar) and [*Similiclava nivea*](#taxon:Leuckartiara longicalcar), the latter of which represents a novel family of athecate hydrozoan. Notable historical reports include the pink helmit hydrozoan ([*Aglantha digitale*](#taxon:Aglantha digitale)) and the non-native striped green sea anemone ([*Diadumene lineata*](#taxon:Diadumene lineata)), both collected from Galiano Island in 1859 by Alexander Agassiz.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
@@ -38,11 +38,11 @@ animal.grid.map
 
 ## Community science contributions
 
-Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` cnidarian species in the waters around Galiano Island, confirming `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the [historical records](#region:historical) and adding `r nrow(new)` [new species](#region:new) to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
+Since the Biodiversity Galiano project began in 2016, our community has documented `r nrow(observed)` cnidarian species in the waters around Galiano Island, [confirming](#region:confirmed) `r round((nrow(confirmed)/(nrow(confirmed)+nrow(reported))*100), digits = 0)` percent of the [historical records](#region:historical) and adding `r nrow(new)` [new species](#region:new) to the list. Of the `r nrow(reported) + nrow(confirmed)` historically reported taxa, `r nrow(reported)` species remain unconfirmed, having gone unreported in the last twenty years.
 
 ![*Euphysa* sp. – Photograph by Karolle Wall](media/Euphysa_Karolle_Wall.jpg)
 
-The alternation between polypoid and medusoid generations has historically resulted in a great deal of confusion in the classification of cnidarians. Hydroids, in particular, have received little recent taxonomic attention, with the most substantive revisions dating to Fraser (1937). Other reported taxa require further study to resolve their taxonomy. For instance, recent molecular analysis of *Aequorea* in the Northeast Pacific show they belong to a complex (here reported as *Aequorea victoria* s. lat.), with many other taxa potentially included within this clade. Within *Alcyonium*, two taxa are recognised in the region, though they have yet to be circumscribed. *Euphysa* also likely represents a complex, the diversity of which has yet to be determined in our region.
+The alternation between polypoid and medusoid generations has historically resulted in a great deal of confusion in the classification of cnidarians. [Hydroids](#taxon:Hydrozoa), in particular, have received little recent taxonomic attention, with the most substantive revisions dating to Fraser (1937). Other reported taxa require further study to resolve their taxonomy. For instance, recent molecular analysis of *Aequorea* in the Northeast Pacific show they belong to a complex (here reported as [*Aequorea victoria* s. lat.](#taxon:Aequorea victoria)), with many other taxa potentially included within this clade. Within [*Alcyonium*](#taxon:Alcyonium), two taxa are recognised in the region, though they have yet to be circumscribed. [*Euphysa*](#taxon:Euphysa) also likely represents a complex, the diversity of which has yet to be determined in our region.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Status_map_script.R")
@@ -53,7 +53,7 @@ figs$reportingStatusFig
 
 ## Top community contributions to our knowledge of the island cnidarian diversity
 
-Please help contribute to the growing record of the island cnidarian diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) Here, you can browse photos of cnidarians commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data.
+Here, you can browse photos of cnidarians commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island cnidarian diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
 
 <span class="mxcw-nonLeafletPane mxcw-paneName-TopContributions html-widget leaflet"></span>
 
