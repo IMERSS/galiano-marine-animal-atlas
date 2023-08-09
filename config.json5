@@ -366,6 +366,9 @@
     transforms: [{
         file: "%maxwell/src/js/reknit-bioblitz.js",
         func: "addHeader"
+    }, {
+        file: "%maxwell/src/js/reknit-bioblitz.js",
+        func: "prefixTitle"
     }],
     copyJobs: [ {
         source: "%maxwell/src/js/client/*.js",

@@ -31,4 +31,16 @@ const addHeader = function (document, container, template, rec, config) {
     h1.parentNode.insertBefore(node, h1);
 };
 
-module.exports = {addHeader};
+const prefixTitle = function (document, container, template) {
+    const text = "Galiano Marine Animal Atlas - ";
+
+    const text1 = template.createTextNode(text);
+    const h1 = template.querySelector("h1");
+    h1.insertBefore(text1, h1.firstChild);
+
+    const text2 = template.createTextNode(text);
+    const title = template.querySelector("title");
+    title.insertBefore(text2, title.firstChild);
+};
+
+module.exports = {addHeader, prefixTitle};
