@@ -65,7 +65,7 @@ body {
     /* For God's sake I mean it!!! */
     min-height: 50%;
 }
-.mxcw-hideMap {
+.mxcw-map.mxcw-hideMap {
     height: 0;
     min-height: 0;
     border: none;
@@ -131,7 +131,7 @@ body {
 
 /* Reach deep into the "general-module-panel" inside the iNat components and adjust its height */
 #inat-components > div > div:last-child {
-    height: calc(100vh - 350px);
+    height: calc(100vh - 270px);
     overflow-y: auto;
     /** Half the "grid gap" of 8px */
     padding-right: 4px;

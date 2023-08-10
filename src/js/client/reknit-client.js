@@ -917,9 +917,15 @@ maxwell.registerSectionListeners = function (that) {
     content.addEventListener("scroll", function () {
         const scrollTop = content.scrollTop;
         const offsets = sectionHolders.map(widget => widget.section.offsetTop);
-        let index = offsets.findIndex(offset => offset > (scrollTop - 10));
-        if (index === -1) {
+        // See diagram - we scroll when the next heading's top gets close enough to the viewport top
+        let index = offsets.findIndex(offset => (scrollTop + 150) < offset) - 1;
+        if (index === -2) {
             index = sectionHolders.length - 1;
+        } else if (index === -1) {
+            index = 0;
+        }
+        if (index !== that.model.activeSection) {
+            console.log("Section change: offsetTops are ", offsets, " scrollTop is " + scrollTop + " new index " + index);
         }
         that.applier.change("activeSection", index);
     });
