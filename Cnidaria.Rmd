@@ -28,7 +28,7 @@ Cnidaria comprise 12,000 extant invertebrate species which primarily occur in ma
 
 ![*Leuckartiara longicalcar* – Photograph by Karolle Wall](media/Leuckartiara_longicalcar_Karolle_Wall.jpg)
 
-Interesting cnidarians in the Galiano Island record include the recently-described hydroids [*Leuckartiara longicalcar*](#taxon:Leuckartiara longicalcar) and [*Similiclava nivea*](#taxon:Similiclava nivea), the latter of which represents a novel family of athecate hydrozoan. Notable historical reports include the pink helmit hydrozoan ([*Aglantha digitale*](#taxon:Aglantha digitale)) and the non-native striped green sea anemone ([*Diadumene lineata*](#taxon:Diadumene lineata)), both collected from Galiano Island in 1859 by Alexander Agassiz.
+Interesting cnidarians in the Galiano Island record include the recently-described hydroids [*Leuckartiara longicalcar*](#taxon:Leuckartiara longicalcar) and [*Similiclava nivea*](#taxon:Similiclava nivea), the latter of which represents a novel family of athecate hydrozoan. Notable historical reports include the pink helmet hydrozoan (*Aglantha digitale*) and the non-native striped green sea anemone ([*Diadumene lineata*](#taxon:Diadumene lineata)), both collected from Galiano Island in 1859 by Alexander Agassiz.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Diversity_map_script.R")
