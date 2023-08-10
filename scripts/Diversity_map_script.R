@@ -53,7 +53,7 @@ mx_diversity_map <- function (taxon) {
       addTiles(options = providerTileOptions(opacity = 0.5)) %>%
       addLegend(position = 'topright',
                 pal = pal,
-                bins = ifelse(t < 10, t, 10),
+                bins = ifelse(t < 5, t, 5),
                 values = values,
                 title = "Richness",
                 labels = values)

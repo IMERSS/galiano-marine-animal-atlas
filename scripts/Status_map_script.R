@@ -84,7 +84,7 @@ mx_status_map <- function (taxon) {
       addTiles(options = providerTileOptions(opacity = 0.5)) %>%
       addLegend(position = 'topright',
                 pal = pal,
-                bins = 10,
+                bins = ifelse(t < 5, t, 5),
                 values = values,
                 #colors = viridis_pal(option = "D")(t),
                 title = "Richness",
