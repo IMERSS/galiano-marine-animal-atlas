@@ -95,9 +95,13 @@ body {
 
 .mxcw-map {
     height: 50%;
+    /** Otherwise we get jank on selecting smaller/greater checklists somehow */
+    min-height: 50%;
 }
+
 .mxcw-hideMap {
     height: 0;
+    min-height: 0;
 }
 
 .mxcw-data {
