@@ -75,6 +75,34 @@ var maxwell = fluid.registerNamespace("maxwell");
  * @typedef {Object} LeafletLayerGroup
  */
 
+fluid.defaults("maxwell.widgetHandler", {
+    gradeNames: "fluid.component",
+    widgetKey: "{sourcePath}",
+    events: {
+        bindWidget: null
+    },
+    listeners: {
+        "bindWidget.first": {
+            priority: "first",
+            func: "maxwell.widgetHandler.bindFirst"
+        }
+    }
+});
+
+maxwell.widgetHandler.bindFirst = function (element, that) {
+    that.element = element;
+};
+
+fluid.defaults("maxwell.withResizableWidth", {
+    resizableParent: ".mxcw-widgetPane",
+    listeners: {
+        "bindWidget.makeResizable": {
+            func: "maxwell.makeResizableWidth",
+            args: ["{arguments}.0", "{paneHandler}", "{that}.options.resizableParent"]
+        }
+    }
+});
+
 maxwell.findPlotlyWidgetId = function (widget) {
     return widget.layout?.meta?.mx_widgetId;
 };
@@ -136,45 +164,6 @@ maxwell.withSliderAnimation.bind = function (element, that, paneHandler, scrolly
         Plotly.restyle(element, {visible: element.layout.sliders[0].steps[next].args[1]});
         scrollyPage.applier.change(["activeSubPanes", paneIndex], next);
     }, that.options.delay);
-};
-
-fluid.defaults("maxwell.regionSelectionBar", {
-    gradeNames: "maxwell.widgetHandler",
-    listeners: {
-        "bindWidget.impl": "maxwell.regionSelectionBar.bind"
-    }
-});
-
-maxwell.regionSelectionBar.bind = function (element, that, paneHandler) {
-    const bar = element;
-    const vizBinder = paneHandler;
-    const names = fluid.getMembers(element.data, "name");
-    // In theory this should be done via some options distribution, or at the very least, an IoCSS-driven model
-    // listener specification
-    vizBinder.events.sunburstLoaded.addListener(() => {
-        const map = vizBinder.map;
-        map.applier.modelChanged.addListener({path: "selectedRegions.*"}, function (selected, oldSelected, segs) {
-            const changed = fluid.peek(segs);
-            const index = names.indexOf(changed);
-            Plotly.restyle(element, {
-                // Should agree with .fld-imerss-selected but seems that plotly cannot be reached via CSS
-                "marker.line": selected ? {
-                    color: "#FCFF63",
-                    width: 2
-                } : {
-                    color: "#000000",
-                    width: 0
-                }
-            }, index);
-        });
-    }, "plotlyRegion", "after:fluid-componentConstruction");
-
-    bar.on("plotly_click", function (e) {
-        const regionName = e.points[0].data.name;
-        vizBinder.map.events.selectRegion.fire(null, regionName);
-    });
-    // TODO: Parameterise a bit
-    maxwell.makeResizableWidth(element, paneHandler, ".fl-imerss-checklist-outer");
 };
 
 maxwell.findPlotlyWidgets = function (scrollyPage) {
@@ -901,7 +890,6 @@ maxwell.updateActiveMapPane = function (that, activePane) {
         window.setTimeout(function () {
             widgetPanes.forEach(function (pane, index) {
                 const visibility = (index === activePane ? "block" : "none");
-                console.log("Set visibility of index " + index + " to " + visibility);
                 pane.style.display = visibility;
             });
         }, 1);
@@ -961,52 +949,32 @@ maxwell.applyZerothTiles = function (leafletWidgets, map) {
 // TODO: Shouldn't everything connected with viz code go into imerss-viz-reknit.js?
 // Pane info widgets which appear immediately below map
 
-// TODO: These two left over from Howe with the old "distribution" model, not used in Bioblitz
-fluid.defaults("maxwell.withPaneInfo", {
-    components: {
-        paneInfo: {
-            type: "maxwell.paneInfo"
+fluid.defaults("maxwell.paneInfo", {
+    gradeNames:  "fluid.templateRenderingView",
+    parentContainer: "{paneHandler}.options.parentContainer",
+    resources: {
+        template: {
+            url: "html/pane-info.html"
         }
-    }
+    },
+    injectionType: "prepend" // So it appears earlier than the viz markup, which uses "append"
 });
 
-fluid.defaults("maxwell.withRegionName", {
-    markup: {
-        region: "Selected biogeoclimatic region: <span class=\"fl-imerss-region-key\">%region</span> %regionLabel"
-    },
-    selectors: {
-        regionDisplay: ".fld-imerss-region"
-    },
-    invokers: {
-        renderRegionName: "maxwell.renderRegionName({that}.dom.regionDisplay, {that}.options.markup.region, {paneHandler}.options.regionLabels, {arguments}.0)"
-    },
-    distributeOptions: {
-        target: "{paneHandler hortis.leafletMap}.options.modelListeners.regionTextDisplay",
-        record: {
-            // TOOD: rename mapBlockTooltipId to selectedRegion
-            path: "{that}.model.mapBlockTooltipId",
-            listener: "{maxwell.withRegionName}.renderRegionName",
-            args: "{change}.value"
-        }
-    }
-});
-
-// NOTE different to one above without the wacky distribution
-fluid.defaults("maxwell.regionNameBinder", {
+fluid.defaults("maxwell.paneInfoBinder", {
     gradeNames: "fluid.newViewComponent",
     markup: {
-        region: "Selected biogeoclimatic region: %region"
+        infoText: "Selected biogeoclimatic region: %region"
     },
     selectors: {
-        regionDisplay: ".fld-imerss-region"
+        infoText: ".fld-imerss-region"
     },
     invokers: {
-        renderRegionName: "maxwell.renderRegionName({that}.dom.regionDisplay, {that}.options.markup.region, {arguments}.0)"
+        renderPaneInfoText: "maxwell.renderRegionName({that}.dom.infoText, {that}.options.markup.infoText, {arguments}.0)"
     },
     modelListeners: {
-        // Once again can't put a namespace on!!
-        region: {
-            listener: "{maxwell.regionNameBinder}.renderRegionName",
+        renderInfoText: {
+            path: "infoSource",
+            listener: "{maxwell.paneInfoBinder}.renderPaneInfoText",
             args: "{change}.value"
         }
     }
@@ -1017,34 +985,94 @@ maxwell.renderRegionName = function (target, template, region) {
     target.text(text);
 };
 
-fluid.defaults("maxwell.paneInfo", {
-    gradeNames:  "fluid.templateRenderingView",
-    parentContainer: "{paneHandler}.options.parentContainer",
-    resources: {
-        template: {
-            url: "html/pane-info.html"
+
+// Used in Howe with "distribution" model, not currently used in bioblitz since it has more concrete grades bioblitz.js side
+fluid.defaults("maxwell.withPaneInfo", {
+    components: {
+        paneInfo: {
+            type: "maxwell.paneInfo",
+            options: {
+                gradeNames: "{withPaneInfo}.options.paneInfoGrades"
+            }
+        }
+    },
+    distributeOptions: {
+        source: "{that}.options.regionBinderGrades",
+        target: "{that > paneInfo > regionBinder}.options.gradeNames"
+    }
+    // paneInfoGrades: []
+    // regionBinderGrades
+});
+
+// Mix in to a paneInfoBinder which is already a regionBinder
+fluid.defaults("maxwell.withLabelledRegionName", {
+    markup: {
+        infoText: "Selected biogeoclimatic region: <span class=\"fl-imerss-region-key\">%region</span> %regionLabel"
+    },
+    invokers: {
+        renderPaneInfoText: "maxwell.renderLabelledRegionName({that}.dom.infoText, {that}.options.markup.infoText, {paneHandler}.options.regionLabels, {arguments}.0)"
+    }
+});
+
+maxwell.renderLabelledRegionName = function (target, template, regionLabels, region) {
+    const text = fluid.stringTemplate(template, {
+        region: region || "None",
+        regionLabel: region && regionLabels ? "(" + regionLabels[region] + ")" : ""
+    });
+    target.html(text);
+};
+
+/* Thie one gets used in Howe, together with maxwell.labelledRegionPaneInfo supplied as regionBinderGrades*/
+fluid.defaults("maxwell.regionPaneInfo", {
+    gradeNames: ["maxwell.paneInfo", "maxwell.withMapTitle", "maxwell.withDownloadLink"],
+    components: {
+        regionBinder: {
+            type: "maxwell.paneInfoBinder",
+            options: {
+                container: "{paneInfo}.container",
+                markup: {
+                    infoText: "Selected biogeoclimatic region: %region"
+                },
+                selectors: {
+                    infoText: ".fld-imerss-region"
+                },
+                model: {
+                    infoSource: "{paneHandler}.model.selectedRegion"
+                }
+            }
         }
     }
 });
 
+fluid.defaults("maxwell.labelledRegionPaneInfo", {
+    components: {
+        regionBinder: {
+            options: {
+                gradeNames: "maxwell.withLabelledRegionName"
+            }
+        }
+    }
+});
+
+/** This one gets used in bioblitz */
 fluid.defaults("maxwell.statusCellPaneInfo", {
     gradeNames: ["maxwell.paneInfo", "maxwell.withMapTitle", "maxwell.withDownloadLink"],
     components: {
         statusBinder: {
-            type: "maxwell.regionNameBinder",
+            type: "maxwell.paneInfoBinder",
             options: {
                 container: "{paneInfo}.container",
                 markup: {
-                    region: "Selected status: %region"
+                    infoText: "Selected status: %region"
                 },
-                selectors: {
-                    regionDisplay: ".fld-imerss-status"
+                selectors: { // Call it "region" so we don't need a whole new template - port back to bioblitz and rename
+                    infoDisplay: ".fld-imerss-region"
                 },
-                model: {
-                    region: "{paneHandler}.model.selectedStatus"
+                model: { // Note that Howe code calls this "selectedRegion" whereas bioblitz calls it "selectedStatus"
+                    infoSource: "{paneHandler}.model.selectedRegion"
                 }
             }
-        }/*, // AS decided we don't want, keep it in reserve
+        }/*, // AS decided we don't want, keep it in reserve - selectedCell gets relayed in from code in bioblitz.js
         cellBinder: {
             type: "maxwell.regionNameBinder",
             options: {
@@ -1060,22 +1088,9 @@ fluid.defaults("maxwell.statusCellPaneInfo", {
                 }
             }
         }*/
-    },
-    injectionType: "prepend"
+    }
 });
 
-
-
-/*
-TODO: Sophisticated version from Howe needs to stay there
-maxwell.renderRegionName = function (target, template, regionLabels, region) {
-    const text = fluid.stringTemplate(template, {
-        region: region || "None",
-        regionLabel: region && regionLabels ? "(" + regionLabels[region] + ")" : ""
-    });
-    target.html(text);
-};
-*/
 fluid.defaults("maxwell.withMapTitle", {
     selectors: {
         mapTitle: ".fld-imerss-map-title"
@@ -1146,23 +1161,6 @@ fluid.defaults("maxwell.paneHandler", {
     }
 });
 
-fluid.defaults("maxwell.widgetHandler", {
-    gradeNames: "fluid.component",
-    widgetKey: "{sourcePath}",
-    events: {
-        bindWidget: null
-    },
-    listeners: {
-        "bindWidget.first": {
-            priority: "first",
-            func: "maxwell.widgetHandler.bindFirst"
-        }
-    }
-});
-
-maxwell.widgetHandler.bindFirst = function (element, that) {
-    that.element = element;
-};
 
 maxwell.paneHandler.addPaneClass = function (that, parentContainer) {
     parentContainer[0].classList.add("mxcw-widgetPane-" + that.options.paneKey);

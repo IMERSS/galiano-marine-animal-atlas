@@ -27,5 +27,3 @@ maxwell.loadJSON5File = function (path) {
         throw e;
     }
 };
-
-// module.exports = {maxwell.asyncForEach, maxwell.loadJSON5File};

@@ -12,23 +12,6 @@ fluid.defaults("maxwell.bioblitzDiversityPane", {
     }
 });
 
-// AS has requested the region selection bar to appear in a special area above the taxonomy
-fluid.defaults("maxwell.regionSelectionBar.withHoist", {
-    gradeNames: "maxwell.widgetHandler",
-    listeners: {
-        "bindWidget.hoist": {
-            funcName: "maxwell.regionSelectionBar.hoist",
-            priority: "before:impl"
-        }
-    }
-});
-
-maxwell.regionSelectionBar.hoist = function (element, that, paneHandler) {
-    const target = paneHandler.container[0].querySelector(".fl-imerss-checklist-widgets");
-    target.appendChild(element);
-};
-
-
 fluid.defaults("maxwell.bioblitzStatusPane", {
     gradeNames: ["maxwell.scrollyPaneHandler", "maxwell.scrollyVizBinder", "maxwell.withNativeLegend"],
     members: {
@@ -43,6 +26,12 @@ fluid.defaults("maxwell.bioblitzStatusPane", {
     regionStyles: {
         unselectedOpacity: 0,
         noSelectionOpacity: 0.4
+    },
+    // So, our mapping is that class -> cell_id, community -> status
+    // How SHOULD we have implemented this in the map so that the whole world wasn't polluted with these strange names?
+    regionSelectionScheme: {
+        clazz: false,
+        community: true
     },
     components: {
         paneInfo: {
@@ -105,7 +94,7 @@ fluid.defaults("maxwell.mapWithStatus", {
     }
 });
 
-// TODO put this back up in leafletMapWithRegions.js
+// TODO this is now back up in leafletMapWithRegions.js, update when we can
 hortis.normaliseToClass = function (str) {
     return str.toLowerCase().replace(/[| ]/g, "-");
 };

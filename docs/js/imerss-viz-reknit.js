@@ -1,6 +1,6 @@
 "use strict";
 
-/* global L */
+/* global L, Plotly */
 
 // noinspection ES6ConvertVarToLetConst // otherwise this is a duplicate on minifying
 var maxwell = fluid.registerNamespace("maxwell");
@@ -8,7 +8,6 @@ var maxwell = fluid.registerNamespace("maxwell");
 var hortis = fluid.registerNamespace("hortis");
 
 maxwell.toggleClass = function (container, isVisible, clazz, inverse) {
-    console.log("toggleClass ", container, " isVisible ", isVisible, " clazz ", clazz);
     container.classList[isVisible ^ inverse ? "remove" : "add"](clazz);
 };
 
@@ -25,6 +24,7 @@ fluid.defaults("maxwell.markupTemplateRenderer", {
 });
 
 // mixin grade which mediates event flow from IMERSS viz (reached via hortis.scrollyMapLoader) to Leaflet pane
+// It is both a paneHandler as well as a sunburstLoader, which is defined in core viz leafletMap.js hortis.scrollyMapLoader
 fluid.defaults("maxwell.scrollyVizBinder", {
     // Put these last to continue to override "container" member due to FLUID-5800
     gradeNames: ["hortis.scrollyMapLoader", "maxwell.scrollyPaneHandler",
@@ -34,8 +34,8 @@ fluid.defaults("maxwell.scrollyVizBinder", {
     mapFlavourGrade: [],
     markupTemplate: "%resourceBase/html/imerss-viz-scrolly.html",
     renderMarkup: true,
-    events: {
-        selectRegion: null
+    model: {
+        // selectedRegion - relayed from mapBlockTooltipId
     },
     regionIdFromLabel: false,
     regionStyles: {
@@ -44,9 +44,14 @@ fluid.defaults("maxwell.scrollyVizBinder", {
         selectedOpacity: 0.8,
         unselectedOpacity: 0.5
     },
+    regionSelectionScheme: {
+        clazz: true,
+        community: true
+    },
     listeners: {
         // Override the built-in old fashioned rendering
         "onResourcesLoaded.renderMarkup": "fluid.identity",
+        // TODO: Note we get one of these listeners for each viz
         "sunburstLoaded.listenHash": {
             funcName: "maxwell.scrollyViz.listenHash",
             args: "{that}",
@@ -59,7 +64,8 @@ fluid.defaults("maxwell.scrollyVizBinder", {
     },
     invokers: {
         polyOptions: "maxwell.scrollyViz.polyOptions({that}, {arguments}.0, {arguments}.1)",
-        handlePoly: "maxwell.scrollyViz.handlePoly({that}, {arguments}.0, {arguments}.1, {arguments}.2)"
+        handlePoly: "maxwell.scrollyViz.handlePoly({that}, {arguments}.0, {arguments}.1, {arguments}.2)",
+        triggerRegionSelection: "maxwell.triggerRegionSelection({that}.map, {that}.options.regionSelectionScheme, {arguments}.0, {arguments}.1)"
     },
     distributeOptions: {
         bareRegionsExtra: {
@@ -76,6 +82,10 @@ fluid.defaults("maxwell.scrollyVizBinder", {
         }
     }
 });
+
+maxwell.triggerRegionSelection = function (map, regionSelectionScheme, regionName, source) {
+    map.events.selectRegion.fire(regionSelectionScheme.clazz ? regionName : null, regionSelectionScheme.community ? regionName : null, source);
+};
 
 fluid.defaults("maxwell.scrollyVizBinder.withLegend", {
     distributeOptions: {
@@ -107,8 +117,9 @@ maxwell.legendKey.renderMarkup = function (markup, clazz, className) {
     });
 };
 
-// cf. Xetthecum's hortis.legendKey.drawLegend
-maxwell.legendKey.drawLegend = function (map) {
+// cf. Xetthecum's hortis.legendKey.drawLegend in leafletMapWithRegions.js - it has a block template and also makes
+// a fire to selectRegion with two arguments. Also ours ia a Leaflet control
+maxwell.legendKey.drawLegend = function (map, paneHandler) {
     const regionRows = fluid.transform(map.regions, function (troo, regionName) {
         return maxwell.legendKey.renderMarkup(maxwell.legendKey.rowTemplate, map.regions[regionName], regionName);
     });
@@ -125,17 +136,71 @@ maxwell.legendKey.drawLegend = function (map) {
         const rowSel = ".fld-imerss-legend-row-" + hortis.normaliseToClass(regionName);
         const row = container.querySelector(rowSel);
         row.addEventListener("click", function () {
-            // TODO: this used to be regionName, regionName - we've decided that we're using "status" as "class" and "cell_id" as "community".
-            map.events.selectRegion.fire(null, regionName);
+            paneHandler.triggerRegionSelection(regionName);
         });
     });
     return container;
 };
 
+// AS has requested the region selection bar to appear in a special area above the taxonomy
+fluid.defaults("maxwell.regionSelectionBar.withHoist", {
+    gradeNames: "maxwell.widgetHandler",
+    listeners: {
+        "bindWidget.hoist": {
+            funcName: "maxwell.regionSelectionBar.hoist",
+            priority: "before:impl"
+        }
+    },
+    resizableParent: ".fl-imerss-checklist-outer"
+});
+
+maxwell.regionSelectionBar.hoist = function (element, that, paneHandler) {
+    const target = paneHandler.container[0].querySelector(".fl-imerss-checklist-widgets");
+    target.appendChild(element);
+};
+
+fluid.defaults("maxwell.regionSelectionBar", {
+    gradeNames: ["maxwell.widgetHandler", "maxwell.withResizableWidth"],
+    listeners: {
+        "bindWidget.impl": "maxwell.regionSelectionBar.bind"
+    }
+});
+
+maxwell.regionSelectionBar.bind = function (element, that, paneHandler) {
+    const bar = element;
+    const vizBinder = paneHandler;
+    const names = fluid.getMembers(element.data, "name");
+    // In theory this should be done via some options distribution, or at the very least, an IoCSS-driven model
+    // listener specification
+    vizBinder.events.sunburstLoaded.addListener(() => {
+        const map = vizBinder.map;
+        map.applier.modelChanged.addListener({path: "selectedRegions.*"}, function (selected, oldSelected, segs) {
+            const changed = fluid.peek(segs);
+            const index = names.indexOf(changed);
+            Plotly.restyle(element, {
+                // Should agree with .fld-imerss-selected but seems that plotly cannot be reached via CSS
+                "marker.line": selected ? {
+                    color: "#FCFF63",
+                    width: 2
+                } : {
+                    color: "#000000",
+                    width: 0
+                }
+            }, index);
+        });
+    }, "plotlyRegion", "after:fluid-componentConstruction");
+
+    bar.on("plotly_click", function (e) {
+        const regionName = e.points[0].data.name;
+        paneHandler.triggerRegionSelection(regionName);
+    });
+};
+
+
 // Addon grade for hortis.leafletMap - all this stuff needs to go upstairs into LeafletMapWithBareRegions
 fluid.defaults("maxwell.bareRegionsExtra", {
     modelListeners: {
-        regionToHash: {
+        regionToHash: { // This should eventually be moved upstairs via our new relay of selectedRegion
             path: "mapBlockTooltipId",
             func: "maxwell.scrollyViz.updateRegionHash",
             args: ["{that}", "{change}"]
@@ -144,6 +209,12 @@ fluid.defaults("maxwell.bareRegionsExtra", {
             path: "mapBlockTooltipId",
             func: "maxwell.scrollyViz.sortRegions",
             args: ["{paneHandler}", "{scrollyPage}"]
+        }
+    },
+    modelRelay: {
+        mapBlockToRegion: {
+            source: "mapBlockTooltipId",
+            target: "{paneHandler}.model.selectedRegion"
         }
     },
     members: {
@@ -319,9 +390,7 @@ maxwell.scrollyViz.handlePoly = function (paneHandler, Lpolygon, shapeOptions, l
     if (region) {
         Lpolygon.on("click", function () {
             console.log("Map clicked on region ", region, " polygon ", Lpolygon);
-            const map = paneHandler.map;
-            // Old style - region must be in first argument, unlike for "status" where it should be second.
-            map.events.selectRegion.fire(region, region);
+            paneHandler.triggerRegionSelection(region, region);
         });
     }
 };
@@ -333,7 +402,7 @@ maxwell.scrollyViz.listenHash = function (paneHandler) {
         const hash = location.hash;
         if (hash.startsWith("#region:")) {
             const region = hash.substring("#region:".length);
-            map.events.selectRegion.fire(null, region, "hash");
+            paneHandler.triggerRegionSelection(region, "hash");
         } else {
             map.events.clearMapSelection.fire();
         }

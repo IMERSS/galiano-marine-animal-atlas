@@ -408,9 +408,6 @@
         source: "%imerss-bioinfo/docs/css/imerss-viz-all.css",
         target: "%maxwell/docs/css/imerss-viz-all.css"
     }, {
-        source: "%imerss-bioinfo/docs/css/xetthecum-shared.css",
-        target: "%maxwell/docs/css/xetthecum-shared.css"
-    }, {
         source: "%imerss-bioinfo/src/client/json/emptyPhyloMap.json",
         target: "%maxwell/docs/json/phyloMap.json"
     }, {

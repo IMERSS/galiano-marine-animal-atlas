@@ -1,19 +1,16 @@
 body {
-    /* Override definition which shouldn't be in xetthecum-shared.css" */
     margin: 8px
 }
 .mxcw-widgetPane {
-    padding: 10px;
+    padding: 0
 }
 .mxcw-container {
-    height: calc(100vh - 10rem)
+    height: calc(100vh - 12rem)
 }
 .fl-imerss-container {
     flex-direction: column;
-    margin-top: 0px;
-    margin-right: 0px;
+    margin-top: 0;
 }
-
 .fld-imerss-pane-info {
     padding: 1em 0.8em 0.7em 0.8em;
     display: flex;
@@ -38,9 +35,30 @@ body {
     visibility: visible;
 }
 
-.fld-imerss-status, .fld-imerss-cell {
-    padding: 3px;
+.fl-imerss-region-key {
+    font-weight: bold;
 }
+
+.fld-imerss-map-title {
+    text-align: right;
+}
+
+
+.fld-imerss-download-link {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-image: url(../img/download.svg);
+    backdrop-filter: opacity(0.7);
+    margin-left: 5px;
+}
+
+.fld-imerss-download-link:hover {
+    outline: 1px #333 solid;
+    outline-offset: 2px;
+}
+
+
 
 .mxcw-widgetPane {
     height: 100%;
@@ -51,24 +69,37 @@ body {
 }
 /** Prevent this jank on selecting different checklists **/
 .fld-imerss-checklist-holder {
-    width: 600px;
+    /* width: 600px; */
 }
 
-/* TODO: Port back up to imerss-viz */
-.fld-imerss-checklist-up {
-    background-size: 1.5rem;
-    background-repeat: no-repeat;
+.fld-imerss-taxonDisplay {
+    height: auto;
+    margin-left: 1rem;
+    /** This core definition needs to go **/
+    min-width: auto;
+}
+
+:root {
+    /* Definition taken from xetthecum-shared.css which is no longer included */
+    --imerss-eco-colour: #DEE0B0;
+}
+
+.fl-imerss-checklist-holder {
+    background: var(--imerss-eco-colour);
+}
+
+.fl-imerss-map-and-taxa {
+    flex-direction: row;
+    max-height: inherit;
 }
 
 .mxcw-map {
     height: 50%;
-    /* For God's sake I mean it!!! */
+    /** Otherwise we get jank on selecting smaller/greater checklists somehow */
     min-height: 50%;
 }
-.mxcw-map.mxcw-hideMap {
+.mxcw-hideMap {
     height: 0;
-    min-height: 0;
-    border: none;
 }
 
 .mxcw-data {
@@ -124,23 +155,62 @@ body {
     outline: 2px solid #FCFF63;
 }
 
-/* Fix the height of the "Status" viz to account for the bar widget above it */
-.mxcw-widgetPane-Status.mxcw-noStretch {
-    height: calc(100% - 135px);
+/** Magic sauce allows resizing of widget smaller than "natural width" of .fl-imerss-checklist-outer */
+.fl-imerss-checklist-widgets {
+    width: 0;
 }
+
+.fl-imerss-checklist-outer {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+}
+
+.fl-imerss-map-and-taxa > * {
+    flex-grow: 1;
+}
+
+.fl-imerss-taxa {
+    display: none;
+}
+
+.fl-imerss-photo {
+    min-width: 0px;
+    height: 300px;
+}
+
+.fl-taxonDisplay-row {
+    min-width: 0px;
+}
+
+.fl-imerss-map-and-taxa {
+    margin-right: 0px;
+}
+
+@media screen and ( max-height: 1024px ){
+    .fl-imerss-photo {
+        height: 200px;
+    }
+
+    .mxcw-map {
+        height: 45%;
+        min-height: 45%
+    }
+
+    .mxcw-data {
+        height: 55%;
+    }
+}
+
 
 /* Reach deep into the "general-module-panel" inside the iNat components and adjust its height */
 #inat-components > div > div:last-child {
-    height: calc(100vh - 270px);
+    height: calc(100vh - 350px);
     overflow-y: auto;
     /** Half the "grid gap" of 8px */
     padding-right: 4px;
 }
 
 #inat-components > div {
-    padding-top: 40px;
-}
-
-.mxcw-content img {
-    width: 100%;
+    padding-top: 0px;
 }
