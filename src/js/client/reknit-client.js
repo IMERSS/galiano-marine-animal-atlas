@@ -218,14 +218,6 @@ maxwell.projectArgs = function (args, index) {
     return args.map(arg => Array.isArray(arg) ? arg[index] : arg);
 };
 
-maxwell.divIcon = function (label, className) {
-    return L.divIcon({
-        html: "<div>" + label + "</div>",
-        iconSize: null,
-        className: className
-    });
-};
-
 // From https://gis.stackexchange.com/questions/31951/showing-popup-on-mouse-over-not-on-click-using-leaflet
 maxwell.hoverPopup = function (layer, paneOptions) {
     const mouseHandler = function (ev) {
@@ -370,9 +362,16 @@ maxwell.addNativeLegend = function (options, map, paneHandler) {
     legend.addTo(map);
 };
 
+maxwell.divIcon = function (label, className) {
+    return L.divIcon({
+        html: "<div>" + label + "</div>",
+        iconSize: null,
+        // Ensure that markers never auto-dismiss selection
+        className: (className || "") + " fld-imerss-nodismiss-map"
+    });
+};
 
-maxwell.addMarkers = function (lat, lon, iconOrRadius, options, label, labelOptions, paneOptions, group) {
-    const pane = paneOptions.pane;
+maxwell.addMarkers = function (lat, lon, iconOrRadius, options, label, labelOptions, paneOptions, group, paneHandler) {
     // Note that labelOnlyMarkers are spat out in https://github.com/rstudio/leaflet/blob/main/R/layers.R#L826
     // We detect this through the special case of a width set to 1 and use a div icon which is much
     // easier to configure than the HTMLwidgets strategy of a permanently open tooltip attached to the marker
@@ -382,15 +381,13 @@ maxwell.addMarkers = function (lat, lon, iconOrRadius, options, label, labelOpti
         const marker = L.marker([lat, lon], {icon: markerIcon, ...paneOptions}).addTo(group);
         const divIcon = maxwell.divIcon(label, labelOptions.className);
         const labelMarker = L.marker([lat, lon], {icon: divIcon, ...paneOptions}).addTo(group);
-        const paneInstance = maxwell.globalOptions.paneMap[pane];
+        paneHandler.handleMarker(marker, divIcon, label, labelOptions, labelMarker);
+
         const clickHandler = function () {
-            // TODO: This will become a component
-            paneInstance.emitter.emit("click", label);
+            paneHandler.events.markerClick.fire(label);
         };
-        if (paneInstance) {
-            marker.on("click", clickHandler);
-            labelMarker.on("click", clickHandler);
-        }
+        marker.on("click", clickHandler);
+        labelMarker.on("click", clickHandler);
     } else if (typeof(iconOrRadius) === "number") {
         const radius = iconOrRadius;
         const circleMarker = L.circleMarker([lat, lon], {radius, ...options, ...paneOptions}).addTo(group);
@@ -398,6 +395,7 @@ maxwell.addMarkers = function (lat, lon, iconOrRadius, options, label, labelOpti
             circleMarker.bindPopup(label, {closeButton: false, ...labelOptions});
             maxwell.hoverPopup(circleMarker, paneOptions);
         }
+        paneHandler.handleMarker(circleMarker, null, label, labelOptions);
     } else {
         const icon = iconOrRadius;
         const Licon = icon.iconWidth === 1 ?
@@ -406,7 +404,8 @@ maxwell.addMarkers = function (lat, lon, iconOrRadius, options, label, labelOpti
                 iconUrl: icon.iconUrl,
                 iconSize: [icon.iconWidth, icon.iconHeight]
             });
-        L.marker([lat, lon], {icon: Licon, ...paneOptions}).addTo(group);
+        const iconMarker = L.marker([lat, lon], {icon: Licon, ...paneOptions}).addTo(group);
+        paneHandler.handleMarker(iconMarker, Licon, label, labelOptions);
     }
     // from https://github.com/rstudio/leaflet/blob/main/javascript/src/methods.js#L189
 };
@@ -465,11 +464,13 @@ maxwell.resolvePaneHandler = function (paneHandler) {
     if (paneHandler) {
         fluid.getForComponent(paneHandler, "handlePoly");
         fluid.getForComponent(paneHandler, "polyOptions");
+        fluid.getForComponent(paneHandler, "handleMarker");
         return paneHandler;
     } else {
         return {
             polyOptions: fluid.identity,
-            handlePoly: fluid.identity
+            handlePoly: fluid.identity,
+            handleMarker: fluid.identity
         };
     }
 };
@@ -564,7 +565,7 @@ maxwell.decodeLeafletWidgetCall = function (options, call) {
         // Very limited support currently - just for labelOnlyMarkers used in fire history
         // args: lat, lng, icon || radius, layerId, group, options, popup, popupOptions,
         // clusterOptions, clusterId, label, labelOptions, crosstalkOptions
-        const markerArgs = [call.args[0], call.args[1], call.args[2], call.args[5], call.args[10], call.args[11], paneOptions, group];
+        const markerArgs = [call.args[0], call.args[1], call.args[2], call.args[5], call.args[10], call.args[11], paneOptions, group, paneHandler];
         if (Array.isArray(call.args[0])) {
             for (let i = 0; i < call.args[0].length; ++i) {
                 maxwell.addMarkers.apply(null, maxwell.projectArgs(markerArgs, i));
@@ -591,7 +592,17 @@ maxwell.decodeLeafletWidgetCall = function (options, call) {
  */
 maxwell.leafletWidgetToPane = function (scrollyPage, map, widget, index) {
     widget.paneHandlerName = widget.data ? widget.data.x?.options?.mx_mapId : maxwell.decodeNonLeafletHandler(widget);
-    const paneHandler = widget.paneHandlerName && maxwell.paneHandlerForName(scrollyPage, widget.paneHandlerName);
+    let paneHandler = widget.paneHandlerName && maxwell.paneHandlerForName(scrollyPage, widget.paneHandlerName);
+    if (!paneHandler) {
+        // Automatically construct a default scrollyPaneHandler to deal with simple non-interactive vignettes
+        const new_id = "auto-paneHandler-" + index;
+        widget.paneHandlerName = new_id;
+        const options = {
+            type: "maxwell.scrollyPaneHandler",
+            paneKey: new_id
+        };
+        paneHandler = fluid.construct([...fluid.pathForComponent(scrollyPage), new_id], options);
+    }
     const paneInfo = maxwell.allocatePane(map, index);
     if (widget.data) {
         widget.data.x.calls.forEach(call => maxwell.decodeLeafletWidgetCall({map, widget, index, paneInfo, paneHandler}, call));
@@ -677,34 +688,64 @@ maxwell.updateActiveWidgetSubPanes = function (that, effectiveActiveSubpanes) {
 maxwell.applyView = function (map, xData) {
     const bounds = xData.fitBounds;
     const setView = xData.setView;
+    const limits = xData.limits;
     if (bounds) {
         map.fitBounds([[bounds[0], bounds[1]], [bounds[2], bounds[3]]]);
     } else if (setView) {
         map.setView(setView[0], setView[1]);
+    } else if (limits) {
+        // Ignore the maps with limits for now - slows down Maxwell too much and they are too wide anyway
+        // "limits" are what gets spat out if there are no explicit bounds set
+        // map.fitBounds([[limits.lat[0], limits.lng[0]], [limits.lat[1], limits.lng[1]]]);
     } else {
         console.error("Unable to find map view information in widget data ", xData);
     }
+};
+
+// From https://stackoverflow.com/a/16436975
+maxwell.arraysEqual = function (a, b, length) {
+    if (a === b) {
+        return true;
+    }
+    if (!a || !b) {
+        return false;
+    }
+    if (a.length !== b.length) {
+        return false;
+    }
+
+    for (let i = 0; i < (length || a.length); ++i) {
+        if (a[i] !== b[i]) {
+            return false;
+        }
+    }
+    return true;
+};
+
+maxwell.equalBounds = function (bounds1, bounds2) {
+    // TODO: Somehow all our bounds objects end up with a 5th element which is an empty array
+    return maxwell.arraysEqual(bounds1, bounds2, 4);
 };
 
 maxwell.flyToBounds = function (map, xData, durationInMs) {
     return new Promise(function (resolve) {
         const bounds = xData.fitBounds;
         if (bounds && map._loaded) {
-            map.invalidateSize();
-            map.flyToBounds([[bounds[0], bounds[1]], [bounds[2], bounds[3]]], {
-                duration: durationInMs / 1000
-            });
-            map.once("moveend zoomend", resolve);
+            if (maxwell.equalBounds(bounds, map.lastBounds)) {
+                resolve();
+            } else {
+                map.invalidateSize();
+                map.flyToBounds([[bounds[0], bounds[1]], [bounds[2], bounds[3]]], {
+                    duration: durationInMs / 1000
+                });
+                map.lastBounds = bounds;
+                map.once("moveend zoomend", resolve);
+            }
         } else {
             maxwell.applyView(map, xData);
             resolve();
         }
     });
-};
-
-
-maxwell.makeLeafletMap = function (node) {
-    return L.map(fluid.unwrap(node));
 };
 
 maxwell.paneKeyToIndex = function (handler, scrollyPage) {
@@ -855,9 +896,13 @@ fluid.defaults("maxwell.scrollyPage", {
 // Convert the HTMLWidgets postRenderHandler into a promise
 maxwell.HTMLWidgetsPostRender = function () {
     const togo = fluid.promise();
-    HTMLWidgets.addPostRenderHandler(function () {
+    if (HTMLWidgets.addPostRenderHandler) {
+        HTMLWidgets.addPostRenderHandler(function () {
+            togo.resolve(true);
+        });
+    } else {
         togo.resolve(true);
-    });
+    }
     return togo;
 };
 
@@ -912,9 +957,6 @@ maxwell.registerSectionListeners = function (that) {
         } else if (index === -1) {
             index = 0;
         }
-        if (index !== that.model.activeSection) {
-            console.log("Section change: offsetTops are ", offsets, " scrollTop is " + scrollTop + " new index " + index);
-        }
         that.applier.change("activeSection", index);
     });
 };
@@ -935,6 +977,10 @@ fluid.defaults("maxwell.scrollyLeafletMap", {
     }
 });
 
+maxwell.makeLeafletMap = function (node) {
+    return L.map(fluid.unwrap(node));
+};
+
 maxwell.applyZerothTiles = function (leafletWidgets, map) {
     const data0 = leafletWidgets[0].data.x;
     const tiles = maxwell.findCall(data0.calls, "addTiles");
@@ -949,6 +995,8 @@ maxwell.applyZerothTiles = function (leafletWidgets, map) {
 // TODO: Shouldn't everything connected with viz code go into imerss-viz-reknit.js?
 // Pane info widgets which appear immediately below map
 
+
+
 fluid.defaults("maxwell.paneInfo", {
     gradeNames:  "fluid.templateRenderingView",
     parentContainer: "{paneHandler}.options.parentContainer",
@@ -958,6 +1006,20 @@ fluid.defaults("maxwell.paneInfo", {
         }
     },
     injectionType: "prepend" // So it appears earlier than the viz markup, which uses "append"
+});
+
+
+// Used in Howe with "distribution" model, not currently used in bioblitz since it has more concrete grades bioblitz.js side
+fluid.defaults("maxwell.withPaneInfo", {
+    // paneInfoGrades: []
+    components: {
+        paneInfo: {
+            type: "maxwell.paneInfo",
+            options: {
+                gradeNames: "{withPaneInfo}.options.paneInfoGrades"
+            }
+        }
+    }
 });
 
 fluid.defaults("maxwell.paneInfoBinder", {
@@ -985,26 +1047,41 @@ maxwell.renderRegionName = function (target, template, region) {
     target.text(text);
 };
 
-
-// Used in Howe with "distribution" model, not currently used in bioblitz since it has more concrete grades bioblitz.js side
-fluid.defaults("maxwell.withPaneInfo", {
-    components: {
-        paneInfo: {
-            type: "maxwell.paneInfo",
-            options: {
-                gradeNames: "{withPaneInfo}.options.paneInfoGrades"
-            }
+fluid.defaults("maxwell.withRegionPaneInfo", {
+    gradeNames: "maxwell.withPaneInfo",
+    // regionBinderGrades
+    // regionInfoText
+    distributeOptions: {
+        regionBinderGrades: {
+            source: "{that}.options.regionBinderGrades",
+            target: "{that > paneInfo > regionBinder}.options.gradeNames"
+        },
+        // TODO: This distribution doesn't work, would need to get debuggable Infusion build
+        regionInfoText: {
+            source: "{that}.options.regionInfoText",
+            target: "{that > paneInfo > regionBinder}.options.markup.infoText"
         }
     },
-    distributeOptions: {
-        source: "{that}.options.regionBinderGrades",
-        target: "{that > paneInfo > regionBinder}.options.gradeNames"
+    components: {
+        paneInfo: {
+            type: "maxwell.regionPaneInfo",
+            options: {
+                // TODO: Necessary because of broken distribution
+                components: {
+                    regionBinder: {
+                        options: {
+                            markup: {
+                                infoText: "{withPaneInfo}.options.regionInfoText"
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-    // paneInfoGrades: []
-    // regionBinderGrades
 });
 
-// Mix in to a paneInfoBinder which is already a regionBinder
+// Mix in to a paneInfoBinder which is already a regionBinder for more refined region name including label
 fluid.defaults("maxwell.withLabelledRegionName", {
     markup: {
         infoText: "Selected biogeoclimatic region: <span class=\"fl-imerss-region-key\">%region</span> %regionLabel"
@@ -1054,7 +1131,7 @@ fluid.defaults("maxwell.labelledRegionPaneInfo", {
     }
 });
 
-/** This one gets used in bioblitz */
+/** This one gets used in Marine Atlas as well as Status in Howe Sound */
 fluid.defaults("maxwell.statusCellPaneInfo", {
     gradeNames: ["maxwell.paneInfo", "maxwell.withMapTitle", "maxwell.withDownloadLink"],
     components: {
@@ -1173,7 +1250,11 @@ fluid.defaults("maxwell.scrollyPaneHandler", {
     },
     invokers: {
         polyOptions: "fluid.identity",
-        handlePoly: "fluid.identity"
+        handlePoly: "fluid.identity",
+        handleMarker: "fluid.identity"
+    },
+    events: {
+        markerClick: null
     },
     // For consistency when binding from withPaneInfo
     parentContainer: "{that}.container"
