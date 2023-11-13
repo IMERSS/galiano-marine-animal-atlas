@@ -51,6 +51,16 @@ figs$reportingStatusMap
 figs$reportingStatusFig
 ```
 
+## Molluscs with Indigenous cultural significance
+
+These include the [Giant pacific octopus](#taxon:Enteroctopus dofleini), known in Hul'qumi'num as [**sqi'mukw**](#taxon:Enteroctopus dofleini).
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Cultural_map_script.R")
+animal.cultural.map <- mx_cultural_map("mollusca")
+animal.cultural.map
+```
+
 ## Top community contributions to our knowledge of the island mollusc diversity
 
 Here, you can browse photos of mollusc species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island mollusc diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 

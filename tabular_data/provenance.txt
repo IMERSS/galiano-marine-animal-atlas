@@ -5,5 +5,4 @@ from https://github.com/IMERSS/adfsimon-bioinfo/blob/5e347b14b5b9405628b7fc7ac94
 All gridded data from https://github.com/IMERSS/adfsimon-bioinfo/tree/main/Biodiversity_Galiano/2022-2023/analyze/Animalia/marine_animals/combined_analysis/outputs/tabular_data
 as output from https://github.com/IMERSS/adfsimon-bioinfo/blob/main/Biodiversity_Galiano/2022-2023/analyze/Animalia/marine_animals/combined_analysis/combined_analysis.R
 
-
-
+reintegrated-hulq.csv from https://github.com/IMERSS/imerss-bioinfo/blob/main/data/Galiano%202023/reintegrated-hulq.csv
