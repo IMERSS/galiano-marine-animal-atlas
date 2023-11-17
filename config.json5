@@ -15,6 +15,11 @@
                         taxonId: 47115,
                         taxonName: "Mollusca"
                     },
+                    Cultural: {
+                        type: "maxwell.bioblitzDiversityPane",
+                        vizFile: "%resourceBase/data/Galiano-2023-Cultural-Mollusca.json.lz4",
+                        nativeDataOnly: true
+                    },
                     Status: {
                         type: "maxwell.bioblitzStatusPane",
                         vizFile: "%resourceBase/data/Galiano-2023-Status-Mollusca.json.lz4",

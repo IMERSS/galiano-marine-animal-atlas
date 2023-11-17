@@ -1,4 +1,4 @@
-# Map Galiano Island's marine animal diversity
+# Map Galiano Island's marine animal diversity for taxa with cultural significance
 
 # Load libraries
 
@@ -20,6 +20,7 @@ mx_diversityRowToOptions <- function (row) {
   return (list(mx_regionId = row$cell_id, mx_richness = row$richness))
 }
 
+# Called with lower-case rendering of phylum name, e.g. "mollusca"
 mx_cultural_map <- function (taxon) {
     title <- str_to_title(taxon);
 
