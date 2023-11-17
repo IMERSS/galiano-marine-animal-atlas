@@ -397,6 +397,9 @@
         target: "%maxwell/docs/js/imerss-viz-all.js.map",
         replaceSource: "\"sourceRoot\":\"../..\"",
         replaceTarget: "\"sourceRoot\":\"../../../bagatelle/\""
+    },  {
+        source: "%imerss-bioinfo/src/client/img/Xetthecum/*.svg",
+        target: "%maxwell/docs/img/Xetthecum"
     }, {
         source: "%imerss-bioinfo/src/client/img/Arrow-up.svg",
         target: "%maxwell/docs/img/Arrow-up.svg"

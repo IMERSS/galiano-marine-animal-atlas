@@ -26,21 +26,15 @@ mx_cultural_map <- function (taxon) {
 
     # Read gridded marine animal dataset
     
-    gridded.records <- read.csv(str_glue("tabular_data/{taxon}_all_records_gridded.csv"))
+    cultural.records <- read.csv(str_glue("tabular_data/{taxon}_hulq_records_gridded.csv"))
 
-    hulq <- read.csv("tabular_data/reintegrated-hulq.csv")
-    hulqTaxa <- hulq$Taxon.name
-        
-    # Filter only those records with cultural values
-    cultural.records <- gridded.records[gridded.records$scientificName %in% hulqTaxa, ]
-    
     # Summarize species by grid cell and export to JSON file for viz
     
     culturalTaxa <- mx_griddedObsToHash(cultural.records)
     
     culturalData <- list(taxa = culturalTaxa, mapTitle = str_glue("Diversity for {title} with cultural values"))
-    
-    mx_writeJSON(culturalTaxa, str_glue("viz_data/Cultural-{taxon}PlotData.json"))
+
+    mx_writeJSON(culturalData, str_glue("viz_data/Cultural-{taxon}PlotData.json"))
     
     # Load choropleth
     
