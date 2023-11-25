@@ -52,12 +52,6 @@ figs$reportingStatusMap
 figs$reportingStatusFig
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-source("scripts/Status_map_script.R")
-figs <- mx_status_map("echinodermata")
-figs$reportingStatusMap
-figs$reportingStatusFig
-```
 
 ## Echinoderms with Indigenous cultural significance
 
