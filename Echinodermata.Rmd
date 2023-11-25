@@ -72,6 +72,12 @@ Echinoderms are one of many phyla that have cultural significance to Hul'qumi'nu
 * [Green Sea Urchin](#taxon: Strongylocentrotus droebachiensis), known in Hul'qumi'num as [**Skw'itth'i'**](#taxon:Strongylocentrotus droebachiensis)
 - Skw'itth'i' were once common and plentiful on both rocky shores and kelp beds, hwoever, they are now a rare delicacy. Today, to harvest skw'itth'i', journeying to areas with fast moving waters is required. 
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Cultural_map_script.R")
+animal.cultural.map <- mx_cultural_map("echinodermata")
+animal.cultural.map
+```
+
 ## Top community contributions to our knowledge of the island echinoderm diversity
 
 Here, you can browse photos of echinoderm species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island echinoderm diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island) 
