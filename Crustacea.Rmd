@@ -49,6 +49,28 @@ figs$reportingStatusMap
 figs$reportingStatusFig
 ```
 
+## Crustaceans with Indigenous cultural significance
+
+Crustaceans are one of many phyla that have cultural significance to Hul'qumi'num speaking peoples. Generally, crustaceans are regarded as important food sources for delicacy and cultural practice. 
+
+* [Giant Barnacle](#taxon: Balanus nubilis), known in Hul'qumi'num as [**Qumine'**](#taxon:Balanus nubilis)
+- Qumine' is regarded as an important and tasty delicacy, being roasted by fire making them an easier delicacy to enjoy.  
+
+* [Red Rock Crab](#taxon: Cancer productus), known in Hul'qumi'num as [**Kwakwatl'shun**](#taxon:Cancer productus)
+- Kwakwatl'shun is easier to find by provides less meat for the effort, hence, they are generally not a preferred species to consume but one consumed in times of need. 
+
+* [Dungeness Crab](#taxon: Cancer magister), known in Hul'qumi'num as [**Ey'x**](#taxon:Cancer magister)
+- Ey'x is an important food source, traditionally harvested with a 3-spronged spear. Some Elders have harvested ey'x by stepping ('umutsun) on ey'x barefoot and then placing them in a basket or canoe. 
+
+* [Pacific Prawn](#taxon: Pandalus platyceros), known in Hul'qumi'num as [**Mam'ul' or  Maal-mul'**](#taxon:Pandalus platyceros)
+- Mam'ul'are the largest shrimp species in the North Pacific, raching lengths of up to 25 cm. There is limited cultural information about Mam'ul', just that the Hul'qumi'num name has been documented.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+source("scripts/Cultural_map_script.R")
+animal.cultural.map <- mx_cultural_map("crustacea")
+animal.cultural.map
+```
+
 ## Top community contributions to our knowledge of the island crustacean diversity
 
 Here, you can browse photos of crustacean species commonly documented around Galiano Island, as well as recent observations, most favourited observations, and top observers, based on [iNaturalist](http://inaturalist.org/) data. Please help contribute to the growing record of the island crustacean diversity by submitting your observations to the [Biodiversity Galiano iNaturalist project.](http://inaturalist.org/projects/biodiversity-galiano-island).
