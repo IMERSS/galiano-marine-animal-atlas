@@ -1,3 +1,4 @@
+pacman::p_load(tidyverse, plotly)
 #reading in the total summary dataset
 arthropod <- read_csv("Galiano_terrestrial_arthropods_review_summary_2023-10-21.csv")
 #splitting into data that has data for the first observed date (musueum specimens most likely)
@@ -37,16 +38,16 @@ split_biodiv_year <- function(df, x, y) {
   biodiv_calcs
 }
 
-y.1925.1935 <- split_biodiv(combined, 1925,1935) %>% mutate(range= "1925-1935")
-y.1925.1945 <- split_biodiv(combined, 1925,1945) %>% mutate(range= "1925-1945")
-y.1925.1955 <- split_biodiv(combined, 1925,1955) %>% mutate(range= "1925-1955")
-y.1925.1965 <- split_biodiv(combined, 1925,1965) %>% mutate(range= "1925-1965")
-y.1925.1975 <- split_biodiv(combined, 1925,1975) %>% mutate(range= "1925-1975")
-y.1925.1985 <- split_biodiv(combined, 1925,1985) %>% mutate(range= "1925-1985")
-y.1925.1995 <- split_biodiv(combined, 1925,1995) %>% mutate(range= "1925-1995")
-y.1925.2005 <- split_biodiv(combined, 1925,2005) %>% mutate(range= "1925-2005")
-y.1925.2015 <- split_biodiv(combined, 1925,2015) %>% mutate(range= "1925-2015")
-y.1925.2025 <- split_biodiv(combined, 1925,2025) %>% mutate(range= "1925-2025")
+y.1925.1935 <- split_biodiv_year(combined, 1925,1935) %>% mutate(range= "1925-1935")
+y.1925.1945 <- split_biodiv_year(combined, 1925,1945) %>% mutate(range= "1925-1945")
+y.1925.1955 <- split_biodiv_year(combined, 1925,1955) %>% mutate(range= "1925-1955")
+y.1925.1965 <- split_biodiv_year(combined, 1925,1965) %>% mutate(range= "1925-1965")
+y.1925.1975 <- split_biodiv_year(combined, 1925,1975) %>% mutate(range= "1925-1975")
+y.1925.1985 <- split_biodiv_year(combined, 1925,1985) %>% mutate(range= "1925-1985")
+y.1925.1995 <- split_biodiv_year(combined, 1925,1995) %>% mutate(range= "1925-1995")
+y.1925.2005 <- split_biodiv_year(combined, 1925,2005) %>% mutate(range= "1925-2005")
+y.1925.2015 <- split_biodiv_year(combined, 1925,2015) %>% mutate(range= "1925-2015")
+y.1925.2025 <- split_biodiv_year(combined, 1925,2025) %>% mutate(range= "1925-2025")
 
 
 summary_year <- rbind(y.1925.1935, y.1925.1945, y.1925.1955, y.1925.1965, 

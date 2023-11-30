@@ -1,5 +1,5 @@
 # Load libraries
-pacman::p_load(sf, tidyverse, sf)
+pacman::p_load(sf, tidyverse, sf, viridis)
 
 # Source dependencies
 
@@ -31,8 +31,6 @@ hulq <- read_csv("reintegrated-hulq.csv") %>%
          `Trade Value`, `Indicator Value`, `Hulquminum Name`, `Hulquminum Authority`)
 hulq.names <- unique(hulq$scientificName) 
 
-
-
 confirmed_cultr <- confirmed_obs %>% filter(scientificName %in% hulq.names) # 2 confirmed
 new_cult <- new_obs %>% filter(scientificName %in% hulq.names) # 2 new 
 
@@ -47,6 +45,9 @@ summary_2023 <- hunterston2023 %>%
 summary_new <- new_obs %>%
   group_by(Id) %>%
   summarise(species=length(unique(scientificName)))
+
+#species list per community 
+#geoJson list of species present
 
 summary_confirmed <- confirmed_obs %>%
   group_by(Id) %>%
