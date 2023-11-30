@@ -16,6 +16,9 @@ Bioblitzs can be many things, but at their core, they are a gathering of citizen
 
 In the last five years, numerous Bioblitzs have been held across British Columbia, with five featured here:
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
 
 ```{r, echo=FALSE, message=FALSE}
 pacman::p_load(leaflet, tidyverse, plotly)
@@ -38,6 +41,7 @@ The Salish Sea Bioregion in a transnational ecosystem spanning marine and freshw
 
 ```{r, echo=FALSE, message=FALSE}
 source("scripts/vector_map_scriptSalishsea.R")
+print(baseMap)
 ```
 
 Marked on this map are organizations working across the Salish Sea to contribute to and build a better knowledge base of the region. 
@@ -71,7 +75,6 @@ Important areas of interest on Galiano:
 
 ```{r, echo=FALSE, message=FALSE}
 source("scripts/vector_map_script.R")
-print(baseMap)
 ```
 
 
@@ -81,7 +84,6 @@ Xetthecum in Hul'qumi'num, also known as Retreat cove, in an area of significant
 
 ```{r, echo=FALSE, message=FALSE}
 source("scripts/vector_map_scriptXetthecum.R")
-print(baseMap)
 ```
 
 ## Outcomes from our 2023 Bioblitz Based at Hunterston Farm / Xetthecum 
@@ -103,6 +105,4 @@ source("scripts/bioblitzsummaryplots.R")
 source("scripts/hfnewobs2023.R")
 ```
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+

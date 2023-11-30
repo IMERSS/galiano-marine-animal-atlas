@@ -1,6 +1,4 @@
-library(sf)
-library(leaflet)
-library(dplyr)
+pacman::p_load(sf, leaflet, dplyr)
 
 source("scripts/utils.R")
 
@@ -11,5 +9,3 @@ baseMap <- leaflet() %>%
   addTiles(options = providerTileOptions(opacity = 0.5)) %>%
   addPolygons(data = Sample, color = "#414487FF", weight = 2, fillOpacity = 0.4)
   #fitBounds(-121.5, 47.5, -126, 52)
-
-print(baseMap)
