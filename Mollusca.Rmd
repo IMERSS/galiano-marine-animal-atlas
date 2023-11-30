@@ -57,39 +57,39 @@ Molluscs are one of many phyla that have cultural significance to Hul'qumi'num s
 
 **Bivalves: Generally, bivalves across species are regarded as delicacies, important materials for regalia, and high value trade items. Specific species of bivalves that have important cultural significance include:**
 
-* [Basket Cockle](#taxon: Clinocardium nuttallii), known in Hul'qumi'num as [**Stl'ula'um**](#taxon:Clinocardium nuttallii)
+* [Basket Cockle](#taxon:Clinocardium nuttallii), known in Hul'qumi'num as [**Stl'ula'um**](#taxon:Clinocardium nuttallii)
 - Stl'ula'um is a favourite food for many and has been dried over fire or above woodstone for consumption. The siphon of stl'ula'um has been used as a pacifier or soother.
 
-* [Butter Clam](Saxidomus giganteus), known in Hul'qumi'num as [**S-axwa'**](#taxon:Saxidomus giganteus)
-- S-axwa' are a highly valuable trade item, with fresh s-axwa' having been traded to the Interior historically. S-axwa' are extremely valuable to communities that are not close to the ocean, in addition, to S-ts'eyhw s-axwa' (dried butter clams) being an important food source during the winter. 
+* [Butter Clam](#taxon:Saxidomus gigantea), known in Hul'qumi'num as [**S-axwa'**](#taxon:Saxidomus gigantea)
+- S-axwa' are a highly valuable trade item, with fresh s-axwa' having been traded to the Interior historically. S-axwa' are extremely valuable to communities that are not close to the ocean, in addition, S-ts'eyhw s-axwa' (dried butter clams) are an important food source during the winter. 
 
-* [Geoduck Clam](Panopea generosa), known in Hul'qumi'num as [**Pun'eq'**](#taxon:Panopea generosa)
-- Pun'eq' is harvested the lowest tide cycles, which typically occur in January. In fact, the word for January means harvest of pun'eq'. 
+* [Geoduck Clam](#taxon:Panopea generosa), known in Hul'qumi'num as [**Pun'eq'**](#taxon:Panopea generosa)
+- Pun'eq' is harvested during the lowest tide cycles, which typically occur in January. In fact, the word for January means harvest of pun'eq'. 
 
-* [Littleneck Clam](Protothaca staminea), known in Hul'qumi'num as [**Skw'lhey**](#taxon:Protothaca staminea)
-- Skw'lhey is popularly steamed, with the juice from this process used as a preventative medicine 
+* [Littleneck Clam](#taxon:Protothaca staminea), known in Hul'qumi'num as [**Skw'lhey**](#taxon:Protothaca staminea)
+- Skw'lhey is popularly steamed, with the juice from this process used as a preventative medicine. 
 
-* [Giant Pacific Scallop](Patinopecten caurinus), known in Hul'qumi'num as [**Kwuneem'mun'**](#taxon:Patinopecten caurinus)
+* [Giant Pacific Scallop](#taxon:Patinopecten caurinus), known in Hul'qumi'num as [**Kwuneem'mun'**](#taxon:Patinopecten caurinus)
 - Kwuneem'mun' has high value for cultural use and is difficult to collect. The shell was used for regalia and the meat eaten as a delicacy.
 
-* [Northern Abalone](Haliotis kamtschatkana), known in Hul'qumi'num as [**S-eyo'**](#taxon:Haliotis kamtschatkana)
-- S-eyo' is currently threatened as a result of overharvesting and harvesting S-eyo' has been outlawed. Historically, S-eyo' was used for trade in addition to crafting jewelry from different parts of the shell pattern.
+* [Northern Abalone](#taxon:Haliotis kamtschatkana), known in Hul'qumi'num as [**S-eyo'**](#taxon:Haliotis kamtschatkana)
+- S-eyo' is currently threatened as a result of overharvesting and the harvesting S-eyo' has been outlawed. Historically, S-eyo' was used for trade in addition to crafting jewelry from different parts of the shell pattern.
 
 * [Pacific Oyster, Olympia Oyster](#taxon:Crassostrea gigas, Ostrea conchaphila), known in Hul'qumi'num as [**Tl'uxwtl'uxw**](#taxon:Crassostrea gigas, Ostrea conchaphila)
-- Tl'uxw means "hard" in Hul'qumi'num, with Tl'uxwtl'uxw translating as "hard hard". This name is for the Olympia oyster but is also now used for the introduced Pacific oster. Tl'uxwtl'uxw can be consumed, raw, steamed, or roasted and then dried. 
+- Tl'uxw means "hard" in Hul'qumi'num, with Tl'uxwtl'uxw translating as "hard hard". This name is for the Olympia oyster but is also now used to refer to the introduced Pacific oster as well. Tl'uxwtl'uxw can be consumed, raw, steamed, or roasted and then dried. 
 
 **Cephalopods: Generally, cephalopods are also regarded and deliciacies and have unique and traditional ways of harvesting**
 
 * [Giant pacific octopus](#taxon:Enteroctopus dofleini), known in Hul'qumi'num as [**Sqi'mukw**](#taxon:Enteroctopus dofleini)
-- Sqi'mukw featured in many cultural stories and is consumed as a delicacy, often smaller sized rather than larger sized sqi'mukw. Sqi'mukw is traditionally and commonl caught using a gaff. 
+- Sqi'mukw featured in many cultural stories and is consumed as a delicacy, often smaller sized rather than larger sized sqi'mukw. Sqi'mukw is traditionally and commonly caught using a gaff. 
 
 **Polyplacophora: Generall, polyplacophora are a difficult group to consume but are highly regarded for community members and important for cultural teachings**
 
-* [Black Katy Chiton](#taxon: Katharina tunicata), known in Hul'qumi'num as [**Xulum'**](#taxon:Katharina tunicata)
-- Xulum' is a scare delicacy that has been difficult to find since the 1940s and 1950s. An important delicacy that community members have travelled great distances in ordee to bring Xulum' to Elders unable to travel. 
+* [Black Katy Chiton](#taxon:Katharina tunicata), known in Hul'qumi'num as [**Xulum'**](#taxon:Katharina tunicata)
+- Xulum' is a scare delicacy that has been difficult to find since the 1940s and 1950s. An important delicacy that community members have travelled great distances in order to bring Xulum' to Elders unable to travel. 
 
-* [Gumboot Chiton](Cryptochiton stelleri), known in Hul'qumi'num as [**'Ukws'**](#taxon:Cryptochiton stelleri)
-- 'Ukws' have specific cultural teaching about when in their life cycle they are safe to eat. Instructions for preparing 'Ukws' are important to follow as if they're cooked improperly, they will be difficult to consume. 
+* [Gumboot Chiton](#taxon:Cryptochiton stelleri), known in Hul'qumi'num as [**'Ukws'**](#taxon:Cryptochiton stelleri)
+- 'Ukws' have specific cultural teaching about when in their life cycle they are safe to eat. Instructions for preparing 'Ukws' are important to follow as, if they're cooked improperly, they will be difficult to consume. 
 
 
 
