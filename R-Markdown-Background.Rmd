@@ -12,13 +12,13 @@ knit: (function(inputFile, encoding) {
 
 What are bioblitzs?
 
-Bioblitzs can be many things, but at there core, they are a gathering of citizens to document and identify biodiversity in a given area over short period of time (cite iNat Guide, Nat Geo, etc). The term bioblitz was first coined by the a naturalist for the United States National Park Service who coordinated the first bioblitz ever held in 1996 (cite). This first bioblitz gathered scientists, naturalists, and citizens alike to survey an area and add additional information to the existing knowledge base. Bioblitzs have followed, tailored, and expanded upon this original model with the goal of gathering more knowledge about biodiversity across the globe.
+Bioblitzs can be many things, but at their core, they are a gathering of citizens to document and identify biodiversity in a given area over short period of time (iNat Guide, Nat Geo, etc). The term bioblitz was first coined by the a naturalist for the United States National Park Service who coordinated the first bioblitz ever held in 1996 (cite). This first bioblitz gathered scientists, naturalists, and citizens alike to survey an area and add additional information to the existing knowledge base. Bioblitzs have followed, tailored, and expanded upon this original model with the goal of gathering more knowledge about biodiversity across the globe.
 
-In the last five years, numerous Bioblitzs have been held across British Columbia, with 5 featured here:
+In the last five years, numerous Bioblitzs have been held across British Columbia, with five featured here:
 
 
 ```{r, echo=FALSE, message=FALSE}
-pacman::p_load(leaflet, tidyverse)
+pacman::p_load(leaflet, tidyverse, plotly)
 bioblitz <- data.frame(title=c("Hakai Bioblitz 2018", "False Creek 2022", "Galiano Island 2019, 2023", 
                                   "Stanely Park 2022", "Bamfield Marine Sciences Centre 2022"), 
                           lon = c(-128.0365, -123.1248, -123.4415, -123.1443, -125.1428), 
@@ -32,10 +32,9 @@ leaflet(data=bioblitz) %>%
 
 # The Salish Sea Bioregion
 
-The Salish Sea Bioregion in a transnational ecosystem spanning marine and freshwater watersheds across British Columbia and Washington state.
+The five examples of Bioblitzs that have occurred in British Columbia over the last five years are mainly centred in the Salish Sea Bioregion. 
 
-Working across the Bioregion involves collaboration, cooperation, and management of the ecosystem with many partners, intersets, and values. 
-
+The Salish Sea Bioregion in a transnational ecosystem spanning marine and freshwater watersheds across British Columbia and Washington state. Working across the Bioregion involves collaboration, cooperation, and management of the ecosystem with many partners, intersets, and values. 
 
 ```{r, echo=FALSE, message=FALSE}
 source("scripts/vector_map_scriptSalishsea.R")
@@ -56,7 +55,7 @@ leaflet(data=orgs) %>%
 
 # Galiano Island
 
-Galiano Island (Hul'qumi'num: Swiikw) is 27.5 km long island, part of the Southern Gulf Islands just off the east coast of Vacnouver, with both Mayne Island and Salt Spring Island bordening Galiano. 
+Galiano Island (Hul'qumi'num: Swiikw) is 27.5 km long island, part of the Southern Gulf Islands just off the east coast of Vancouver, with both Mayne Island and Salt Spring Island bordering Galiano. 
 
 Galiano has been home to many different Hul'qumi'num speaking Coast Salish people, including the Penelakut First Nation. In the late 18th century, Captain Galiano arrived on Galiano (for which the Island was name after him), though the population of Coast Salish People in the region had already been drastically decreased due to a smallpox epiemic in the late 1770s. 
 
@@ -70,29 +69,29 @@ Important areas of interest on Galiano:
 
 * Mount Sutil: an ecological reserve named after Captain Galiano's flagship 250 m above sea level
 
-
-
-
 ```{r, echo=FALSE, message=FALSE}
 source("scripts/vector_map_script.R")
+print(baseMap)
 ```
 
 
 # Xetthecum
 
-
 Xetthecum in Hul'qumi'num, also known as Retreat cove, in an area of significant cultural interest for Coast Salish peoples. Rich in kelp and seagrass, it is protected from the rough ocean currents by Retreat Island, making it a safe haven. Retreat Cove is also filled with beautiful sandstone cave formations. 
 
 ```{r, echo=FALSE, message=FALSE}
 source("scripts/vector_map_scriptXetthecum.R")
+print(baseMap)
 ```
 
 ## Outcomes from our 2023 Bioblitz Based at Hunterston Farm / Xetthecum 
 
 We held a Bioblitz on Galiano in 2023 based at Hunterston Farm / Xetthecum. We added over 700 biodiversity observations for Galiano Island, with 50 new entomological species with 5 confirmed historical records in addition to 5 new botanical species and 3 confirmed historical records. 
 
-As part of Whiteswan Environmental's Ecocultural Mapping project, this bioblitz was motivated to draw additional culturally significant information to the knowledge base. As a result of the bioblitz, we found 2 new culturally significant species: tl'uxwtl'uxw (Magallana gigas) and stl'ula'um (Clinocardium nuttallii). We also confirmed 2 culturally significant species: kwakwatl'shun (Cancer productus) and skw'lhey (Leukoma staminea). All of these species have cultural food value, all but one have cutlural medicial and trade value, and two have spiritual value. 
+As part of Whiteswan Environmental's Ecocultural Mapping project, this bioblitz was motivated to survey additional culturally significant information to the knowledge base. As a result of the bioblitz, we found 2 new culturally significant species: tl'uxwtl'uxw (Magallana gigas) and stl'ula'um (Clinocardium nuttallii). We also confirmed 2 culturally significant species: kwakwatl'shun (Cancer productus) and skw'lhey (Leukoma staminea). All of these species have cultural food value, all but one have both cultural medicinal and trade value, and two have spiritual value. 
 
+
+Additional information on culturally significant species can be found in the Marine Atlas pages about Crustacea, Echinodermata, Fishes, Mammalia, and Mollusca.
 
 
 ```{r, echo=FALSE, message=FALSE}
@@ -100,14 +99,9 @@ source("scripts/bioblitzsummaryplots.R")
 ```
 
 
-
 ```{r, echo=FALSE, message=FALSE}
 source("scripts/hfnewobs2023.R")
 ```
-
-
-
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

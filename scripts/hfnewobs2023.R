@@ -6,14 +6,14 @@ pacman::p_load(sf, tidyverse, sf, viridis)
 source("scripts/utils.R")
 
 # Analysis of historical collection activities
-inat_tidy <- read_csv("inat data/intersection_inat_hunterstonmap_assoc_polygons.csv") %>%
+inat_tidy <- read_csv("tabular_data/bioblitz_summary_data/intersection_inat_hunterstonmap_assoc_polygons.csv") %>%
   filter(quality_grade == "research") #lose ~1000 rows of data
 hunterston2023 <- inat_tidy %>%
   drop_na(Id_2)%>% #70% data loss 
   mutate(year=2023) %>%
   rename(type = Type, Id = Id_2, scientificName = scientific_name) %>%
   select(scientificName, Id, latitude, longitude, year, type)
-hunterston2010 <- read_csv("inat data/hunterston2010_data+updatedpolygons.csv") %>%
+hunterston2010 <- read_csv("tabular_data/bioblitz_summary_data/hunterston2010_data+updatedpolygons.csv") %>%
   mutate(year=2010) %>%
   rename(scientificName = Scientific, 
          type = Type, 
@@ -25,7 +25,7 @@ hunterston2010_names <- unique(hunterston2010$scientificName)
 hunterston2023_coords <- hunterston2023 %>% select(Id, latitude, longitude)
 confirmed_obs <- hunterston2023 %>% filter(scientificName %in% hunterston2010_names) #261 confirmed observations
 new_obs <- hunterston2023 %>% filter(!scientificName %in% hunterston2010_names) #134 new observations
-hulq <- read_csv("reintegrated-hulq.csv") %>%
+hulq <- read_csv("tabular_data/bioblitz_summary_data/reintegrated-hulq.csv") %>%
   rename(scientificName = `iNaturalist taxon name`)%>%
   select(scientificName, `Food Value`, `Medicinal Value`, `Spiritual Value`, `Material Value`, 
          `Trade Value`, `Indicator Value`, `Hulquminum Name`, `Hulquminum Authority`)
@@ -54,7 +54,7 @@ summary_confirmed <- confirmed_obs %>%
   summarise(species=length(unique(scientificName)))
 
 # loading in polygons from shp file
-grid <- st_read("new_hunterston_map.shp") %>%
+grid <- st_read("spatial_data/vectors/hunterston/new_hunterston_map.shp") %>%
   select(Id, geometry)
 #merging shp file with biodiversity summary
 summary_2010pn <- merge(grid, summary_2010, by="Id")

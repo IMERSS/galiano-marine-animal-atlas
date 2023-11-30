@@ -1,6 +1,6 @@
 pacman::p_load(tidyverse, plotly)
 #reading in the total summary dataset
-arthropod <- read_csv("Galiano_terrestrial_arthropods_review_summary_2023-10-21.csv")
+arthropod <- read_csv("tabular_data/bioblitz_summary_data/Galiano_terrestrial_arthropods_review_summary_2023-10-21.csv")
 #splitting into data that has data for the first observed date (musueum specimens most likely)
 first.observed <- arthropod %>%
   drop_na(First.Observed) %>%
@@ -52,7 +52,7 @@ y.1925.2025 <- split_biodiv_year(combined, 1925,2025) %>% mutate(range= "1925-20
 
 summary_year <- rbind(y.1925.1935, y.1925.1945, y.1925.1955, y.1925.1965, 
                       y.1925.1975, y.1925.1985, y.1925.1995, y.1925.2005, 
-                      y.1925.2025)
+                      y.1925.2025) 
 
 
 #collating by month 
@@ -90,14 +90,19 @@ summary_monthp <- summary_month %>%
 summary_2023 <- combined %>%
   filter(year == 2023) %>%
   group_by(month) %>%
-  summarise(spp = length(unique(Taxon)))
+  summarise(cum.spp = length(unique(Taxon)))
 
 
 summary2023_plot<-summary_2023 %>%
-  plot_ly(y = ~spp, x=~as.numeric(month), type="scatter")
+  plot_ly(y = ~cum.spp, x=~as.numeric(month), type="scatter")
 
 
-print(summary_monthp)
+timeseries<-combined %>%
+  group_by(year) %>%
+  summarise(cum.spp=length(unique(Taxon))) %>%
+  plot_ly(y = ~cum.spp, x=~year, type="scatter")
+
+print(timeseries)
 print(summary2023_plot)
 
 
