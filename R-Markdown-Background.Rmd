@@ -6,15 +6,13 @@ output: html_document
 knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding, output_dir = "docs") })
 ---
-## Overview
-
 # Background 
 
-What are bioblitzs?
+What are bioblitzes?
 
-Bioblitzs can be many things, but at their core, they are a gathering of citizens to document and identify biodiversity in a given area over short period of time (iNat Guide, Nat Geo, etc). The term bioblitz was first coined by the a naturalist for the United States National Park Service who coordinated the first bioblitz ever held in 1996 (cite). This first bioblitz gathered scientists, naturalists, and citizens alike to survey an area and add additional information to the existing knowledge base. Bioblitzs have followed, tailored, and expanded upon this original model with the goal of gathering more knowledge about biodiversity across the globe.
+Bioblitzes can be many things, but at their core, they are a gathering of citizens to document and identify biodiversity in a given area over short period of time (iNat Guide, Nat Geo, etc.). The term bioblitz was first coined by a naturalist for the United States National Park Service who coordinated the [first bioblitz](https://web.archive.org/web/20120531131639/https://www.pwrc.usgs.gov/blitz/kenilw.html) ever held in 1996. This first bioblitz gathered scientists, naturalists, and citizens alike to survey an area and add additional information to the existing knowledge base. Bioblitzes have followed, tailored, and expanded upon this original model with the goal of gathering more knowledge about biodiversity across the globe.
 
-In the last five years, numerous Bioblitzs have been held across British Columbia, with five featured here:
+In the last five years, numerous Bioblitzes have been held across British Columbia, with five featured here:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -35,16 +33,16 @@ leaflet(data=bioblitz) %>%
 
 # The Salish Sea Bioregion
 
-The five examples of Bioblitzs that have occurred in British Columbia over the last five years are mainly centred in the Salish Sea Bioregion. 
+The five examples of Bioblitzes that have occurred in British Columbia over the last five years are mainly centred in the Salish Sea Bioregion. 
 
-The Salish Sea Bioregion in a transnational ecosystem spanning marine and freshwater watersheds across British Columbia and Washington state. Working across the Bioregion involves collaboration, cooperation, and management of the ecosystem with many partners, intersets, and values. 
+The Salish Sea Bioregion is a transnational ecosystem spanning marine and freshwater watersheds across British Columbia and Washington state. Working across the Bioregion involves collaboration, cooperation, and management of the ecosystem with many partners, interests, and values. 
 
 ```{r, echo=FALSE, message=FALSE}
 source("scripts/vector_map_scriptSalishsea.R")
 print(baseMap)
 ```
 
-Marked on this map are organizations working across the Salish Sea to contribute to and build a better knowledge base of the region. 
+Marked on this map are organizations working across the Salish Sea to build a better knowledge base of the region. 
 
 ```{r, echo=FALSE, message=FALSE}
 orgs <- data.frame(title=c("Hakai Institute", "Galiano Conservancy Association", "Institute for Multidisciplinary Ecological Research in the Salish Sea", "University of British Columbia"), 
@@ -61,7 +59,7 @@ leaflet(data=orgs) %>%
 
 Galiano Island (Hul'qumi'num: Swiikw) is 27.5 km long island, part of the Southern Gulf Islands just off the east coast of Vancouver, with both Mayne Island and Salt Spring Island bordering Galiano. 
 
-Galiano has been home to many different Hul'qumi'num speaking Coast Salish people, including the Penelakut First Nation. In the late 18th century, Captain Galiano arrived on Galiano (for which the Island was name after him), though the population of Coast Salish People in the region had already been drastically decreased due to a smallpox epiemic in the late 1770s. 
+Galiano has been home to many different Hul'qumi'num speaking Coast Salish people, including the Penelakut First Nation. In the late 18th century, Captain Dionisio Galiano (for whom the island was named) arrived on Galiano, though the population of Coast Salish People in the region had already been drastically decreased due to a smallpox epidemic in the late 1770s. 
 
 The main industries of Galiano Island (among many other islands) included fishing and logging, owing to poor soil limiting the growth of agriculture. In the late 1870s, many people from Asia immigrated to settle the area for the abundance of fish and wood. Many immigrants operated and continued to operate salteries on the northern end of the island until the mid 20th century. As of the 21st century, there is no active logging on the island and instead active tourist and art industries populate the island. 
 
@@ -71,7 +69,7 @@ Important areas of interest on Galiano:
 
 * Dionisio Provincial Park: Boat only access park, filled with unique sandstone structures and tidepools as a result 
 
-* Mount Sutil: an ecological reserve named after Captain Galiano's flagship 250 m above sea level
+* Mount Sutil: an ecological reserve named after Captain Galiano's flagship 250m above sea level
 
 ```{r, echo=FALSE, message=FALSE}
 source("scripts/vector_map_script.R")
@@ -80,7 +78,7 @@ source("scripts/vector_map_script.R")
 
 # Xetthecum
 
-Xetthecum in Hul'qumi'num, also known as Retreat cove, in an area of significant cultural interest for Coast Salish peoples. Rich in kelp and seagrass, it is protected from the rough ocean currents by Retreat Island, making it a safe haven. Retreat Cove is also filled with beautiful sandstone cave formations. 
+Xetthecum in Hul'qumi'num, also known as Retreat Cove, is an area of significant cultural interest for Coast Salish peoples. Rich in kelp and seagrass, it is protected from the rough ocean currents by Retreat Island, making it a safe haven. Retreat Cove is also filled with beautiful sandstone cave formations. 
 
 ```{r, echo=FALSE, message=FALSE}
 source("scripts/vector_map_scriptXetthecum.R")
@@ -93,7 +91,8 @@ We held a Bioblitz on Galiano in 2023 based at Hunterston Farm / Xetthecum. We a
 As part of Whiteswan Environmental's Ecocultural Mapping project, this bioblitz was motivated to survey additional culturally significant information to the knowledge base. As a result of the bioblitz, we found 2 new culturally significant species: tl'uxwtl'uxw (Magallana gigas) and stl'ula'um (Clinocardium nuttallii). We also confirmed 2 culturally significant species: kwakwatl'shun (Cancer productus) and skw'lhey (Leukoma staminea). All of these species have cultural food value, all but one have both cultural medicinal and trade value, and two have spiritual value. 
 
 
-Additional information on culturally significant species can be found in the Marine Atlas pages about Crustacea, Echinodermata, Fishes, Mammalia, and Mollusca.
+Additional information on culturally significant species can be found in the Marine Atlas pages about <a href="Crustacea-Reknitted.html" target="blank">Crustacea</a>, 
+<a href="Echinodermata-Reknitted.html" target="blank">Echinodermata</a>, <a href="Fishes-Reknitted.html" target="blank">Fishes</a>, <a href="Mammalia-Reknitted.html" target="blank">Mammalia</a>, and <a href="Mollusca-Reknitted.html" target="blank">Mollusca</a>.
 
 
 ```{r, echo=FALSE, message=FALSE}

@@ -8,11 +8,13 @@ source("scripts/utils.R")
 # Analysis of historical collection activities
 inat_tidy <- read_csv("tabular_data/bioblitz_summary_data/intersection_inat_hunterstonmap_assoc_polygons.csv") %>%
   filter(quality_grade == "research") #lose ~1000 rows of data
+
 hunterston2023 <- inat_tidy %>%
   drop_na(Id_2)%>% #70% data loss 
   mutate(year=2023) %>%
   rename(type = Type, Id = Id_2, scientificName = scientific_name) %>%
   select(scientificName, Id, latitude, longitude, year, type)
+
 hunterston2010 <- read_csv("tabular_data/bioblitz_summary_data/hunterston2010_data+updatedpolygons.csv") %>%
   mutate(year=2010) %>%
   rename(scientificName = Scientific, 
@@ -54,7 +56,7 @@ summary_confirmed <- confirmed_obs %>%
   summarise(species=length(unique(scientificName)))
 
 # loading in polygons from shp file
-grid <- st_read("spatial_data/vectors/hunterston/new_hunterston_map.shp") %>%
+grid <- mx_read("spatial_data/vectors/hunterston/new_hunterston_map.shp") %>%
   select(Id, geometry)
 #merging shp file with biodiversity summary
 summary_2010pn <- merge(grid, summary_2010, by="Id")
