@@ -58,13 +58,13 @@ figs$reportingStatusFig
 Echinoderms are one of many phyla that have cultural significance to Hul'qumi'num speaking peoples. Generally, echinoderms are regarded as important food sources for delicacy and cultural practice. Many of echinoderm species have experienced declines in populations in recent years, making their havesting and consumption increasingly difficult.
 
 * [Giant Red Sea Cucumber](#taxon:Parastichopus californicus), known in Hul'qumi'num as [**Thikwt**](#taxon:Parastichopus californicus)
-  - Thikwt is regarded as a delicacy by many and is typically cleaned and eaten whole in stews or stocks. Thikwt can be harvested with a 3-pronged spear, rake, or by collection via diving. 
+Thikwt is regarded as a delicacy by many and is typically cleaned and eaten whole in stews or stocks. Thikwt can be harvested with a 3-pronged spear, rake, or by collection via diving. 
 
 * [Sea Urchins (Red)](#taxon:Strongylocentrotus franciscanus)[Sea Urchins (Purple](#taxon:Strongylocentrotus purpuratus), known in Hul'qumi'num as [**Xihwu**](#taxon:Strongylocentrotus franciscanus), [**Xihwu**](#taxon:Strongylocentrotus purpuratus)
-  - Xihwu is also regarded as a delicacy and can similary be harvested by a 3-pronged spear or rake like Thikwt. Because Xihwu are thin shelled, they can easily be eaten or used for bait. Purple urchins in particular are a rare delicacy known for their sweet taste.
+Xihwu is also regarded as a delicacy and can similary be harvested by a 3-pronged spear or rake like Thikwt. Because Xihwu are thin shelled, they can easily be eaten or used for bait. Purple urchins in particular are a rare delicacy known for their sweet taste.
 
 * [Green Sea Urchin](#taxon:Strongylocentrotus droebachiensis), known in Hul'qumi'num as [**Skw'itth'i'**](#taxon:Strongylocentrotus droebachiensis)
-  - Skw'itth'i' were once common and plentiful on both rocky shores and kelp beds, however, they are now a rare delicacy. Today, to harvest skw'itth'i', journeying to areas with fast moving waters is required. 
+Skw'itth'i' were once common and plentiful on both rocky shores and kelp beds, however, they are now a rare delicacy. Today, to harvest skw'itth'i', journeying to areas with fast moving waters is required. 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 source("scripts/Cultural_map_script.R")

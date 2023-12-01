@@ -53,20 +53,20 @@ figs$reportingStatusFig
 
 Mammals are one of many phyla that have cultural significance to Hul'qumi'num speaking peoples. Generally, fish are regarded as important food sources for delicacy and cultural practice. Specific species of mammals that have important cultural significance include:
 
-* [Stellar Sea Lion or California Sea Lion](#taxon:Eumetopias jubatus / Zalophus californianus), known in Hul'qumi'num as [**Shes or Ts'axulus**](#taxon:Eumetopias jubatus / Zalophus californianus)
-- Shes are typically 3-4 times larger than ts'axulus, with ts'axulus having a darker appearance in colour. Shes is a special food source for certain animals and people. 
+* [Stellar Sea Lion](#taxon:Eumetopias jubatus)  [California Sea Lion](#Zalophus californianus), known in Hul'qumi'num as [**Shes**](#taxon:Eumetopias jubatus) or [**Ts'axulus**](#taxon:Zalophus californianus)
+Shes are typically 3-4 times larger than ts'axulus, with ts'axulus having a darker appearance in colour. Shes is a special food source for certain animals and people. 
 
 * [River Otter](#taxon: Lontra canadensis), known in Hul'qumi'num as [**Sqeetl'**](#taxon:Lontra canadensis)
-- Sqeetl' have a large appetite, feeding on fish, crayfish, and crab depending on whether they are in salt or fresh water. Sqeetl' have important spiritual value for certain people. 
+Sqeetl' have a large appetite, feeding on fish, crayfish, and crab depending on whether they are in salt or fresh water. Sqeetl' have important spiritual value for certain people. 
 
 * [Harbour Seal](#taxon:Phoca vitulina), known in Hul'qumi'num as [**'E s-hw**](#taxon:Phoca vitulina)
-- 'E s-hw feed on mainly fish and shellfish, typically frequenting areas that are protected from bad weather and predation, near an easily accessible foraging site. Young 'e s-hw pups are preffered for eating. The skin of 'e s-hw is used for oil.
+'E s-hw feed on mainly fish and shellfish, typically frequenting areas that are protected from bad weather and predation, near an easily accessible foraging site. Young 'e s-hw pups are preffered for eating. The skin of 'e s-hw is used for oil.
 
 * [Mink](#taxon:Mustela vison), known in Hul'qumi'num as [**Chuchi'q'un'**](#taxon:Mustela vison)
-- Chuchi'q'un'is featured in several traditional stories and first hand accounts relating to its character and abilities. In traditional stories, Chuchi'q'un' is a jester. Chuchi'q'un' fur is highly valued to its short, fine, and dense nature. Chuchi'q'un' fish for salmon, so you may encounter a Chuchi'q'un' competing with you for salmon. 
+Chuchi'q'un'is featured in several traditional stories and first hand accounts relating to its character and abilities. In traditional stories, Chuchi'q'un' is a jester. Chuchi'q'un' fur is highly valued to its short, fine, and dense nature. Chuchi'q'un' fish for salmon, so you may encounter a Chuchi'q'un' competing with you for salmon. 
 
 * [Orca (Killer Whale)](#taxon:Orcinus ocra), known in Hul'qumi'num as [**Q'ul-lhanamutsum**](#taxon:Orcinus ocra)
-- Q'ul-lhanamutsum are highly endangered marine mammals, with the southern resident community comprising only 89 individuals. Q'ul-lhanamutsum pods feed on salmon. Q'ul-lhanamutsum can be your friend, helper, enermy or saviour. The land form of Q'ul-lhanamutsum is stqeeye' (wolf).
+Q'ul-lhanamutsum are highly endangered marine mammals, with the southern resident community comprising only 89 individuals. Q'ul-lhanamutsum pods feed on salmon. Q'ul-lhanamutsum can be your friend, helper, enermy or saviour. The land form of Q'ul-lhanamutsum is stqeeye' (wolf).
 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
